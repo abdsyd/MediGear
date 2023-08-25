@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/widgets/auth_button.dart';
 
 class WelcomeView extends StatelessWidget {
   const WelcomeView({super.key});
@@ -39,34 +40,22 @@ class WelcomeView extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              MaterialButton(
-                minWidth: double.infinity,
-                height: 60,
+              AuthButton(
+                text: 'SIGN IN',
                 onPressed: () {
                   Get.toNamed(AppRoute.login);
                 },
                 color: AppColors.myBrown,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)),
-                child: Text("SIGN IN",
-                    style: Theme.of(context).textTheme.displayMedium),
               ),
               const SizedBox(
                 height: 20,
               ),
-              MaterialButton(
-                minWidth: double.infinity,
-                height: 60,
+              AuthButton(
+                text: 'SIGN UP',
                 onPressed: () {
                   Get.toNamed(AppRoute.register);
                 },
                 color: AppColors.myBrown,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)),
-                child: Text("SIGN UP",
-                    style: Theme.of(context).textTheme.displayMedium),
               ),
             ],
           ),

@@ -3,6 +3,7 @@ import 'package:hunter/constants/colors.dart';
 
 class AppTheme {
   static ThemeData englishTheme = ThemeData(
+    primaryColor: AppColors.myPrimary,
     fontFamily: 'PlayfairDisplay',
     textTheme: const TextTheme(
       displayMedium: TextStyle(
@@ -15,6 +16,7 @@ class AppTheme {
   );
 
   static ThemeData arabicTheme = ThemeData(
+    primaryColor: AppColors.myPrimary,
     fontFamily: 'KufiArabic',
     textTheme: const TextTheme(
       displayMedium: TextStyle(
