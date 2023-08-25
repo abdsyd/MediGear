@@ -1,6 +1,6 @@
 {
-    "name": "medi_gear",
-    "short_name": "medi_gear",
+    "name": "hunter",
+    "short_name": "hunter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
