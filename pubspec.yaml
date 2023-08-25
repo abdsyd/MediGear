@@ -39,7 +39,7 @@ flutter:
     - family: KufiArabic
       fonts:
         - asset: assets/fonts/NotoKufiArabic-VariableFont_wght.ttf
-    - family: defaultEnglish
+    - family: PlayfairDisplay
       fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/PlayfairDisplay-Regular.ttf
 
