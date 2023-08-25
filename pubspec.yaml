@@ -42,7 +42,4 @@ flutter:
     - family: defaultEnglish
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
-    - family: AbdIcons
-      fonts:
-        - asset: assets/fonts/AbdIcons.ttf
 
