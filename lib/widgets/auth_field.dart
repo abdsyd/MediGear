@@ -6,14 +6,14 @@ class AuthField extends StatelessWidget {
   const AuthField({
     super.key,
     required this.label,
-    required this.obscureText,
     required this.textController,
     required this.keyboardType,
     this.validator,
     required this.onChanged,
     this.icon,
     this.onIconPressed,
-  });
+    required this.obscureText,
+  }) ;
   final String label;
   final bool obscureText;
   final TextEditingController textController;

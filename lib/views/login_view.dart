@@ -6,6 +6,8 @@ import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/login_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
+import 'package:hunter/widgets/auth_suggestion.dart';
+import 'package:hunter/widgets/auth_title.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -17,18 +19,11 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(
-            Icons.arrow_back_rounded,
-            size: 17,
-          ),
-        ),
-      ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: const BackButton(
+            style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
+          )),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -39,29 +34,12 @@ class LoginView extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: [
-            Column(
-              children: [
-                Text(
-                  'Login',
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayLarge!
-                      .copyWith(color: Colors.black),
-                ),
-                const SizedBox(
-                  height:10,
-                ),
-                Text(
-                  'Login to your account',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: Colors.grey.shade700),
-                ),
-              ],
+            const AuthTitle(
+              title: 'Login',
+              subTitle: 'Login to your account',
             ),
             const SizedBox(
-              height:15,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -74,7 +52,7 @@ class LoginView extends StatelessWidget {
                       obscureText: false,
                       textController: lC.email,
                       keyboardType: TextInputType.emailAddress,
-                      validator: (val){
+                      validator: (val) {
                         return validateInput(lC.email.text, 8, 100, 'email');
                       },
                       onChanged: (val) {
@@ -83,24 +61,30 @@ class LoginView extends StatelessWidget {
                         }
                       },
                     ),
-                    GetBuilder<LoginController>(builder: (controller) => AuthField(
-                      label: 'password',
-                      obscureText: !controller.passwordVisible,
-                      icon: controller.passwordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
-                      onIconPressed: (){
-                        controller.togglePasswordVisibility(!controller.passwordVisible);
-                      },
-                      textController: controller.password,
-                      keyboardType: TextInputType.text,
-                      validator: (val){
-                        return validateInput(controller.password.text, 8, 100, 'password');
-                      },
-                      onChanged: (val) {
-                        if (controller.buttonPressed) {
-                          controller.loginFormKey.currentState!.validate();
-                        }
-                      },
-                    ),)
+                    GetBuilder<LoginController>(
+                      builder: (controller) => AuthField(
+                        label: 'password',
+                        obscureText: !controller.passwordVisible,
+                        icon: controller.passwordVisible
+                            ? CupertinoIcons.eye_slash
+                            : CupertinoIcons.eye,
+                        onIconPressed: () {
+                          controller.togglePasswordVisibility(
+                              !controller.passwordVisible);
+                        },
+                        textController: controller.password,
+                        keyboardType: TextInputType.text,
+                        validator: (val) {
+                          return validateInput(
+                              controller.password.text, 8, 100, 'password');
+                        },
+                        onChanged: (val) {
+                          if (controller.buttonPressed) {
+                            controller.loginFormKey.currentState!.validate();
+                          }
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -115,30 +99,12 @@ class LoginView extends StatelessWidget {
                 color: AppColors.myPrimary,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'don\'t have an account ',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: Colors.black,),
-                ),
-                InkWell(
-                  child: Text(
-                    'Sign Up',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 12,),
-                  ),
-                  onTap: () {
-                    Get.offAllNamed(AppRoute.register);
-                  },
-                ),
-              ],
-            ),
+            AuthSuggestion(
+                question: 'don\'t have an account?',
+                suggestion: 'Sign up',
+                onTap: () {
+                  Get.offNamed(AppRoute.register);
+                })
           ],
         ),
       ),
