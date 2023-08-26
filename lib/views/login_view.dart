@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
+import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/login_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
@@ -16,19 +18,22 @@ class LoginView extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
             Get.back();
           },
           icon: const Icon(
             Icons.arrow_back_rounded,
-            size: 20,
+            size: 17,
           ),
         ),
       ),
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/images/MediGear2.jpg'),fit: BoxFit.fill),
+          image: DecorationImage(
+              image: AssetImage('assets/images/MediGear2.jpg'),
+              fit: BoxFit.fill),
         ),
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
@@ -44,7 +49,7 @@ class LoginView extends StatelessWidget {
                       .copyWith(color: Colors.black),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height:10,
                 ),
                 Text(
                   'Login to your account',
@@ -55,23 +60,58 @@ class LoginView extends StatelessWidget {
                 ),
               ],
             ),
-             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+            const SizedBox(
+              height:15,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Form(
                 key: lC.loginFormKey,
-                child: const Column(
+                child: Column(
                   children: [
-                    AuthField(label: 'email', obscureText: false),
-                    AuthField(label: 'password', obscureText: true),
+                    AuthField(
+                      label: 'email',
+                      obscureText: false,
+                      textController: lC.email,
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (val){
+                        return validateInput(lC.email.text, 8, 100, 'email');
+                      },
+                      onChanged: (val) {
+                        if (lC.buttonPressed) {
+                          lC.loginFormKey.currentState!.validate();
+                        }
+                      },
+                    ),
+                    GetBuilder<LoginController>(builder: (controller) => AuthField(
+                      label: 'password',
+                      obscureText: !controller.passwordVisible,
+                      icon: controller.passwordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
+                      onIconPressed: (){
+                        controller.togglePasswordVisibility(!controller.passwordVisible);
+                      },
+                      textController: controller.password,
+                      keyboardType: TextInputType.text,
+                      validator: (val){
+                        return validateInput(controller.password.text, 8, 100, 'password');
+                      },
+                      onChanged: (val) {
+                        if (controller.buttonPressed) {
+                          controller.loginFormKey.currentState!.validate();
+                        }
+                      },
+                    ),)
                   ],
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: AuthButton(
                 text: 'Login',
-                onPressed: () {},
+                onPressed: () {
+                  lC.login();
+                },
                 color: AppColors.myPrimary,
               ),
             ),
@@ -80,17 +120,22 @@ class LoginView extends StatelessWidget {
               children: [
                 Text(
                   'don\'t have an account ',
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.black,fontSize: 15),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(color: Colors.black,),
                 ),
                 InkWell(
                   child: Text(
                     'Sign Up',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 12,),
                   ),
-                  onTap: (){},
+                  onTap: () {
+                    Get.offAllNamed(AppRoute.register);
+                  },
                 ),
               ],
             ),

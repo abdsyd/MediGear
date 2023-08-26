@@ -7,10 +7,10 @@ class AppTheme {
     fontFamily: 'PlayfairDisplay',
     textTheme: const TextTheme(
       displayMedium: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 28, color: AppColors.myWhite),
+          fontWeight: FontWeight.bold, fontSize: 20, color: AppColors.myWhite),
       displayLarge: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 48, color: AppColors.myWhite),
-      bodyLarge: TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 18),
+          fontWeight: FontWeight.bold, fontSize: 40, color: AppColors.myWhite),
+      bodyLarge: TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 10.5),
     ),
     useMaterial3: true,
   );

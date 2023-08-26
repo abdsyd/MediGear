@@ -1,42 +1,95 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hunter/constants/colors.dart';
 
 class AuthField extends StatelessWidget {
   const AuthField({
     super.key,
     required this.label,
     required this.obscureText,
+    required this.textController,
+    required this.keyboardType,
+    this.validator,
+    required this.onChanged,
+    this.icon,
+    this.onIconPressed,
   });
   final String label;
   final bool obscureText;
+  final TextEditingController textController;
+  final TextInputType keyboardType;
+  final String? Function(String?)? validator;
+  final void Function(String) onChanged;
+  final void Function()? onIconPressed;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          label,
-          style: const TextStyle(
-              fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        TextField(
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade300)),
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey.shade300)),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: TextFormField(
+        validator: validator,
+        onChanged: onChanged,
+        controller: textController,
+        cursorColor: AppColors.myPrimary,
+        obscureText: obscureText,
+        keyboardType: keyboardType,
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 11),
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: Theme.of(context)
+              .textTheme
+              .displayMedium!
+              .copyWith(color: Colors.black45, fontSize: 13.5),
+          suffixIcon: IconButton(
+            onPressed: onIconPressed,
+            icon: Icon(icon),
+          ),
+          errorStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: Colors.red,
+              ),
+          suffixIconColor: AppColors.myPrimary,
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.red),
+            borderRadius: BorderRadius.circular(6.5),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.red),
+            borderRadius: BorderRadius.circular(6.5),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.myPrimary),
+          ),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.shade300),
+            borderRadius: BorderRadius.circular(6.5),
           ),
         ),
-        const SizedBox(
-          height: 30,
-        ),
-      ],
+      ),
     );
   }
+}
+
+String? validateInput(String val, int min, int max, String type) {
+  if (val.trim().isEmpty) return "cant be empty";
+
+  if (type == "username") {
+    if (!GetUtils.isUsername(val)) return "not a valid user name";
+  }
+  if (type == "email") {
+    if (!GetUtils.isEmail(val)) return "not a valid email";
+  }
+  if (type == "phone") {
+    if (!GetUtils.isPhoneNumber(val)) return "not a valid phone";
+  }
+
+  if (val.isEmpty) return " cant be empty";
+
+  if (val.length < min) return " cant be smaller than $min";
+
+  if (val.length > max) return " cant be greater than $max";
+
+  return null;
 }

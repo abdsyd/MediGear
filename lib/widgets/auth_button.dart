@@ -14,12 +14,12 @@ class AuthButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       minWidth: double.infinity,
-      height: 60,
+      height: 50,
       onPressed:onPressed ,
       color: color,
       elevation: 0,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),side: const BorderSide(color: AppColors.myWhite,width: 3)),
+          borderRadius: BorderRadius.circular(50),side: const BorderSide(color: AppColors.myWhite,width: 2)),
       child: Text(text,
           style: Theme.of(context).textTheme.displayMedium),
     );

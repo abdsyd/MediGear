@@ -17,4 +17,5 @@ List<GetPage<dynamic>> routes = [
     name: AppRoute.register,
     page: () => const RegisterView(),
   ),
+
 ];
