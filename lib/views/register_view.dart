@@ -43,6 +43,7 @@ class RegisterView extends StatelessWidget {
                         label: 'name',
                         textController: rC.name,
                         keyboardType: TextInputType.name,
+                        icon: Icons.person_outlined,
                         validator: (val) {
                           return validateInput(rC.name.text, 8, 100, 'name');
                         },
@@ -56,6 +57,7 @@ class RegisterView extends StatelessWidget {
                         label: 'email',
                         textController: rC.email,
                         keyboardType: TextInputType.emailAddress,
+                        icon: Icons.mail_outline,
                         validator: (val) {
                           return validateInput(rC.email.text, 8, 100, 'email');
                         },
@@ -119,6 +121,7 @@ class RegisterView extends StatelessWidget {
                         label: 'phone',
                         textController: rC.phone,
                         keyboardType: TextInputType.phone,
+                        icon: Icons.phone_outlined,
                         validator: (val) {
                           return validateInput(rC.phone.text, 8, 100, 'phone');
                         },

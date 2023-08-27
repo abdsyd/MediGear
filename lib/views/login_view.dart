@@ -12,7 +12,6 @@ import 'package:hunter/widgets/auth_title.dart';
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
-  //todo: implement toggle button
   @override
   Widget build(BuildContext context) {
     LoginController lC = Get.put(LoginController());
@@ -23,27 +22,25 @@ class LoginView extends StatelessWidget {
           backgroundColor: Colors.transparent,
           leading: const BackButton(
             style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
-          )),
+          ),),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/MediGear2.jpg'),
-              fit: BoxFit.fill),
+              fit: BoxFit.fill,),
         ),
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        child: Column(
-          children: [
-            const AuthTitle(
-              title: 'Login',
-              subTitle: 'Login to your account',
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Form(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Column(
+            children: [
+              const AuthTitle(
+                title: 'Login',
+                subTitle: 'Login to your account',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Form(
                 key: lC.loginFormKey,
                 child: Column(
                   children: [
@@ -51,6 +48,7 @@ class LoginView extends StatelessWidget {
                       label: 'email',
                       textController: lC.email,
                       keyboardType: TextInputType.emailAddress,
+                      icon: Icons.mail_outline,
                       validator: (val) {
                         return validateInput(lC.email.text, 8, 100, 'email');
                       },
@@ -87,24 +85,37 @@ class LoginView extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: AuthButton(
+              Align(
+                alignment: Alignment.centerLeft,
+                child: InkWell(
+                  onTap: () {
+                    Get.offNamed(AppRoute.forgotPassword1);
+                  },
+                  child: Text(
+                    'Forgot password',
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: Colors.grey.shade700,
+                      decoration: TextDecoration.underline,
+                        ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12,),
+              AuthButton(
                 text: 'Login',
                 onPressed: () {
                   lC.login();
                 },
                 color: AppColors.myPrimary,
               ),
-            ),
-            AuthSuggestion(
-                question: 'don\'t have an account?',
-                suggestion: 'Sign up',
-                onTap: () {
-                  Get.offNamed(AppRoute.register);
-                })
-          ],
+              AuthSuggestion(
+                  question: 'don\'t have an account?',
+                  suggestion: 'Sign up',
+                  onTap: () {
+                    Get.offNamed(AppRoute.register);
+                  })
+            ],
+          ),
         ),
       ),
     );

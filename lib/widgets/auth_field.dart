@@ -43,7 +43,7 @@ class AuthField extends StatelessWidget {
               .copyWith(color: Colors.black45, fontSize: 15),
           suffixIcon: IconButton(
             onPressed: onIconPressed,
-            icon: Icon(icon),
+            icon: Icon(icon,color: AppColors.myPrimary,),
           ),
           errorStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 color: Colors.red,
