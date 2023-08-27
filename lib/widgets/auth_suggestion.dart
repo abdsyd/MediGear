@@ -21,7 +21,7 @@ class AuthSuggestion extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        const SizedBox(width: 15,),
+         const SizedBox(width: 5,),
         InkWell(
           onTap:onTap,
           child:  Text(

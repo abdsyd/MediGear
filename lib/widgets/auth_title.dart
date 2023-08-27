@@ -24,10 +24,11 @@ class AuthTitle extends StatelessWidget {
         ),
         Text(
           subTitle,
+          textAlign: TextAlign.center,
           style: Theme.of(context)
               .textTheme
               .bodyLarge!
-              .copyWith(color: Colors.grey.shade700),
+              .copyWith(color: Colors.grey.shade700,),
         ),
       ],
     );

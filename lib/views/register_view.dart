@@ -141,7 +141,8 @@ class RegisterView extends StatelessWidget {
                 child: AuthButton(
                   text: 'Sign up',
                   onPressed: () {
-                    rC.register();
+                    //rC.register();
+                    Get.toNamed(AppRoute.registerOTP);
                   },
                   color: AppColors.myPrimary,
                 ),
