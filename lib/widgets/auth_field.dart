@@ -12,10 +12,10 @@ class AuthField extends StatelessWidget {
     required this.onChanged,
     this.icon,
     this.onIconPressed,
-    required this.obscureText,
-  }) ;
+    this.obscureText,
+  });
   final String label;
-  final bool obscureText;
+  final bool? obscureText;
   final TextEditingController textController;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
@@ -32,7 +32,7 @@ class AuthField extends StatelessWidget {
         onChanged: onChanged,
         controller: textController,
         cursorColor: AppColors.myPrimary,
-        obscureText: obscureText,
+        obscureText: obscureText ?? false,
         keyboardType: keyboardType,
         style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 11),
         decoration: InputDecoration(
@@ -40,7 +40,7 @@ class AuthField extends StatelessWidget {
           labelStyle: Theme.of(context)
               .textTheme
               .displayMedium!
-              .copyWith(color: Colors.black45, fontSize: 13.5),
+              .copyWith(color: Colors.black45, fontSize: 15),
           suffixIcon: IconButton(
             onPressed: onIconPressed,
             icon: Icon(icon),

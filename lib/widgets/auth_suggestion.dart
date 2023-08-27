@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hunter/constants/colors.dart';
 
 class AuthSuggestion extends StatelessWidget {
   const AuthSuggestion({
@@ -27,8 +28,8 @@ class AuthSuggestion extends StatelessWidget {
             suggestion,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
               fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontSize: 12,
+              color: AppColors.myPrimary,
+              fontSize: 14.5,
             ),
           ),
         ),

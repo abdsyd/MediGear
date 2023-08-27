@@ -49,7 +49,6 @@ class LoginView extends StatelessWidget {
                   children: [
                     AuthField(
                       label: 'email',
-                      obscureText: false,
                       textController: lC.email,
                       keyboardType: TextInputType.emailAddress,
                       validator: (val) {

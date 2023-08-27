@@ -8,6 +8,7 @@ import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
 import 'package:hunter/widgets/auth_suggestion.dart';
 import 'package:hunter/widgets/auth_title.dart';
+import 'package:hunter/widgets/auth_toggle_button.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -40,7 +41,6 @@ class RegisterView extends StatelessWidget {
                     children: [
                       AuthField(
                         label: 'name',
-                        obscureText: false,
                         textController: rC.name,
                         keyboardType: TextInputType.name,
                         validator: (val) {
@@ -54,7 +54,6 @@ class RegisterView extends StatelessWidget {
                       ),
                       AuthField(
                         label: 'email',
-                        obscureText: false,
                         textController: rC.email,
                         keyboardType: TextInputType.emailAddress,
                         validator: (val) {
@@ -118,7 +117,6 @@ class RegisterView extends StatelessWidget {
                       ),
                       AuthField(
                         label: 'phone',
-                        obscureText: false,
                         textController: rC.phone,
                         keyboardType: TextInputType.phone,
                         validator: (val) {
@@ -130,44 +128,7 @@ class RegisterView extends StatelessWidget {
                           }
                         },
                       ),
-                      GetBuilder<RegisterController>(
-                        builder: (controller) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ToggleButtons(
-                            isSelected: controller.isSelected,
-                            onPressed: (int newIndex) {
-                              controller.toggleSelections(newIndex);
-                            },
-                            borderRadius: BorderRadius.circular(6.5),
-                            borderWidth: 2.0,
-                            textStyle: Theme.of(context).textTheme.bodyLarge,
-                            fillColor: AppColors.myPrimary,
-                            selectedColor: Colors.white,
-                            children: const [
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Column(
-                                  children: [
-                                    Icon(Icons.medical_services_outlined),
-                                    Text('doctor'),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Column(
-                                  children: [
-                                    Icon(Icons.storefront),
-                                    Text(
-                                      'supplier',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      const AuthToggleButton(),
                     ],
                   ),
                 ),
@@ -195,3 +156,5 @@ class RegisterView extends StatelessWidget {
     );
   }
 }
+
+
