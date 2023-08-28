@@ -94,7 +94,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       GetBuilder<RegisterController>(
                         builder: (controller) => AuthField(
-                          label: 'repassword',
+                          label: 'rePassword',
                           obscureText: !controller.rePasswordVisible,
                           icon: controller.rePasswordVisible
                               ? CupertinoIcons.eye_slash

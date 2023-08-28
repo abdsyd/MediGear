@@ -6,7 +6,7 @@ import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_suggestion.dart';
 import 'package:hunter/widgets/auth_title.dart';
 import 'package:hunter/widgets/otp_field.dart';
-import 'package:timer_count_down/timer_count_down.dart';
+import 'package:hunter/widgets/otp_timer.dart';
 
 class RegisterOTP extends StatelessWidget {
   const RegisterOTP({super.key});
@@ -37,19 +37,11 @@ class RegisterOTP extends StatelessWidget {
                         'please enter the code that sent to your email \n this code will expire in ',
                   ),
                   GetBuilder<RegisterController>(
-                    builder: (controller) => Countdown(
+                    builder: (controller) => OtpTimer(
                       controller: controller.timeController,
-                      seconds: 180,
-                      build: (context, double time) => Text(
-                        time.toString(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayMedium!
-                            .copyWith(
-                                color: controller.isTimeUp
-                                    ? Colors.red
-                                    : AppColors.myPrimary),
-                      ),
+                      timerColor: controller.isTimeUp
+                          ? Colors.red
+                          : AppColors.myPrimary,
                       onFinished: () {
                         controller.toggleTimerState(true);
                       },
@@ -59,14 +51,17 @@ class RegisterOTP extends StatelessWidget {
               ),
               OtpField(
                 controller: rC.otpController,
+                onCompleted: (pin) {
+                  rC.verifyOtp(pin);
+                },
               ),
-              //const SizedBox(height: 50,),
               AuthButton(
                   text: 'Verify', onPressed: () {}, color: AppColors.myPrimary),
               AuthSuggestion(
-                  question: 'didn\'t receive a code? ',
-                  suggestion: 'resend',
-                  onTap: () {})
+                question: 'didn\'t receive a code? ',
+                suggestion: 'resend',
+                onTap: () {},
+              )
             ],
           ),
         ),

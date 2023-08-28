@@ -3,6 +3,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hunter/routes.dart';
 import 'package:hunter/themes.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.englishTheme,
       getPages: routes,
-       //home: const RegisterOTP(),
+
     );
   }
 }

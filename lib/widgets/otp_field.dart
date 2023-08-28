@@ -6,10 +6,11 @@ import 'package:otp_text_field/style.dart';
 class OtpField extends StatelessWidget {
   const OtpField({
     super.key,
-    required this.controller,
+    required this.controller, this.onCompleted,
   });
 
   final OtpFieldController controller;
+  final void Function(String)? onCompleted;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,7 @@ class OtpField extends StatelessWidget {
         focusBorderColor: AppColors.myPrimary,
       ),
       outlineBorderRadius: 15,
-      onCompleted: (pin) {},
-      //onChanged: (val){},
+      onCompleted: onCompleted,
     );
   }
 }

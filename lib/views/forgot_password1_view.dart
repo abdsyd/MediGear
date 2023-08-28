@@ -31,7 +31,7 @@ class ForgotPass1View extends StatelessWidget {
             children: [
               const AuthTitle(
                 title: 'Forget Password',
-                subTitle: 'Enter you email address',
+                subTitle: 'Enter your email address',
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -56,8 +56,7 @@ class ForgotPass1View extends StatelessWidget {
                 child: AuthButton(
                     text: 'Confirm',
                     onPressed: () {
-                      //fPC.goToOtp();
-                      Get.toNamed(AppRoute.forgotPasswordOTP);
+                      fPC.goToOtp();
                     },
                     color: AppColors.myPrimary),
               ),

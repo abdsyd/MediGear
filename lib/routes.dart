@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/views/forgot_password1_view.dart';
+import 'package:hunter/views/forgot_password2_view.dart';
 import 'package:hunter/views/forgot_password_otp.dart';
 import 'package:hunter/views/login_view.dart';
 import 'package:hunter/views/register_otp.dart';
@@ -31,6 +32,10 @@ List<GetPage<dynamic>> routes = [
   GetPage(
     name: AppRoute.forgotPasswordOTP,
     page: () => const ForgotPassOTP(),
+  ),
+  GetPage(
+    name: AppRoute.forgotPassword2,
+    page: () => const ForgotPass2View(),
   ),
 
 ];
