@@ -10,18 +10,19 @@ class AuthField extends StatelessWidget {
     required this.keyboardType,
     this.validator,
     required this.onChanged,
-    this.icon,
+    required this.icon,
     this.onIconPressed,
-    this.obscureText,
+    this.obscureText, this.autoFocus,
   });
   final String label;
   final bool? obscureText;
+  final bool? autoFocus;
   final TextEditingController textController;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
   final void Function(String) onChanged;
   final void Function()? onIconPressed;
-  final IconData? icon;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class AuthField extends StatelessWidget {
       child: TextFormField(
         validator: validator,
         onChanged: onChanged,
+        autofocus: autoFocus ?? false,
         controller: textController,
         cursorColor: AppColors.myPrimary,
         obscureText: obscureText ?? false,
@@ -84,8 +86,6 @@ String? validateInput(String val, int min, int max, String type) {
   if (type == "phone") {
     if (!GetUtils.isPhoneNumber(val)) return "not a valid phone";
   }
-
-  if (val.isEmpty) return " cant be empty";
 
   if (val.length < min) return " cant be smaller than $min";
 

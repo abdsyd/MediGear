@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AuthTitle extends StatelessWidget {
   const AuthTitle({
-    super.key, required this.title, required this.subTitle,
+    super.key, required this.title,  required this.subTitle,
   });
 
   final String title;
