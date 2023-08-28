@@ -56,7 +56,8 @@ class ForgotPass1View extends StatelessWidget {
                 child: AuthButton(
                     text: 'Confirm',
                     onPressed: () {
-                      fPC.goToOtp();
+                      //fPC.goToOtp();
+                      Get.toNamed(AppRoute.forgotPasswordOTP);
                     },
                     color: AppColors.myPrimary),
               ),
