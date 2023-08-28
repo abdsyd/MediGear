@@ -7,6 +7,7 @@ import 'package:hunter/widgets/auth_suggestion.dart';
 import 'package:hunter/widgets/auth_title.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 
 class RegisterOTP extends StatelessWidget {
   const RegisterOTP({super.key});
@@ -30,7 +31,18 @@ class RegisterOTP extends StatelessWidget {
             children: [
               const AuthTitle(
                 title: 'Verification',
-                subTitle: 'please enter the code that sent to test@email.com \n this code will expire in \n 0:30',
+                subTitle: 'please enter the code that sent to test@email.com \n this code will expire in ',
+              ),
+              Countdown(
+                controller: rC.timeController,
+                seconds: 180,
+                build: (_, double time) => Text(
+                  time.toString(),
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(color: rC.isTimeUp ? Colors.red : AppColors.myPrimary),
+                ),
+                onFinished: () {
+                  rC.toggleTimerState(true);
+                },
               ),
               OTPTextField(
                 controller: rC.otpController,
