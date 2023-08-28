@@ -27,7 +27,7 @@ class LoginView extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/MediGear2.jpg'),
-              fit: BoxFit.fill,),
+              fit: BoxFit.cover,),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),

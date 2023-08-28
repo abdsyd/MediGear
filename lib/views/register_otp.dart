@@ -5,9 +5,8 @@ import 'package:hunter/controllers/register_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_suggestion.dart';
 import 'package:hunter/widgets/auth_title.dart';
-import 'package:otp_text_field/otp_text_field.dart';
-import 'package:otp_text_field/style.dart';
-import 'package:timer_count_down/timer_count_down.dart';
+import 'package:hunter/widgets/otp_timer.dart';
+import 'package:hunter/widgets/otp_field.dart';
 
 class RegisterOTP extends StatelessWidget {
   const RegisterOTP({super.key});
@@ -30,52 +29,18 @@ class RegisterOTP extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
+              const Column(
                 children: [
-                  const AuthTitle(
+                  AuthTitle(
                     title: 'Verification',
                     subTitle:
                         'please enter the code that sent to your email \n this code will expire in ',
                   ),
-                  GetBuilder<RegisterController>(
-                    builder: (controller) => Countdown(
-                      controller: controller.timeController,
-                      seconds: 180,
-                      build: (context, double time) => Text(
-                        time.toString(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayMedium!
-                            .copyWith(
-                                color: controller.isTimeUp
-                                    ? Colors.red
-                                    : AppColors.myPrimary),
-                      ),
-                      onFinished: () {
-                        controller.toggleTimerState(true);
-                      },
-                    ),
-                  ),
+                  OtpTimer(),
                 ],
               ),
-
-              OTPTextField(
+              OtpField(
                 controller: rC.otpController,
-                length: 5,
-                width: MediaQuery.of(context).size.width,
-                fieldWidth: MediaQuery.of(context).size.width / 6.5,
-                style: Theme.of(context)
-                    .textTheme
-                    .displayMedium!
-                    .copyWith(color: Colors.black),
-                textFieldAlignment: MainAxisAlignment.spaceAround,
-                fieldStyle: FieldStyle.box,
-                otpFieldStyle: OtpFieldStyle(
-                  focusBorderColor: AppColors.myPrimary,
-                ),
-                outlineBorderRadius: 15,
-                onCompleted: (pin) {},
-                //onChanged: (val){},
               ),
               //const SizedBox(height: 50,),
               AuthButton(
