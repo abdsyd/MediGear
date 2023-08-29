@@ -8,6 +8,7 @@ import 'package:hunter/widgets/auth_field.dart';
 import 'package:hunter/widgets/auth_suggestion.dart';
 import 'package:hunter/widgets/auth_title.dart';
 import 'package:hunter/widgets/auth_toggle_button.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -137,18 +138,26 @@ class RegisterView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: AuthButton(
-                  text: 'Sign up',
-                  onPressed: () {
-                    rC.register();
-                  },
+                child: GetBuilder<RegisterController>(
+                  builder: (controller) => AuthButton(
+                    child: controller.isLoading
+                        ? LoadingAnimationWidget.prograssiveDots(
+                            color: Colors.white, size: 40)
+                        : Text(
+                            'Sign up',
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                    onPressed: () {
+                      controller.register();
+                    },
+                  ),
                 ),
               ),
               AuthSuggestion(
                   question: 'already have an account?',
                   suggestion: 'Sign in',
                   onTap: () {
-                    Get.offNamed(AppRoute.login);
+                    Get.offNamed(AppRoute.login,);
                   })
             ],
           ),

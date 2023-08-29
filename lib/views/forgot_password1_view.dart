@@ -6,6 +6,7 @@ import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
 import 'package:hunter/widgets/auth_suggestion.dart';
 import 'package:hunter/widgets/auth_title.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ForgotPass1View extends StatelessWidget {
   const ForgotPass1View({super.key});
@@ -52,11 +53,20 @@ class ForgotPass1View extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: AuthButton(
-                    text: 'Confirm',
+                child: GetBuilder<ForgotPassController>(
+                  builder: (controller) => AuthButton(
+                    child: controller.isLoading1
+                        ? LoadingAnimationWidget.prograssiveDots(
+                            color: Colors.white, size: 40)
+                        : Text(
+                            'Confirm',
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
                     onPressed: () {
-                      fPC.goToOtp();
-                    },),
+                      controller.goToOtp();
+                    },
+                  ),
+                ),
               ),
               AuthSuggestion(
                   question: 'remembered password ? ',

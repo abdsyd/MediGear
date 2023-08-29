@@ -4,9 +4,9 @@ import 'package:hunter/constants/colors.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({
-    super.key, required this.text, required this.onPressed,  this.color,
+    super.key,  required this.onPressed,  this.color, required this.child,
   });
-  final String text;
+  final Widget child;
   final void Function() onPressed;
   final Color? color;
 
@@ -20,8 +20,7 @@ class AuthButton extends StatelessWidget {
       elevation: 0,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),side: const BorderSide(color: AppColors.myWhite,width: 2)),
-      child: Text(text,
-          style: Theme.of(context).textTheme.displayMedium),
+      child: child
     );
   }
 }

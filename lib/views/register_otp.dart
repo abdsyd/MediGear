@@ -7,6 +7,7 @@ import 'package:hunter/widgets/auth_suggestion.dart';
 import 'package:hunter/widgets/auth_title.dart';
 import 'package:hunter/widgets/otp_field.dart';
 import 'package:hunter/widgets/otp_timer.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class RegisterOTP extends StatelessWidget {
   const RegisterOTP({super.key});
@@ -51,17 +52,28 @@ class RegisterOTP extends StatelessWidget {
               ),
               OtpField(
                 controller: rC.otpController,
-                onCompleted: (pin) {
-                  rC.verifyOtp(pin);
-                },
               ),
-              AuthButton(
-                  text: 'Verify', onPressed: () {},),
+              GetBuilder<RegisterController>(
+                builder: (controller) => AuthButton(
+                  child: controller.isLoadingOtp
+                      ? LoadingAnimationWidget.prograssiveDots(
+                          color: Colors.white, size: 40)
+                      : Text(
+                          'Verify',
+                          style: Theme.of(context).textTheme.displayMedium,
+                        ),
+                  onPressed: () {
+                    controller.verifyOtp(controller.otpController.toString());
+                  },
+                ),
+              ),
               AuthSuggestion(
                 question: 'didn\'t receive a code? ',
                 suggestion: 'resend',
-                onTap: () {},
-              )
+                onTap: () {
+                  rC.resendOtp();
+                },
+              ),
             ],
           ),
         ),

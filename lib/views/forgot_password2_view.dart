@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
 import 'package:hunter/widgets/auth_title.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../controllers/forgot_password_controller.dart';
 
 class ForgotPass2View extends StatelessWidget {
@@ -87,11 +88,19 @@ class ForgotPass2View extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: AuthButton(
-                  text: 'Reset Password',
-                  onPressed: () {
-                    fPC.resetPass();
-                  },
+                child: GetBuilder<ForgotPassController>(
+                  builder: (controller) => AuthButton(
+                    child: controller.isLoading2
+                        ? LoadingAnimationWidget.prograssiveDots(
+                            color: Colors.white, size: 40)
+                        : Text(
+                            'Reset Password',
+                            style: Theme.of(context).textTheme.displayMedium,
+                          ),
+                    onPressed: () {
+                      controller.resetPass();
+                    },
+                  ),
                 ),
               ),
             ],

@@ -53,13 +53,13 @@ class RegisterController extends GetxController {
     }
   }
 
-  List<bool> isSelected = [true,false];
+  List<bool> isSelected = [true, false];
 
-  void toggleSelections (int newIndex) {
-    for (int index = 0 ; index < isSelected.length ; index++) {
+  void toggleSelections(int newIndex) {
+    for (int index = 0; index < isSelected.length; index++) {
       if (index == newIndex) {
         isSelected[index] = true;
-      }else {
+      } else {
         isSelected[index] = false;
       }
     }
@@ -67,12 +67,16 @@ class RegisterController extends GetxController {
   }
 
   //--------------------------------------------------------------------------------
+
   final OtpFieldController otpController = OtpFieldController();
-  final CountdownController timeController = CountdownController(autoStart: true);
+  final CountdownController timeController =
+      CountdownController(autoStart: true);
 
   /// don't mind these for now
-  late String _registerToken; // its the same as access token , it can also be used to verify otp
+  late String
+      _registerToken; // its the same as access token , it can also be used to verify otp
   late String _verifyUrl;
+
 
   bool _isTimeUp = false;
   bool get isTimeUp => _isTimeUp;
@@ -89,20 +93,20 @@ class RegisterController extends GetxController {
   }
 
   Future<void> verifyOtp(String pin) async {
-    if (_isTimeUp) {
-      // ask user to request a new code, or request it yourself
-    } else {
-      toggleLoadingOtp(true);
-      try {
-        //
-      } on TimeoutException {
-        //
-      } catch (e) {
-        //
-      } finally {
-        toggleLoadingOtp(false);
+      if (_isTimeUp) {
+        // ask user to request a new code, or request it yourself
+      } else {
+        toggleLoadingOtp(true);
+        try {
+          //
+        } on TimeoutException {
+          //
+        } catch (e) {
+          //
+        } finally {
+          toggleLoadingOtp(false);
+        }
       }
-    }
   }
 
   Future<void> resendOtp() async {

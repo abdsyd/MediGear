@@ -57,21 +57,24 @@ class ForgotPassController extends GetxController {
     update();
   }
 
+
+
   void verifyOtp(String pin) async {
-    if (_isTimeUp) {
-      // ask user to request new otp code or do it yourself
-    } else {
-      toggleLoadingOtp(true);
-      try {
-        //
-      } on TimeoutException {
-        //
-      } catch (e) {
-        //
-      } finally {
-        toggleLoadingOtp(false);
+      if (_isTimeUp) {
+        // ask user to request new otp code or do it yourself
+      } else {
+        toggleLoadingOtp(true);
+        try {
+          //
+        } on TimeoutException {
+          //
+        } catch (e) {
+          //
+        } finally {
+          toggleLoadingOtp(false);
+        }
       }
-    }
+
   }
 
   void resendOtp() async {

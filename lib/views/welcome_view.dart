@@ -41,21 +41,21 @@ class WelcomeView extends StatelessWidget {
                 height: 20,
               ),
               AuthButton(
-                text: 'SIGN IN',
                 onPressed: () {
                   Get.toNamed(AppRoute.login);
                 },
                 color: AppColors.myBrown,
+                child:  Text('SIGN IN',style: Theme.of(context).textTheme.displayMedium,),
               ),
               const SizedBox(
                 height: 20,
               ),
               AuthButton(
-                text: 'SIGN UP',
                 onPressed: () {
                   Get.toNamed(AppRoute.register);
                 },
                 color: AppColors.myBrown,
+                child:  Text('SIGN UP',style: Theme.of(context).textTheme.displayMedium,),
               ),
             ],
           ),

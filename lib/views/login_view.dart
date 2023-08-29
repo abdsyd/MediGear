@@ -7,6 +7,7 @@ import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
 import 'package:hunter/widgets/auth_suggestion.dart';
 import 'package:hunter/widgets/auth_title.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -17,16 +18,18 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          leading: const BackButton(
-            style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
-          ),),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: const BackButton(
+          style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
+        ),
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/MediGear2.jpg'),
-              fit: BoxFit.cover,),
+            image: AssetImage('assets/images/MediGear2.jpg'),
+            fit: BoxFit.cover,
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -94,17 +97,27 @@ class LoginView extends StatelessWidget {
                     'Forgot password',
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: Colors.grey.shade700,
-                      decoration: TextDecoration.underline,
+                          decoration: TextDecoration.underline,
                         ),
                   ),
                 ),
               ),
-              const SizedBox(height: 12,),
-              AuthButton(
-                text: 'Login',
-                onPressed: () {
-                  lC.login();
-                },
+              const SizedBox(
+                height: 12,
+              ),
+              GetBuilder<LoginController>(
+                builder: (controller) => AuthButton(
+                  child: controller.isLoading
+                      ? LoadingAnimationWidget.prograssiveDots(
+                          color: Colors.white, size: 40)
+                      : Text(
+                          'Sign in',
+                          style: Theme.of(context).textTheme.displayMedium,
+                        ),
+                  onPressed: () {
+                    controller.login();
+                  },
+                ),
               ),
               AuthSuggestion(
                   question: 'don\'t have an account?',
