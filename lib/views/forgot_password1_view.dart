@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/forgot_password_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
@@ -57,8 +56,7 @@ class ForgotPass1View extends StatelessWidget {
                     text: 'Confirm',
                     onPressed: () {
                       fPC.goToOtp();
-                    },
-                    color: AppColors.myPrimary),
+                    },),
               ),
               AuthSuggestion(
                   question: 'remembered password ? ',

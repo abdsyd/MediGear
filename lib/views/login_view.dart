@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/login_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
@@ -106,7 +105,6 @@ class LoginView extends StatelessWidget {
                 onPressed: () {
                   lC.login();
                 },
-                color: AppColors.myPrimary,
               ),
               AuthSuggestion(
                   question: 'don\'t have an account?',

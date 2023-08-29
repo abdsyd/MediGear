@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/constants/colors.dart';
 import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
 import 'package:hunter/widgets/auth_title.dart';
@@ -36,6 +35,7 @@ class ForgotPass2View extends StatelessWidget {
                 child: GetBuilder<ForgotPassController>(
                   builder: (controller) => AuthField(
                     label: 'password',
+                    autoFocus: true,
                     obscureText: !controller.passwordVisible,
                     icon: controller.passwordVisible
                         ? CupertinoIcons.eye_slash
@@ -88,11 +88,10 @@ class ForgotPass2View extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: AuthButton(
-                  text: 'Confirm',
+                  text: 'Reset Password',
                   onPressed: () {
                     fPC.resetPass();
                   },
-                  color: AppColors.myPrimary,
                 ),
               ),
             ],

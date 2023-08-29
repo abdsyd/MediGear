@@ -4,11 +4,11 @@ import 'package:hunter/constants/colors.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({
-    super.key, required this.text, required this.onPressed, required this.color,
+    super.key, required this.text, required this.onPressed,  this.color,
   });
   final String text;
   final void Function() onPressed;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class AuthButton extends StatelessWidget {
       minWidth: double.infinity,
       height: 50,
       onPressed:onPressed ,
-      color: color,
+      color: color ?? AppColors.myPrimary,
       elevation: 0,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),side: const BorderSide(color: AppColors.myWhite,width: 2)),

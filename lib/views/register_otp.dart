@@ -56,7 +56,7 @@ class RegisterOTP extends StatelessWidget {
                 },
               ),
               AuthButton(
-                  text: 'Verify', onPressed: () {}, color: AppColors.myPrimary),
+                  text: 'Verify', onPressed: () {},),
               AuthSuggestion(
                 question: 'didn\'t receive a code? ',
                 suggestion: 'resend',

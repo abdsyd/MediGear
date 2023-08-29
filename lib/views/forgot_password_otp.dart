@@ -15,7 +15,6 @@ class ForgotPassOTP extends StatelessWidget {
   Widget build(BuildContext context) {
     ForgotPassController fPC = Get.find();
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -53,15 +52,15 @@ class ForgotPassOTP extends StatelessWidget {
                 controller: fPC.otpController,
                 onCompleted: (pin){fPC.verifyOtp(pin);},
               ),
-              //const SizedBox(height: 50,),
               AuthButton(
                   text: 'Verify',
-                  onPressed: () {},
-                  color: AppColors.myPrimary),
+                  onPressed: () {},),
               AuthSuggestion(
                   question: 'didn\'t receive a code? ',
                   suggestion: 'resend',
-                  onTap: () {})
+                  onTap: () {
+                    fPC.resendOtp();
+                  },)
             ],
           ),
         ),

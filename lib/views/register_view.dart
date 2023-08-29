@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/register_controller.dart';
 import 'package:get/get.dart';
@@ -143,7 +142,6 @@ class RegisterView extends StatelessWidget {
                   onPressed: () {
                     rC.register();
                   },
-                  color: AppColors.myPrimary,
                 ),
               ),
               AuthSuggestion(
