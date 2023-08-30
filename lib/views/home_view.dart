@@ -27,13 +27,7 @@ class HomeView extends StatelessWidget {
     return GetBuilder<BottomNavigationBarController>(
       builder: (controller) => Scaffold(
         extendBody: true,
-        body: PageView(
-          controller: controller.pageController,
-          onPageChanged: (index) {
-            controller.changeTab(index);
-          },
-          children: bodies,
-        ),
+        body: bodies[controller.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(icon: Icon(MyIcon.home), label: 'home'),
