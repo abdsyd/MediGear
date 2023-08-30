@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.englishTheme,
       getPages: routes,
+      home: Test(),
 
     );
   }

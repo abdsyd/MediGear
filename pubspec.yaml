@@ -21,7 +21,6 @@ dependencies:
   dropdown_search: ^5.0.6
   carousel_slider: ^4.2.1
   shimmer: ^3.0.0
-  google_nav_bar: ^5.0.6
   loading_animation_widget: ^1.2.0+4
 
 dev_dependencies:
@@ -42,4 +41,7 @@ flutter:
     - family: PlayfairDisplay
       fonts:
         - asset: assets/fonts/PlayfairDisplay-Regular.ttf
+    - family: MyFlutterApp
+      fonts:
+        - asset: assets/icons/MyFlutterApp.ttf
 
