@@ -6,5 +6,6 @@ class AppRoute {
   static const String forgotPassword1 = "/forgotPassword1";
   static const String forgotPasswordOTP = "/forgotPasswordOTP";
   static const String forgotPassword2 = "/forgotPassword2";
+  static const String home = "/home";
 
 }

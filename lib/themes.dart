@@ -12,6 +12,7 @@ class AppTheme {
           fontWeight: FontWeight.bold, fontSize: 40, color: AppColors.myWhite),
       bodyLarge: TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
     ),
+
     useMaterial3: true,
   );
 
