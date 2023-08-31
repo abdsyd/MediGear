@@ -1,44 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hunter/constants/colors.dart';
+import 'package:get_storage/get_storage.dart';
+
+final _getStorage = GetStorage();
 
 class AppTheme {
-  static ThemeData englishTheme = ThemeData(
-    primaryColor: AppColors.myPrimary,
-    fontFamily: 'PlayfairDisplay',
-    textTheme: const TextTheme(
-      displayMedium: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 20, color: AppColors.myWhite),
-      displayLarge: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 40, color: AppColors.myWhite),
-      bodyLarge: TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
-    ),
-    useMaterial3: true,
-  );
-
-  static ThemeData arabicTheme = ThemeData(
-    primaryColor: AppColors.myPrimary,
-    fontFamily: 'KufiArabic',
-    textTheme: const TextTheme(
-      displayMedium: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 30, color: Colors.black),
-      displayLarge: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 36, color: Colors.black),
-      bodyLarge: TextStyle(height: 1.5, color: Colors.grey, fontSize: 18),
-    ),
-    useMaterial3: true,
-  );
-
   static ThemeData myLightMode = ThemeData(
     primaryColor: AppColors.myPrimary,
-    fontFamily: 'PlayfairDisplay',
-    textTheme: const TextTheme(
-      displayMedium: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 20, color: AppColors.myWhite),
-      displayLarge: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 40, color: AppColors.myWhite),
-      bodyLarge: TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
-    ),
+    fontFamily:
+        _getStorage.read("lang") == "en" ? 'PlayfairDisplay' : 'KufiArabic',
+    textTheme: _getStorage.read("lang") == "en"
+        ? const TextTheme(
+            displayMedium: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: AppColors.myWhite),
+            displayLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+                color: AppColors.myWhite),
+            bodyLarge:
+                TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
+          )
+        : const TextTheme(
+            displayMedium: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: AppColors.myWhite),
+            displayLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+                color: AppColors.myWhite),
+            bodyLarge:
+                TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
+          ),
     useMaterial3: true,
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
@@ -57,14 +52,33 @@ class AppTheme {
 
   static ThemeData myDarkMode = ThemeData(
     primaryColor: AppColors.myPrimary,
-    fontFamily: 'PlayfairDisplay',
-    textTheme: const TextTheme(
-      displayMedium: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 20, color: AppColors.myWhite),
-      displayLarge: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 40, color: AppColors.myWhite),
-      bodyLarge: TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
-    ),
+    fontFamily:
+        _getStorage.read("lang") == "en" ? 'PlayfairDisplay' : 'KufiArabic',
+    textTheme: _getStorage.read("lang") == "en"
+        ? const TextTheme(
+            displayMedium: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: AppColors.myWhite),
+            displayLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+                color: AppColors.myWhite),
+            bodyLarge:
+                TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
+          )
+        : const TextTheme(
+            displayMedium: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: AppColors.myWhite),
+            displayLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+                color: AppColors.myWhite),
+            bodyLarge:
+                TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
+          ),
     useMaterial3: true,
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
