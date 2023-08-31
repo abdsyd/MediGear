@@ -26,14 +26,14 @@ class WelcomeView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'WELCOME',
+                'WELCOME'.tr,
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               const SizedBox(
                 height: 40,
               ),
               Text(
-                'Welcome to MediGear  Where Dental Tools and Quality Meet! Explore our collection and elevate your dental practice today.',
+                'Welcome to MediGear  Where Dental Tools and Quality Meet! Explore our collection and elevate your dental practice today.'.tr,
                 style: Theme.of(context).textTheme.bodyLarge,
                 textAlign: TextAlign.center,
               ),
@@ -46,7 +46,7 @@ class WelcomeView extends StatelessWidget {
                   Get.toNamed(AppRoute.home);
                 },
                 color: AppColors.myBrown,
-                child:  Text('SIGN IN',style: Theme.of(context).textTheme.displayMedium,),
+                child:  Text('Sign in'.tr,style: Theme.of(context).textTheme.displayMedium,),
               ),
               const SizedBox(
                 height: 20,
@@ -56,7 +56,7 @@ class WelcomeView extends StatelessWidget {
                   Get.toNamed(AppRoute.register);
                 },
                 color: AppColors.myBrown,
-                child:  Text('SIGN UP',style: Theme.of(context).textTheme.displayMedium,),
+                child:  Text('Sign up'.tr,style: Theme.of(context).textTheme.displayMedium,),
               ),
             ],
           ),

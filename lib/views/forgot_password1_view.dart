@@ -29,14 +29,14 @@ class ForgotPass1View extends StatelessWidget {
           key: fPC.firstFormKey,
           child: Column(
             children: [
-              const AuthTitle(
-                title: 'Forget Password',
-                subTitle: 'Enter your email address',
+               AuthTitle(
+                title: 'Forget Password'.tr,
+                subTitle: 'Enter your email address'.tr,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: AuthField(
-                  label: 'email',
+                  label: 'email'.tr,
                   autoFocus: true,
                   icon: Icons.mail_outline,
                   textController: fPC.email,
@@ -59,7 +59,7 @@ class ForgotPass1View extends StatelessWidget {
                         ? LoadingAnimationWidget.prograssiveDots(
                             color: Colors.white, size: 40)
                         : Text(
-                            'Confirm',
+                            'Confirm'.tr,
                             style: Theme.of(context).textTheme.displayMedium,
                           ),
                     onPressed: () {
@@ -69,8 +69,8 @@ class ForgotPass1View extends StatelessWidget {
                 ),
               ),
               AuthSuggestion(
-                  question: 'remembered password ? ',
-                  suggestion: ' sign in',
+                  question: 'remembered password ? '.tr,
+                  suggestion: ' sign in'.tr,
                   onTap: () {
                     Get.toNamed(AppRoute.login);
                   })

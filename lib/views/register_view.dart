@@ -28,8 +28,8 @@ class RegisterView extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              const AuthTitle(
-                  title: 'Sign up', subTitle: 'Sign up for free with us'),
+              AuthTitle(
+                  title: 'Sign up'.tr, subTitle: 'Sign up for free with us'.tr),
               const SizedBox(
                 height: 15,
               ),
@@ -40,7 +40,7 @@ class RegisterView extends StatelessWidget {
                   child: Column(
                     children: [
                       AuthField(
-                        label: 'name',
+                        label: 'name'.tr,
                         textController: rC.name,
                         keyboardType: TextInputType.name,
                         icon: Icons.person_outlined,
@@ -54,7 +54,7 @@ class RegisterView extends StatelessWidget {
                         },
                       ),
                       AuthField(
-                        label: 'email',
+                        label: 'email'.tr,
                         textController: rC.email,
                         keyboardType: TextInputType.emailAddress,
                         icon: Icons.mail_outline,
@@ -69,7 +69,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       GetBuilder<RegisterController>(
                         builder: (controller) => AuthField(
-                          label: 'password',
+                          label: 'password'.tr,
                           obscureText: !controller.passwordVisible,
                           icon: controller.passwordVisible
                               ? CupertinoIcons.eye_slash
@@ -94,7 +94,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       GetBuilder<RegisterController>(
                         builder: (controller) => AuthField(
-                          label: 'rePassword',
+                          label: 'rePassword'.tr,
                           obscureText: !controller.rePasswordVisible,
                           icon: controller.rePasswordVisible
                               ? CupertinoIcons.eye_slash
@@ -118,7 +118,7 @@ class RegisterView extends StatelessWidget {
                         ),
                       ),
                       AuthField(
-                        label: 'phone',
+                        label: 'phone'.tr,
                         textController: rC.phone,
                         keyboardType: TextInputType.phone,
                         icon: Icons.phone_outlined,
@@ -144,7 +144,7 @@ class RegisterView extends StatelessWidget {
                         ? LoadingAnimationWidget.prograssiveDots(
                             color: Colors.white, size: 40)
                         : Text(
-                            'Sign up',
+                            'Sign up'.tr,
                             style: Theme.of(context).textTheme.displayMedium,
                           ),
                     onPressed: () {
@@ -154,10 +154,12 @@ class RegisterView extends StatelessWidget {
                 ),
               ),
               AuthSuggestion(
-                  question: 'already have an account?',
-                  suggestion: 'Sign in',
+                  question: 'already have an account?'.tr,
+                  suggestion: 'Sign in'.tr,
                   onTap: () {
-                    Get.offNamed(AppRoute.login,);
+                    Get.offNamed(
+                      AppRoute.login,
+                    );
                   })
             ],
           ),

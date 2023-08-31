@@ -35,9 +35,9 @@ class LoginView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             children: [
-              const AuthTitle(
-                title: 'Login',
-                subTitle: 'Login to your account',
+              AuthTitle(
+                title: 'Login'.tr,
+                subTitle: 'Login to your account'.tr,
               ),
               const SizedBox(
                 height: 15,
@@ -47,7 +47,7 @@ class LoginView extends StatelessWidget {
                 child: Column(
                   children: [
                     AuthField(
-                      label: 'email',
+                      label: 'email'.tr,
                       textController: lC.email,
                       keyboardType: TextInputType.emailAddress,
                       icon: Icons.mail_outline,
@@ -62,7 +62,7 @@ class LoginView extends StatelessWidget {
                     ),
                     GetBuilder<LoginController>(
                       builder: (controller) => AuthField(
-                        label: 'password',
+                        label: 'password'.tr,
                         obscureText: !controller.passwordVisible,
                         icon: controller.passwordVisible
                             ? CupertinoIcons.eye_slash
@@ -94,7 +94,7 @@ class LoginView extends StatelessWidget {
                     Get.offNamed(AppRoute.forgotPassword1);
                   },
                   child: Text(
-                    'Forgot password',
+                    'Forgot password'.tr,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: Colors.grey.shade700,
                           decoration: TextDecoration.underline,
@@ -111,7 +111,7 @@ class LoginView extends StatelessWidget {
                       ? LoadingAnimationWidget.prograssiveDots(
                           color: Colors.white, size: 40)
                       : Text(
-                          'Sign in',
+                          'Sign in'.tr,
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                   onPressed: () {
@@ -120,8 +120,8 @@ class LoginView extends StatelessWidget {
                 ),
               ),
               AuthSuggestion(
-                  question: 'don\'t have an account?',
-                  suggestion: 'Sign up',
+                  question: 'don\'t have an account?'.tr,
+                  suggestion: 'Sign up'.tr,
                   onTap: () {
                     Get.offNamed(AppRoute.register);
                   })

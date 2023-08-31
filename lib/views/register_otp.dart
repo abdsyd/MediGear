@@ -32,10 +32,11 @@ class RegisterOTP extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  const AuthTitle(
-                    title: 'Verification',
+                  AuthTitle(
+                    title: 'Verification'.tr,
                     subTitle:
-                        'please enter the code that sent to your email \n this code will expire in ',
+                        'please enter the code that sent to your email \n this code will expire in '
+                            .tr,
                   ),
                   GetBuilder<RegisterController>(
                     builder: (controller) => OtpTimer(
@@ -59,7 +60,7 @@ class RegisterOTP extends StatelessWidget {
                       ? LoadingAnimationWidget.prograssiveDots(
                           color: Colors.white, size: 40)
                       : Text(
-                          'Verify',
+                          'Verify'.tr,
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                   onPressed: () {
@@ -68,8 +69,8 @@ class RegisterOTP extends StatelessWidget {
                 ),
               ),
               AuthSuggestion(
-                question: 'didn\'t receive a code? ',
-                suggestion: 'resend',
+                question: 'didn\'t receive a code? '.tr,
+                suggestion: 'resend'.tr,
                 onTap: () {
                   rC.resendOtp();
                 },

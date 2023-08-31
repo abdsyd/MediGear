@@ -27,15 +27,15 @@ class ForgotPass2View extends StatelessWidget {
           key: fPC.secondFormKey,
           child: Column(
             children: [
-              const AuthTitle(
-                title: 'Reset Password',
-                subTitle: 'Enter your new password ',
+              AuthTitle(
+                title: 'Reset Password'.tr,
+                subTitle: 'Enter your new password '.tr,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: GetBuilder<ForgotPassController>(
                   builder: (controller) => AuthField(
-                    label: 'password',
+                    label: 'password'.tr,
                     autoFocus: true,
                     obscureText: !controller.passwordVisible,
                     icon: controller.passwordVisible
@@ -63,7 +63,7 @@ class ForgotPass2View extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: GetBuilder<ForgotPassController>(
                   builder: (controller) => AuthField(
-                    label: 'rePassword',
+                    label: 'rePassword'.tr,
                     obscureText: !controller.rePasswordVisible,
                     icon: controller.rePasswordVisible
                         ? CupertinoIcons.eye_slash
@@ -94,7 +94,7 @@ class ForgotPass2View extends StatelessWidget {
                         ? LoadingAnimationWidget.prograssiveDots(
                             color: Colors.white, size: 40)
                         : Text(
-                            'Reset Password',
+                            'Reset Password'.tr,
                             style: Theme.of(context).textTheme.displayMedium,
                           ),
                     onPressed: () {
