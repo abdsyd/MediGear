@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       translations: MyTranslation(),
-      theme: AppTheme.englishTheme,
+      theme: AppTheme.myLightMode,
+      darkTheme: AppTheme.myDarkMode,
       getPages: routes,
 
     );
