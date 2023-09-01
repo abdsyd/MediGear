@@ -8,7 +8,7 @@ class MyTranslation extends Translations {
           'WELCOME': "WELCOME",
           'Welcome to MediGear  Where Dental Tools and Quality Meet! Explore our collection and elevate your dental practice today.':
               'Welcome to MediGear  Where Dental Tools and Quality Meet! Explore our collection and elevate your dental practice today.',
-          'Sign in': 'sign in',
+          'Sign in': 'Sign in',
           'Sign up': 'Sign up',
           'Sign up for free with us': 'Sign up for free with us',
           'name': 'name',

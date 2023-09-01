@@ -3,11 +3,6 @@ import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
 import 'package:hunter/controllers/bottom_navigation_bar_controller.dart';
-import 'package:hunter/views/bnb_tabs/cart_tab.dart';
-import 'package:hunter/views/bnb_tabs/home_tab.dart';
-import 'package:hunter/views/bnb_tabs/profile_tab.dart';
-import 'package:hunter/views/bnb_tabs/search_tab.dart';
-import 'package:hunter/views/bnb_tabs/wishlist_tab.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -16,18 +11,12 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(BottomNavigationBarController());
 
-    List<Widget> bodies = [
-      const HomeTab(),
-      const SearchTab(),
-      const CartTab(),
-      const WishListTab(),
-      const ProfileTab(),
-    ];
+
 
     return GetBuilder<BottomNavigationBarController>(
       builder: (controller) => Scaffold(
         extendBody: true,
-        body: bodies[controller.currentIndex],
+        body: controller.bodies[controller.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(icon: Icon(MyIcon.home), label: 'home'),

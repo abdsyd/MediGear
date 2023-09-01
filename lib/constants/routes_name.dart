@@ -7,5 +7,11 @@ class AppRoute {
   static const String forgotPasswordOTP = "/forgotPasswordOTP";
   static const String forgotPassword2 = "/forgotPassword2";
   static const String home = "/home";
+  static const String homeTab = "/homeTab";
+  static const String searchTab = "/searchTab";
+  static const String cartTab = "/cartTab";
+  static const String wishlistTab = "/wishlistTab";
+  static const String profileTab = "/profileTab";
+
 
 }
