@@ -21,6 +21,68 @@ class HomeTab extends StatelessWidget {
           ),
         ],
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            Container(
+              height: 350,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                image: DecorationImage(image: AssetImage('assets/images/logo-color.png'),fit: BoxFit.cover),
+              ),
+              child: const Align(alignment: Alignment.bottomLeft,child: Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Text('legacy',textAlign: TextAlign.start,),
+              ),),
+            ),
+            Container(
+              height: 350,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                image: DecorationImage(image: AssetImage('assets/images/logo-color.png'),fit: BoxFit.cover),
+              ),
+              child: const Align(alignment: Alignment.bottomLeft,child: Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Text('legacy',textAlign: TextAlign.start,),
+              ),),
+            ),
+            Container(
+              height: 350,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                image: DecorationImage(image: AssetImage('assets/images/logo-color.png'),fit: BoxFit.cover),
+              ),
+              child: const Align(alignment: Alignment.bottomLeft,child: Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Text('legacy',textAlign: TextAlign.start,),
+              ),),
+            ),
+            Container(
+              height: 350,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                image: DecorationImage(image: AssetImage('assets/images/logo-color.png'),fit: BoxFit.cover),
+              ),
+              child: const Align(alignment: Alignment.bottomLeft,child: Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Text('legacy',textAlign: TextAlign.start,),
+              ),),
+            ),
+            Container(
+              height: 350,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                image: DecorationImage(image: AssetImage('assets/images/logo-color.png'),fit: BoxFit.cover),
+              ),
+              child: const Align(alignment: Alignment.bottomLeft,child: Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Text('legacy',textAlign: TextAlign.start,),
+              ),),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
