@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
 import 'package:hunter/controllers/bottom_navigation_bar_controller.dart';
+import 'package:hunter/data/bottom_bar_tabs.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -16,7 +17,7 @@ class HomeView extends StatelessWidget {
     return GetBuilder<BottomNavigationBarController>(
       builder: (controller) => Scaffold(
         extendBody: true,
-        body: controller.bodies[controller.currentIndex],
+        body: bodies[controller.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(icon: Icon(MyIcon.home), label: 'home'),
