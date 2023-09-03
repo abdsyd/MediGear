@@ -32,6 +32,7 @@ class MyTranslation extends Translations {
           'Enter your new password ': 'Enter your new password ',
           'Confirm': 'Confirm',
           'Enter your email address': 'Enter your email address',
+          'error' : 'error',
         }
       };
 }
