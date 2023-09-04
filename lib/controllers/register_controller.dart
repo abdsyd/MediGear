@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/services/remote_services.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:timer_count_down/timer_controller.dart';
 
@@ -36,15 +38,21 @@ class RegisterController extends GetxController {
     update();
   }
 
-  Future<void> register() async {
+  Future<void> register(String email ,String password ,String name ,String phone,int role) async {
     buttonPressed = true;
     bool isValid = registerFormKey.currentState!.validate();
     if (isValid) {
       toggleLoading(true);
       try {
-        //
+        _registerToken =
+        (await RemoteServices.register(email, password, name, phone,role).timeout(const Duration(seconds: 25)))!;
+        _verifyUrl = (await RemoteServices.sendRegisterOtp().timeout(const Duration(seconds: 25)))!;
+        Get.toNamed(AppRoute.registerOTP);
       } on TimeoutException {
-        //
+        Get.defaultDialog(
+            title: "error".tr,
+            middleText: "operation is taking so long, please check your internet "
+                "connection or try again later.");
       } catch (e) {
         //
       } finally {
@@ -52,6 +60,8 @@ class RegisterController extends GetxController {
       }
     }
   }
+
+  int selectionRoleIndex = 0;
 
   List<bool> isSelected = [true, false];
 
@@ -65,6 +75,7 @@ class RegisterController extends GetxController {
     }
     update();
   }
+
 
   //--------------------------------------------------------------------------------
 

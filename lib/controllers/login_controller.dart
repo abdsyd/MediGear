@@ -1,8 +1,14 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/services/remote_services.dart';
 
 class LoginController extends GetxController {
+
+  final _getStorage = GetStorage();
+
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -24,21 +30,23 @@ class LoginController extends GetxController {
     update();
   }
 
-  void login() async {
+  void login(String email ,String password) async {
     buttonPressed = true;
     bool isValid = loginFormKey.currentState!.validate();
-    // to check if input is correct from client side (to not send unnecessary requests to server)
     if (isValid) {
       toggleLoading(true);
       try {
-        // get token from http request
-        // if its null throw exception
-        // else, store token in local storage
-        // get of all pages to home page
+        String? accessToken = await RemoteServices.login(email, password).timeout(const Duration(seconds: 25));
+        if (accessToken == null) throw Exception();
+        _getStorage.write("token", accessToken);
+        Get.offAll(AppRoute.home);
       } on TimeoutException {
-        // show "operation is taking so long"
+        Get.defaultDialog(
+            title: "error".tr,
+            middleText: "operation is taking so long, please check your internet "
+                "connection or try again later.");
       } catch (e) {
-        // don't do anything here, handle it from the http method itself
+
       } finally {
         toggleLoading(false);
       }

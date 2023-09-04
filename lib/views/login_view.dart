@@ -115,7 +115,7 @@ class LoginView extends StatelessWidget {
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                   onPressed: () {
-                    controller.login();
+                    controller.login(controller.email.text,controller.password.text);
                   },
                 ),
               ),

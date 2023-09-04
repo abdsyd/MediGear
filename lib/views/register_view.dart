@@ -131,7 +131,11 @@ class RegisterView extends StatelessWidget {
                           }
                         },
                       ),
-                      const AuthToggleButton(),
+                      GetBuilder<RegisterController>(
+                        builder: (controller) => AuthToggleButton(onSelectionChanged: (int newIndex){
+                          controller.selectionRoleIndex=newIndex;
+                        },)
+                      ),
                     ],
                   ),
                 ),
@@ -148,7 +152,7 @@ class RegisterView extends StatelessWidget {
                             style: Theme.of(context).textTheme.displayMedium,
                           ),
                     onPressed: () {
-                      controller.register();
+                      controller.register(controller.email.text,controller.password.text,controller.name.text,controller.phone.text,controller.selectionRoleIndex);
                     },
                   ),
                 ),

@@ -5,18 +5,22 @@ import 'package:hunter/controllers/register_controller.dart';
 
 class AuthToggleButton extends StatelessWidget {
   const AuthToggleButton({
-    super.key,
+    super.key, required this.onSelectionChanged,
   });
+
+  final void Function(int)? onSelectionChanged;
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RegisterController>(
-      builder: (controller) => Padding(
+    RegisterController rC = Get.find();
+    return  Padding(
         padding: const EdgeInsets.all(8.0),
         child: ToggleButtons(
-          isSelected: controller.isSelected,
-          onPressed: (int newIndex) {
-            controller.toggleSelections(newIndex);
+          isSelected: rC.isSelected,
+          onPressed: (int newIndex){
+            rC.toggleSelections(newIndex);
+            onSelectionChanged?.call(newIndex);
+
           },
           borderRadius: BorderRadius.circular(6.5),
           borderWidth: 2.0,
@@ -46,7 +50,6 @@ class AuthToggleButton extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }
