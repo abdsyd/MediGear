@@ -149,7 +149,7 @@ class RegisterView extends StatelessWidget {
                             color: Colors.white, size: 40)
                         : Text(
                             'Sign up'.tr,
-                            style: Theme.of(context).textTheme.displayMedium,
+                            style: Theme.of(context).textTheme.labelMedium,
                           ),
                     onPressed: () {
                       controller.register(controller.email.text,controller.password.text,controller.name.text,controller.phone.text,controller.selectionRoleIndex);

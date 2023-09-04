@@ -10,6 +10,7 @@ import 'package:hunter/views/forgot_password2_view.dart';
 import 'package:hunter/views/forgot_password_otp.dart';
 import 'package:hunter/views/home_view.dart';
 import 'package:hunter/views/login_view.dart';
+import 'package:hunter/views/products_view.dart';
 import 'package:hunter/views/register_otp.dart';
 import 'package:hunter/views/register_view.dart';
 import 'package:hunter/views/welcome_view.dart';
@@ -66,6 +67,10 @@ List<GetPage<dynamic>> routes = [
   GetPage(
     name: AppRoute.profileTab,
     page: () => const ProfileTab(),
+  ),
+  GetPage(
+    name: AppRoute.products,
+    page: () => const ProductsView(),
   ),
 
 ];

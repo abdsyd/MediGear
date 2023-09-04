@@ -46,7 +46,7 @@ class WelcomeView extends StatelessWidget {
                   Get.toNamed(AppRoute.home);
                 },
                 color: AppColors.myBrown,
-                child:  Text('Sign in'.tr,style: Theme.of(context).textTheme.displayMedium,),
+                child:  Text('Sign in'.tr,style: Theme.of(context).textTheme.labelMedium,),
               ),
               const SizedBox(
                 height: 20,
@@ -56,7 +56,7 @@ class WelcomeView extends StatelessWidget {
                   Get.toNamed(AppRoute.register);
                 },
                 color: AppColors.myBrown,
-                child:  Text('Sign up'.tr,style: Theme.of(context).textTheme.displayMedium,),
+                child:  Text('Sign up'.tr,style: Theme.of(context).textTheme.labelMedium,),
               ),
             ],
           ),

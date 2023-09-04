@@ -60,7 +60,7 @@ class ForgotPassOTP extends StatelessWidget {
                       color: Colors.white, size: 40)
                       : Text(
                     'Verify'.tr,
-                    style: Theme.of(context).textTheme.displayMedium,
+                    style: Theme.of(context).textTheme.labelMedium,
                   ),
                   onPressed: () {
                     controller.verifyOtp(controller.otpController.toString());

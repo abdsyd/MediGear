@@ -112,7 +112,7 @@ class LoginView extends StatelessWidget {
                           color: Colors.white, size: 40)
                       : Text(
                           'Sign in'.tr,
-                          style: Theme.of(context).textTheme.displayMedium,
+                          style: Theme.of(context).textTheme.labelMedium,
                         ),
                   onPressed: () {
                     controller.login(controller.email.text,controller.password.text);

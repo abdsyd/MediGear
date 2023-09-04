@@ -60,7 +60,7 @@ class ForgotPass1View extends StatelessWidget {
                             color: Colors.white, size: 40)
                         : Text(
                             'Confirm'.tr,
-                            style: Theme.of(context).textTheme.displayMedium,
+                            style: Theme.of(context).textTheme.labelMedium,
                           ),
                     onPressed: () {
                       controller.goToOtp();

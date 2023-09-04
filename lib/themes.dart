@@ -12,27 +12,19 @@ class AppTheme {
     textTheme: _getStorage.read("lang") == "en"
         ? const TextTheme(
             displayMedium: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: AppColors.myWhite),
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
             displayLarge: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
-                color: AppColors.myWhite),
+                fontWeight: FontWeight.bold, fontSize: 40, color: Colors.black),
             bodyLarge:
-                TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
+                TextStyle(height: 1.5, color: Colors.black, fontSize: 12),
           )
         : const TextTheme(
             displayMedium: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: AppColors.myWhite),
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
             displayLarge: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
-                color: AppColors.myWhite),
+                fontWeight: FontWeight.bold, fontSize: 40, color: Colors.black),
             bodyLarge:
-                TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
+                TextStyle(height: 1.5, color: Colors.black, fontSize: 12),
           ),
     useMaterial3: true,
     colorScheme: const ColorScheme(
@@ -56,28 +48,34 @@ class AppTheme {
         _getStorage.read("lang") == "en" ? 'PlayfairDisplay' : 'KufiArabic',
     textTheme: _getStorage.read("lang") == "en"
         ? const TextTheme(
+            labelMedium: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+              color: AppColors.myWhite,
+            ),
             displayMedium: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: AppColors.myWhite),
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.black,
+            ),
             displayLarge: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
-                color: AppColors.myWhite),
-            bodyLarge:
-                TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
+              fontWeight: FontWeight.bold,
+              fontSize: 40,
+              color: Colors.black,
+            ),
+            bodyLarge: TextStyle(
+              height: 1.5,
+              color: Colors.black,
+              fontSize: 12,
+            ),
           )
         : const TextTheme(
             displayMedium: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: AppColors.myWhite),
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
             displayLarge: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 40,
-                color: AppColors.myWhite),
+                fontWeight: FontWeight.bold, fontSize: 40, color: Colors.black),
             bodyLarge:
-                TextStyle(height: 1.5, color: AppColors.myWhite, fontSize: 12),
+                TextStyle(height: 1.5, color: Colors.black, fontSize: 12),
           ),
     useMaterial3: true,
     colorScheme: const ColorScheme(
