@@ -46,6 +46,7 @@ class ProductsView extends StatelessWidget {
       body: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               GetBuilder<ProductsController>(builder: (controller) {
                 return Padding(
@@ -76,31 +77,27 @@ class ProductsView extends StatelessWidget {
                   ),
                 );
               }),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: SizedBox(
-                  height: 40,
-                  width: 120,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-                      elevation:MaterialStateProperty.all<double>(0),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(35),
-                          side: BorderSide(color: Colors.grey.shade300),
-                        ),
+              SizedBox(
+                height: 40,
+                width: 120,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                    elevation:MaterialStateProperty.all<double>(0),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(35),
+                        side: BorderSide(color: Colors.grey.shade300),
                       ),
                     ),
-                    child: const Row(
-                      children: [
-                        Icon(CupertinoIcons.slider_horizontal_3),
-                        SizedBox(width: 5,),
-                        Text('filter'),
-                      ],
-                    ),
+                  ),
+                  child: const Row(
+                    children: [
+                      Icon(CupertinoIcons.slider_horizontal_3),
+                      SizedBox(width: 5,),
+                      Text('filter'),
+                    ],
                   ),
                 ),
               ),

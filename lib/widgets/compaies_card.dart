@@ -17,7 +17,7 @@ class CompaniesCard extends StatelessWidget {
       onTap: (){Get.toNamed(AppRoute.products,arguments: title);},
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
-        height: 350,
+        height: 650,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           image: DecorationImage(
