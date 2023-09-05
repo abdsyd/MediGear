@@ -38,15 +38,17 @@ class RegisterController extends GetxController {
     update();
   }
 
-  Future<void> register(String email ,String password ,String name ,String phone,int role) async {
+  Future<void> register(String email ,String password ,String name ,String phone,String role) async {
     buttonPressed = true;
     bool isValid = registerFormKey.currentState!.validate();
     if (isValid) {
       toggleLoading(true);
       try {
+        role == '0' ? role ='dentist' : role ='supplier';
         _registerToken =
         (await RemoteServices.register(email, password, name, phone,role).timeout(const Duration(seconds: 25)))!;
-        _verifyUrl = (await RemoteServices.sendRegisterOtp().timeout(const Duration(seconds: 25)))!;
+
+        //_verifyUrl = (await RemoteServices.sendRegisterOtp().timeout(const Duration(seconds: 25)))!;
         Get.toNamed(AppRoute.registerOTP);
       } on TimeoutException {
         Get.defaultDialog(

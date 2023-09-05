@@ -10,12 +10,12 @@ class RemoteServices {
   static var client = http.Client();
   static String token = _getStorage.read('token');
 
-  static Future<String?> register(String email, String password, String name, String phone,int role) async {
+  static Future<String?> register(String email, String password, String name, String phone,String role) async {
     var response = await client.post(Uri.parse("$_hostIP/register"),
       body: jsonEncode({
         "name": name,
         "email": email,
-        "phone_number": phone,
+        "phone": phone,
         "password": password,
         "password_confirmation": password,
         "role": role,

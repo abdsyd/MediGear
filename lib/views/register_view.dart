@@ -132,10 +132,11 @@ class RegisterView extends StatelessWidget {
                         },
                       ),
                       GetBuilder<RegisterController>(
-                        builder: (controller) => AuthToggleButton(onSelectionChanged: (int newIndex){
-                          controller.selectionRoleIndex=newIndex;
-                        },)
-                      ),
+                          builder: (controller) => AuthToggleButton(
+                                onSelectionChanged: (int newIndex) {
+                                  controller.selectionRoleIndex = newIndex;
+                                },
+                              )),
                     ],
                   ),
                 ),
@@ -152,7 +153,13 @@ class RegisterView extends StatelessWidget {
                             style: Theme.of(context).textTheme.labelMedium,
                           ),
                     onPressed: () {
-                      controller.register(controller.email.text,controller.password.text,controller.name.text,controller.phone.text,controller.selectionRoleIndex);
+                      controller.register(
+                        controller.email.text,
+                        controller.password.text,
+                        controller.name.text,
+                        controller.phone.text,
+                        controller.selectionRoleIndex.toString(),
+                      );
                     },
                   ),
                 ),
