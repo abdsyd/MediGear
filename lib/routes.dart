@@ -70,7 +70,7 @@ List<GetPage<dynamic>> routes = [
   ),
   GetPage(
     name: AppRoute.products,
-    page: () => const ProductsView(),
+    page: () =>  ProductsView(),
   ),
 
 ];

@@ -14,7 +14,7 @@ class CompaniesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){Get.toNamed(AppRoute.products);},
+      onTap: (){Get.toNamed(AppRoute.products,arguments: title);},
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
         height: 350,
