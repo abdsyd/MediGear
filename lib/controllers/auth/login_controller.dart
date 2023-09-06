@@ -37,7 +37,7 @@ class LoginController extends GetxController {
     if (isValid) {
       toggleLoading(true);
       try {
-        String? accessToken = await RemoteServices.login(email, password).timeout(const Duration(seconds: 25));
+        String? accessToken = await RemoteServices.login(email, password).timeout(kTimeOutDuration);
         if (accessToken == null) throw Exception();
         _getStorage.write("token", accessToken);
         Get.offAll(AppRoute.home);

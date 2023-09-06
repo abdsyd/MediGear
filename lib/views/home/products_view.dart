@@ -66,11 +66,11 @@ class ProductsView extends StatelessWidget {
                       children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 25),
-                          child: Icon(Icons.check_box_outline_blank),
+                          child: Icon(Icons.grid_view),
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 25),
-                          child: Icon(Icons.display_settings_sharp),
+                          child: Icon(Icons.view_stream),
                         ),
                       ],
                     ),

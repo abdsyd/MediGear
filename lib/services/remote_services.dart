@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/models/user_model.dart';
 
 class RemoteServices {
   static const String _hostIP = "http://10.0.2.2:8000/api";
@@ -85,21 +87,34 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else if (response.statusCode == 401 || response.statusCode == 403) {
-      Get.defaultDialog(
-          barrierDismissible: false,
-          title: 'Session Expired',
-          middleText: 'Please log in again',
-          textConfirm: 'ok',
-          onConfirm: () {
-            Get.offAll(AppRoute.login);
-            _getStorage.remove("token");
-          });
+      kSessionExpiredDialog();
 
       return true;
     } else {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
+    }
+  }
+
+  static Future<UserModel?> fetchCurrentUser() async {
+    var response = await client.get(
+      Uri.parse("$_hostIP/profile"),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return userModelFromJson(response.body);
+    } else if (response.statusCode == 401 || response.statusCode == 403) {
+      kSessionExpiredDialog();
+      return null;
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["error"]);
+      return null;
     }
   }
 }

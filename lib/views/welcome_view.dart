@@ -42,8 +42,7 @@ class WelcomeView extends StatelessWidget {
               ),
               AuthButton(
                 onPressed: () {
-                  //Get.toNamed(AppRoute.login);
-                  Get.toNamed(AppRoute.home);
+                  Get.toNamed(AppRoute.login);
                 },
                 color: AppColors.myBrown,
                 child:  Text('Sign in'.tr,style: Theme.of(context).textTheme.labelMedium,),

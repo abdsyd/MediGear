@@ -47,8 +47,8 @@ class RegisterController extends GetxController {
       try {
         role == '0' ? role ='dentist' : role ='supplier';
         _registerToken =
-        (await RemoteServices.register(email, password, rePassword,name, phone,role).timeout(const Duration(seconds: 25)))!;
-        _verifyUrl = (await RemoteServices.sendRegisterOtp().timeout(const Duration(seconds: 25)))!;
+        (await RemoteServices.register(email, password, rePassword,name, phone,role).timeout(kTimeOutDuration))!;
+        _verifyUrl = (await RemoteServices.sendRegisterOtp().timeout(kTimeOutDuration))!;
         Get.toNamed(AppRoute.registerOTP);
       } on TimeoutException {
         kTimeOutDialog();
