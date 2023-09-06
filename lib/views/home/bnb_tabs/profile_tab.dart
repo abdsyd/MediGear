@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/controllers/bnb_tabs/profile_controller.dart';
+
+import 'package:hunter/controllers/home/bnb_tabs/profile_controller.dart';
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({super.key});

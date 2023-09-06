@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/controllers/home_controller.dart';
+import 'package:hunter/controllers/home/home_controller.dart';
 import 'package:hunter/data/compaines_card.dart';
 import 'package:hunter/widgets/compaies_card.dart';
 

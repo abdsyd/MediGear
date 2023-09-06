@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/controllers/bnb_tabs/cart_controller.dart';
+import 'package:hunter/controllers/home/bnb_tabs/cart_controller.dart';
+
 
 class CartTab extends StatelessWidget {
   const CartTab({super.key});
