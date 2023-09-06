@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/services/remote_services.dart';
 
@@ -41,10 +42,7 @@ class LoginController extends GetxController {
         _getStorage.write("token", accessToken);
         Get.offAll(AppRoute.home);
       } on TimeoutException {
-        Get.defaultDialog(
-            title: "error".tr,
-            middleText: "operation is taking so long, please check your internet "
-                "connection or try again later.");
+        kTimeOutDialog();
       } catch (e) {
 
       } finally {

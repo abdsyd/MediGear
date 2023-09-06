@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/routes_name.dart';
-import 'package:hunter/controllers/forgot_password_controller.dart';
+import 'package:hunter/controllers/auth/forgot_password_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
 import 'package:hunter/widgets/auth_suggestion.dart';

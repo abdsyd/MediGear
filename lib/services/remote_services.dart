@@ -10,16 +10,17 @@ class RemoteServices {
   static var client = http.Client();
   static String token = _getStorage.read('token');
 
-  static Future<String?> register(String email, String password, String name, String phone,String role) async {
-    var response = await client.post(Uri.parse("$_hostIP/register"),
+  static Future<String?> register(String email, String password,
+      String rePassword, String name, String phone, String role) async {
+    var response = await client.post(
+      Uri.parse("$_hostIP/register"),
       body: jsonEncode({
         "name": name,
         "email": email,
         "phone": phone,
         "password": password,
-        "password_confirmation": password,
+        "password_confirmation": rePassword,
         "role": role,
-
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -27,9 +28,8 @@ class RemoteServices {
       },
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      _getStorage.write('token',jsonDecode(response.body)["access_token"] );
+      _getStorage.write('token', jsonDecode(response.body)["access_token"]);
       return jsonDecode(response.body)["access_token"];
-
     } else {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["message"]);
@@ -49,7 +49,8 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body)["url"];
     } else {
-      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -58,12 +59,16 @@ class RemoteServices {
     var response = await client.post(
       Uri.parse("$_hostIP/login"),
       body: jsonEncode({"email": email, "password": password}),
-      headers: {'Content-Type': 'application/json', "Accept": 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json'
+      },
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body)["AccessToken"];
     } else {
-      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -80,13 +85,21 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else if (response.statusCode == 401 || response.statusCode == 403) {
-      Get.offAll(AppRoute.login);
-      _getStorage.remove("token");
+      Get.defaultDialog(
+          barrierDismissible: false,
+          title: 'Session Expired',
+          middleText: 'Please log in again',
+          textConfirm: 'ok',
+          onConfirm: () {
+            Get.offAll(AppRoute.login);
+            _getStorage.remove("token");
+          });
+
       return true;
     } else {
-      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
-
 }

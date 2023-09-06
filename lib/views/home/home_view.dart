@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
-import 'package:hunter/controllers/bottom_navigation_bar_controller.dart';
+import 'package:hunter/controllers/home_controller.dart';
 import 'package:hunter/data/bottom_bar_tabs.dart';
 
 class HomeView extends StatelessWidget {
@@ -10,11 +10,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(BottomNavigationBarController());
+    Get.put(HomeController());
 
 
 
-    return GetBuilder<BottomNavigationBarController>(
+    return GetBuilder<HomeController>(
       builder: (controller) => Scaffold(
         extendBody: true,
         body: bodies[controller.currentIndex],

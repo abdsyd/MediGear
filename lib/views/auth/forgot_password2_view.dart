@@ -5,7 +5,7 @@ import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
 import 'package:hunter/widgets/auth_title.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import '../controllers/forgot_password_controller.dart';
+import '../../controllers/auth/forgot_password_controller.dart';
 
 class ForgotPass2View extends StatelessWidget {
   const ForgotPass2View({super.key});

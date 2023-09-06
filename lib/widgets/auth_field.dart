@@ -74,7 +74,7 @@ class AuthField extends StatelessWidget {
   }
 }
 
-String? validateInput(String val, int min, int max, String type) {
+String? validateInput(String val, int min, int max, String type,{String pass = "", String rePass = ""}) {
   if (val.trim().isEmpty) return "cant be empty";
 
   if (type == "username") {
@@ -90,6 +90,8 @@ String? validateInput(String val, int min, int max, String type) {
   if (val.length < min) return " cant be smaller than $min";
 
   if (val.length > max) return " cant be greater than $max";
+
+  if (pass != rePass) return "passwords don't match".tr;
 
   return null;
 }

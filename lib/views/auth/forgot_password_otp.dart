@@ -8,7 +8,7 @@ import 'package:hunter/widgets/auth_title.dart';
 import 'package:hunter/widgets/otp_field.dart';
 import 'package:hunter/widgets/otp_timer.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import '../controllers/forgot_password_controller.dart';
+import '../../controllers/auth/forgot_password_controller.dart';
 
 class ForgotPassOTP extends StatelessWidget {
   const ForgotPassOTP({super.key});

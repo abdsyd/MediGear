@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hunter/constants/routes_name.dart';
-import 'package:hunter/controllers/register_controller.dart';
+import 'package:hunter/controllers/auth/register_controller.dart';
 import 'package:get/get.dart';
 import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
@@ -107,7 +107,9 @@ class RegisterView extends StatelessWidget {
                           keyboardType: TextInputType.text,
                           validator: (val) {
                             return validateInput(controller.rePassword.text, 8,
-                                100, 'rePassword');
+                                100, 'rePassword',
+                                pass: rC.password.text,
+                                rePass: rC.rePassword.text);
                           },
                           onChanged: (val) {
                             if (controller.buttonPressed) {
@@ -156,6 +158,7 @@ class RegisterView extends StatelessWidget {
                       controller.register(
                         controller.email.text,
                         controller.password.text,
+                        controller.rePassword.text,
                         controller.name.text,
                         controller.phone.text,
                         controller.selectionRoleIndex.toString(),

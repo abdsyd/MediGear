@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/services/remote_services.dart';
 import 'package:otp_text_field/otp_field.dart';
@@ -38,7 +39,7 @@ class RegisterController extends GetxController {
     update();
   }
 
-  Future<void> register(String email ,String password ,String name ,String phone,String role) async {
+  Future<void> register(String email ,String password ,String rePassword ,String name ,String phone,String role) async {
     buttonPressed = true;
     bool isValid = registerFormKey.currentState!.validate();
     if (isValid) {
@@ -46,15 +47,11 @@ class RegisterController extends GetxController {
       try {
         role == '0' ? role ='dentist' : role ='supplier';
         _registerToken =
-        (await RemoteServices.register(email, password, name, phone,role).timeout(const Duration(seconds: 25)))!;
-
-        //_verifyUrl = (await RemoteServices.sendRegisterOtp().timeout(const Duration(seconds: 25)))!;
+        (await RemoteServices.register(email, password, rePassword,name, phone,role).timeout(const Duration(seconds: 25)))!;
+        _verifyUrl = (await RemoteServices.sendRegisterOtp().timeout(const Duration(seconds: 25)))!;
         Get.toNamed(AppRoute.registerOTP);
       } on TimeoutException {
-        Get.defaultDialog(
-            title: "error".tr,
-            middleText: "operation is taking so long, please check your internet "
-                "connection or try again later.");
+        kTimeOutDialog();
       } catch (e) {
         //
       } finally {

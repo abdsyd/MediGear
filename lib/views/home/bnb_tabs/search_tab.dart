@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/controllers/bottom_navigation_bar_controller.dart';
+import 'package:hunter/controllers/home_controller.dart';
 import 'package:hunter/data/compaines_card.dart';
 import 'package:hunter/widgets/compaies_card.dart';
 
-class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
+
+class SearchTab extends StatelessWidget {
+  const SearchTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BottomNavigationBarController barController = Get.find();
+    HomeController hC = Get.find();
+    SearchController sC = Get.put(SearchController());
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Home'),
+        title: const Text('Search'),
         actions: [
           IconButton(
             onPressed: () {
-              barController.changeTab(4);
+              hC.changeTab(4);
             },
             icon: const Icon(Icons.person),
           ),
