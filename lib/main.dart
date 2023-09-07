@@ -10,7 +10,7 @@ import 'package:hunter/themes.dart';
 void main() {
   runApp(const MyApp());
 }
-
+//todo:delete this
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
