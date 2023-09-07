@@ -25,7 +25,6 @@ class LoginController extends GetxController {
 
   bool _passwordVisible = false;
   bool get passwordVisible => _passwordVisible;
-
   void togglePasswordVisibility(bool value) {
     _passwordVisible = value;
     update();
