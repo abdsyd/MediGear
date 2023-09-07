@@ -66,8 +66,10 @@ class RemoteServices {
         "Accept": 'application/json'
       },
     );
+
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return jsonDecode(response.body)["AccessToken"];
+      print(jsonDecode(response.body));
+      return jsonDecode(response.body)["token"];
     } else {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["message"]);

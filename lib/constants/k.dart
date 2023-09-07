@@ -17,6 +17,6 @@ Future kSessionExpiredDialog() => Get.defaultDialog(
     middleText: 'Please log in again',
     textConfirm: 'ok',
     onConfirm: () {
-      Get.offAll(AppRoute.login);
+      Get.offAllNamed(AppRoute.login);
       _getStorage.remove("token");
     });

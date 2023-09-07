@@ -14,7 +14,7 @@ class RegisterOTP extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RegisterController rC = Get.find();
+    RegisterController rC = Get.put(RegisterController());
     return Scaffold(
       //resizeToAvoidBottomInset: false,
       appBar: AppBar(
