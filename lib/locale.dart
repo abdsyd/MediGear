@@ -33,6 +33,8 @@ class MyTranslation extends Translations {
           'Confirm': 'Confirm',
           'Enter your email address': 'Enter your email address',
           'error' : 'error',
+          "Verify your account to unlock premium features!":"Verify your account to unlock premium features!",
+          "Verify Now":"Verify Now",
         }
       };
 }
