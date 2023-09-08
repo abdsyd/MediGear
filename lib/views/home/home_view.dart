@@ -26,7 +26,7 @@ class HomeView extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: Visibility(
-                  visible: controller.currentUser != null && !controller.currentUser!.isVerified,
+                  visible: false,//controller.currentUser != null && !controller.currentUser!.isVerified,
                   child: Container(
                     padding: const EdgeInsets.all(16.0),
                     color: Colors.amber, // Customize the background color
