@@ -44,7 +44,6 @@ class LoginController extends GetxController {
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {
-  print(e);
       } finally {
         toggleLoading(false);
       }

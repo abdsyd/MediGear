@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:hunter/constants/k.dart';
-import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/models/user_model.dart';
 
 class RemoteServices {
@@ -68,7 +67,6 @@ class RemoteServices {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print(jsonDecode(response.body));
       return jsonDecode(response.body)["token"];
     } else {
       Get.defaultDialog(

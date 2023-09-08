@@ -16,7 +16,7 @@ class RegisterOTP extends StatelessWidget {
   Widget build(BuildContext context) {
     RegisterController rC = Get.put(RegisterController());
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
