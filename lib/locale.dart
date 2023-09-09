@@ -35,6 +35,16 @@ class MyTranslation extends Translations {
           'error' : 'error',
           "Verify your account to unlock premium features!":"Verify your account to unlock premium features!",
           "Verify Now":"Verify Now",
+          "ACCOUNT":"ACCOUNT",
+          'MY ORDERS':'MY ORDERS',
+          "MY DETAILS":"MY DETAILS",
+          "ADDRESSES":"ADDRESSES",
+          "SETTINGS":"SETTINGS",
+          "SUPPORT":"SUPPORT",
+          "MEDIGEAR SUPPORT":"MEDIGEAR SUPPORT",
+          "MORE WITH MEDIGEAR":"MORE WITH MEDIGEAR",
+          "SOCIAL":"SOCIAL",
+          "CHANGE ICON":"CHANGE ICON",
         }
       };
 }
