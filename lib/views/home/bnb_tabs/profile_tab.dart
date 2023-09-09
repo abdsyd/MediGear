@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
+import 'package:hunter/constants/routes_name.dart';
 //import 'package:image_picker/image_picker.dart';
 import 'package:hunter/controllers/home/bnb_tabs/profile_controller.dart';
 import 'package:hunter/controllers/home/home_controller.dart';
@@ -20,7 +21,7 @@ class ProfileTab extends StatelessWidget {
         elevation: 0,
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         children:  [
           const CircleAvatar(
             radius: 50,
@@ -50,7 +51,9 @@ class ProfileTab extends StatelessWidget {
             title: "ADDRESSES".tr,
           ),
           ProfileButton(
-            onPressed: (){},
+            onPressed: (){
+              Get.toNamed(AppRoute.settings);
+            },
             icon: Icons.settings_outlined,
             title: "SETTINGS".tr,
           ),

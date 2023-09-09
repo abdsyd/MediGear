@@ -19,7 +19,7 @@ class ProfileButton extends StatelessWidget {
         color: Colors.grey.shade200,
       ),
       child: ListTile(
-        onTap: (){},
+        onTap: onPressed,
         iconColor: AppColors.myPrimary,
         titleTextStyle: Theme.of(context).textTheme.bodyMedium,
         leading:  Icon(icon),

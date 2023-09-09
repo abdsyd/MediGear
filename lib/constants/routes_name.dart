@@ -13,6 +13,7 @@ class AppRoute {
   static const String wishlistTab = "/wishlistTab";
   static const String profileTab = "/profileTab";
   static const String products = "/products";
+  static const String settings = "/settings";
 
 
 }

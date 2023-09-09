@@ -3,7 +3,12 @@ import 'package:get/get.dart';
 class MyTranslation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
-        'ar': {},
+        'ar': {
+          'Terms and Conditions':'hii',
+          'Privacy Policy':'hiii',
+          'Language':'hhii',
+          'Dark Mode':'hihi',
+        },
         'en': {
           'WELCOME': "WELCOME",
           'Welcome to MediGear  Where Dental Tools and Quality Meet! Explore our collection and elevate your dental practice today.':
@@ -45,6 +50,12 @@ class MyTranslation extends Translations {
           "MORE WITH MEDIGEAR":"MORE WITH MEDIGEAR",
           "SOCIAL":"SOCIAL",
           "CHANGE ICON":"CHANGE ICON",
+          'Terms and Conditions':'Terms and Conditions',
+          'Privacy Policy':'Privacy Policy',
+          'Language':'Language',
+          'Dark Mode':'Dark Mode',
+          "Arabic ":"Arabic ",
+          "English ":"English ",
         }
       };
 }
