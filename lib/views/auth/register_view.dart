@@ -18,8 +18,7 @@ class RegisterView extends StatelessWidget {
     RegisterController rC = Get.put(RegisterController());
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),

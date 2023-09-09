@@ -18,8 +18,7 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),

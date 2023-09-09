@@ -3,11 +3,12 @@ import 'package:hunter/constants/colors.dart';
 
 class ProfileButton extends StatelessWidget {
   const ProfileButton({
-    super.key, required this.title, required this.icon, this.onPressed,
+    super.key, required this.title,  this.icon, this.onPressed,  this.trailing,
   });
 
   final String title;
-  final IconData icon;
+  final IconData? icon;
+  final Widget? trailing;
   final void Function()? onPressed;
 
   @override
@@ -24,6 +25,7 @@ class ProfileButton extends StatelessWidget {
         titleTextStyle: Theme.of(context).textTheme.bodyMedium,
         leading:  Icon(icon),
         title: Text(title),
+        trailing: trailing,
       ),
     );
   }

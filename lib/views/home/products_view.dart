@@ -14,26 +14,23 @@ class ProductsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: Column(
+          children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            Text(
+              '150 Products',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ],
+        ),
+        leading: const BackButton(
+          style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
+        ),
         actions: [
-          const BackButton(
-            style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
-          ),
-          const Spacer(),
-          Column(
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              Text(
-                '150 Products',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ],
-          ),
-          const Spacer(),
           IconButton(
             onPressed: () {},
             icon: const Icon(

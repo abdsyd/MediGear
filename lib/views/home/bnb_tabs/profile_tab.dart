@@ -17,8 +17,6 @@ class ProfileTab extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -52,7 +50,7 @@ class ProfileTab extends StatelessWidget {
           ),
           ProfileButton(
             onPressed: (){
-              Get.toNamed(AppRoute.settings);
+              Get.toNamed(AppRoute.settings,);
             },
             icon: Icons.settings_outlined,
             title: "SETTINGS".tr,
