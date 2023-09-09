@@ -13,7 +13,8 @@ import 'package:hunter/views/home/products_view.dart';
 import 'package:hunter/views/auth/login_view.dart';
 import 'package:hunter/views/auth/register_otp.dart';
 import 'package:hunter/views/auth/register_view.dart';
-import 'package:hunter/views/home/settings.dart';
+import 'package:hunter/views/home/profile_details.dart';
+import 'package:hunter/views/home/profile_settings.dart';
 import 'package:hunter/views/welcome_view.dart';
 
 List<GetPage<dynamic>> routes = [
@@ -74,7 +75,11 @@ List<GetPage<dynamic>> routes = [
     page: () => ProductsView(),
   ),
   GetPage(
-    name: AppRoute.settings,
-    page: () => const Settings(),
+    name: AppRoute.profileSettings,
+    page: () => const ProfileSettings(),
+  ),
+  GetPage(
+    name: AppRoute.profileDetails,
+    page: () => const ProfileDetails(),
   ),
 ];

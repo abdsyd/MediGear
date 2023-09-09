@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/constants/colors.dart';
 import 'package:hunter/controllers/local_controller.dart';
 import 'package:hunter/controllers/theme_controller.dart';
 import 'package:hunter/widgets/profile_button.dart';
 
-class Settings extends StatelessWidget {
-  const Settings({super.key});
+class ProfileSettings extends StatelessWidget {
+  const ProfileSettings({super.key});
 
   @override
   Widget build(BuildContext context) {

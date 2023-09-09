@@ -5,24 +5,26 @@ import 'package:hunter/constants/colors.dart';
 class AuthField extends StatelessWidget {
   const AuthField({
     super.key,
-    required this.label,
-    required this.textController,
-    required this.keyboardType,
+     this.label,
+     this.textController,
+     this.keyboardType,
     this.validator,
-    required this.onChanged,
+     this.onChanged,
     required this.icon,
     this.onIconPressed,
-    this.obscureText, this.autoFocus,
+    this.obscureText, this.autoFocus, this.hint, this.hintStyle,
   });
-  final String label;
+  final String? label;
+  final String? hint;
   final bool? obscureText;
   final bool? autoFocus;
-  final TextEditingController textController;
-  final TextInputType keyboardType;
+  final TextEditingController? textController;
+  final TextInputType? keyboardType;
   final String? Function(String?)? validator;
-  final void Function(String) onChanged;
+  final void Function(String)? onChanged;
   final void Function()? onIconPressed;
   final IconData icon;
+  final TextStyle? hintStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +38,14 @@ class AuthField extends StatelessWidget {
         cursorColor: AppColors.myPrimary,
         obscureText: obscureText ?? false,
         keyboardType: keyboardType,
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 11),
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 11,),
         decoration: InputDecoration(
           labelText: label,
+          hintText: hint,
+          hintStyle: hintStyle ?? Theme.of(context)
+              .textTheme
+              .bodyMedium!
+              .copyWith(fontSize: 13),
           labelStyle: Theme.of(context)
               .textTheme
               .displayMedium!

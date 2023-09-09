@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/routes_name.dart';
-//import 'package:image_picker/image_picker.dart';
 import 'package:hunter/controllers/home/bnb_tabs/profile_controller.dart';
 import 'package:hunter/controllers/home/home_controller.dart';
 import 'package:hunter/widgets/profile_button.dart';
@@ -19,9 +17,9 @@ class ProfileTab extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
         children:  [
-          const CircleAvatar(
+          const CircleAvatar( //todo: try to implement imagePicker
             radius: 50,
             child: Icon(Icons.person,size: 100,),
           ),
@@ -39,7 +37,7 @@ class ProfileTab extends StatelessWidget {
           ),
           ProfileButton(title: 'MY ORDERS'.tr, icon: Icons.shopping_bag_outlined,onPressed: (){},),
           ProfileButton(
-            onPressed: (){},
+            onPressed: (){Get.toNamed(AppRoute.profileDetails);},
             icon: Icons.person_outline,
             title: "MY DETAILS".tr,
           ),
@@ -50,7 +48,7 @@ class ProfileTab extends StatelessWidget {
           ),
           ProfileButton(
             onPressed: (){
-              Get.toNamed(AppRoute.settings,);
+              Get.toNamed(AppRoute.profileSettings,);
             },
             icon: Icons.settings_outlined,
             title: "SETTINGS".tr,

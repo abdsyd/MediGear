@@ -56,6 +56,7 @@ class MyTranslation extends Translations {
           'Dark Mode':'Dark Mode',
           "Arabic ":"Arabic ",
           "English ":"English ",
+          'Save Changes':'Save Changes',
         }
       };
 }
