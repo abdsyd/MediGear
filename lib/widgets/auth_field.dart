@@ -12,7 +12,7 @@ class AuthField extends StatelessWidget {
      this.onChanged,
     required this.icon,
     this.onIconPressed,
-    this.obscureText, this.autoFocus, this.hint, this.hintStyle,
+    this.obscureText, this.autoFocus, this.hint, this.hintStyle, this.enabled,
   });
   final String? label;
   final String? hint;
@@ -24,6 +24,7 @@ class AuthField extends StatelessWidget {
   final void Function(String)? onChanged;
   final void Function()? onIconPressed;
   final IconData icon;
+  final bool? enabled;
   final TextStyle? hintStyle;
 
   @override
@@ -31,6 +32,7 @@ class AuthField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: TextFormField(
+        enabled: enabled,
         validator: validator,
         onChanged: onChanged,
         autofocus: autoFocus ?? false,

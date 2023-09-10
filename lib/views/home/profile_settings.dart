@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hunter/constants/colors.dart';
 import 'package:hunter/controllers/local_controller.dart';
 import 'package:hunter/controllers/theme_controller.dart';
 import 'package:hunter/widgets/profile_button.dart';
@@ -9,7 +10,7 @@ class ProfileSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LocaleController localeController = LocaleController();
+    LocaleController localeController = Get.put(LocaleController());
 
     return Scaffold(
       appBar: AppBar(
@@ -40,8 +41,11 @@ class ProfileSettings extends StatelessWidget {
             ProfileButton(
               title: 'Language'.tr,
               trailing: DropdownButton(
+                elevation: 0,
+                iconEnabledColor: AppColors.myPrimary,
                 hint: Text(
                   localeController.getCurrentLanguageLabel(),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.black),
                 ),
                 onChanged: (newValue) {
                   localeController.updateLocale(newValue!);
@@ -49,11 +53,11 @@ class ProfileSettings extends StatelessWidget {
                 items: [
                   DropdownMenuItem(
                     value: "ar",
-                    child: Text("Arabic ".tr),
+                    child: Text("Arabic ".tr,),
                   ),
                   DropdownMenuItem(
                     value: "en",
-                    child: Text("English ".tr),
+                    child: Text("English ".tr,),
                   ),
                 ],
               ),

@@ -4,10 +4,7 @@ class MyTranslation extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'ar': {
-          'Terms and Conditions':'hii',
-          'Privacy Policy':'hiii',
-          'Language':'hhii',
-          'Dark Mode':'hihi',
+
         },
         'en': {
           'WELCOME': "WELCOME",
@@ -57,6 +54,8 @@ class MyTranslation extends Translations {
           "Arabic ":"Arabic ",
           "English ":"English ",
           'Save Changes':'Save Changes',
+          'Explore':'Explore',
+          'Search':'Search',
         }
       };
 }

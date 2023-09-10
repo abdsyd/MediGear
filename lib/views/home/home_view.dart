@@ -63,7 +63,7 @@ class HomeView extends StatelessWidget {
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
-            BottomNavigationBarItem(icon: Icon(MyIcon.home), label: 'home'),
+            BottomNavigationBarItem(icon: Icon(MyIcon.home), label: 'explore'),
             BottomNavigationBarItem(icon: Icon(MyIcon.search), label: 'search'),
             BottomNavigationBarItem(
                 icon: Icon(MyIcon.shopping_bag), label: 'bag'),

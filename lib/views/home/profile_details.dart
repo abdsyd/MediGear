@@ -27,18 +27,32 @@ class ProfileDetails extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12),
         children: [
 
-          IgnorePointer(
-            ignoring: true,
-            child: AuthField(
-              hint: hC.currentUser != null ? hC.currentUser!.email : 'email'.tr,
-              hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.grey,fontSize: 13),
-              icon: Icons.mail_outline,
 
+          GestureDetector(
+              onTap: (){
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(const SnackBar(
+                  content: Text('Cant Change email or role'),
+                ));
+              },
+              child: AuthField(
+                enabled: false,
+                hint: hC.currentUser != null ? hC.currentUser!.email : 'email'.tr,
+                hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.grey,fontSize: 13),
+                icon: Icons.mail_outline,
+
+              ),
             ),
-          ),
-          IgnorePointer(
-            ignoring: true,
+
+          GestureDetector(
+            onTap: (){
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(const SnackBar(
+                content: Text('Cant Change email or role'),
+              ));
+            },
             child: AuthField(
+              enabled:false ,
               hint: hC.currentUser != null ? hC.currentUser!.role : 'role'.tr,
               hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.grey,fontSize: 13),
               icon: CupertinoIcons.person_2,

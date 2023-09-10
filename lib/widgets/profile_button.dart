@@ -22,7 +22,7 @@ class ProfileButton extends StatelessWidget {
       child: ListTile(
         onTap: onPressed,
         iconColor: AppColors.myPrimary,
-        titleTextStyle: Theme.of(context).textTheme.bodyMedium,
+        titleTextStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.black),
         leading:  Icon(icon),
         title: Text(title),
         trailing: trailing,
