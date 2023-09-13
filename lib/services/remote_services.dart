@@ -6,10 +6,13 @@ import 'package:hunter/constants/k.dart';
 import 'package:hunter/models/user_model.dart';
 
 class RemoteServices {
+
   static const String _hostIP = "http://10.0.2.2:8000/api";
   static final GetStorage _getStorage = GetStorage();
   static var client = http.Client();
   static String token = _getStorage.read('token');
+
+  ///////////// Auth \\\\\\\\\\\\\\\
 
   static Future<String?> register(String email, String password,
       String rePassword, String name, String phone, String role) async {
@@ -31,24 +34,6 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       _getStorage.write('token', jsonDecode(response.body)["access_token"]);
       return jsonDecode(response.body)["access_token"];
-    } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
-      return null;
-    }
-  }
-
-  static Future<String?> sendRegisterOtp() async {
-    var response = await client.get(
-      Uri.parse("$_hostIP/send-register-otp"),
-      headers: {
-        'Content-Type': 'application/json',
-        "Accept": 'application/json',
-        "Authorization": "Bearer $token",
-      },
-    );
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      return jsonDecode(response.body)["url"];
     } else {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["message"]);
@@ -97,6 +82,10 @@ class RemoteServices {
     }
   }
 
+  ///////////// Profile \\\\\\\\\\\\\\\
+
+  //todo: add request for image
+
   static Future<UserModel?> fetchCurrentUser() async {
     var response = await client.get(
       Uri.parse("$_hostIP/profile"),
@@ -115,6 +104,163 @@ class RemoteServices {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["error"]);
       return null;
+    }
+  }
+
+  static Future<bool> editProfile(String name, String phone) async {
+    var response = await client.post(
+      Uri.parse('$_hostIP/edit-profile'),
+      body: jsonEncode({
+        'name': name,
+        'phone': phone,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
+    } else if (response.statusCode == 401 || response.statusCode == 403) {
+      kSessionExpiredDialog();
+      return false;
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return false;
+    }
+  }
+
+  static Future<bool> editPassword(
+      String newPassword, String currentPassword) async {
+    var response = await client.post(
+      Uri.parse('$_hostIP/edit-password'),
+      body: jsonEncode({
+        'current_password ': currentPassword,
+        'new_password': newPassword,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
+    } else if (response.statusCode == 401 || response.statusCode == 403) {
+      kSessionExpiredDialog();
+      return false;
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return false;
+    }
+  }
+
+  ///////////// OTP \\\\\\\\\\\\\\\
+
+  static Future<String?> sendRegisterOtp() async {
+    var response = await client.get(
+      Uri.parse("$_hostIP/send-register-otp"),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return jsonDecode(response.body)["url"];
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
+    }
+  }
+
+  static Future<bool> verifyRegisterOtp(String otp, String url) async {
+    var response = await client.post(
+      Uri.parse(url),
+      body: jsonEncode({
+        'otp': otp,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return false;
+    }
+  }
+
+  static Future<bool> sendResetOtp(String email) async {
+    var response = await client.post(
+      Uri.parse('$_hostIP/send-reset-otp'),
+      body: jsonEncode({
+        'email': email,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
+    } else {
+      Get.defaultDialog(
+        title: "error".tr,
+        middleText: jsonDecode(response.body)["message"],
+      );
+      return false;
+    }
+  }
+
+  static Future<String?> verifyResetOtp(String email, String otp) async {
+    var response = await client.post(
+      Uri.parse('$_hostIP/verify-reset-otp'),
+      body: jsonEncode({
+        'email': email,
+        'otp': otp,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return jsonDecode(response.body)["reset_token"];
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
+    }
+  }
+
+  static Future<bool> resetPassword(String email ,String password , String passwordConfirmation ,String resetToken) async {
+    var response = await client.post(
+      Uri.parse('$_hostIP/reset-password'),
+      body: jsonEncode({
+        'email': email,
+        'password': password,
+        'password_confirmation' : passwordConfirmation,
+        'token' : resetToken,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+      }
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
+    } else {
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return false;
     }
   }
 }
