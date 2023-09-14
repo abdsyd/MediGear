@@ -52,7 +52,7 @@ class RemoteServices {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return jsonDecode(response.body)["token"];
+      return jsonDecode(response.body)["access_token"];
     } else {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["message"]);
@@ -199,7 +199,7 @@ class RemoteServices {
     }
   }
 
-  static Future<bool> sendResetOtp(String email) async {
+  static Future<bool> sendForgotPasswordOtp(String email) async {
     var response = await client.post(
       Uri.parse('$_hostIP/send-reset-otp'),
       body: jsonEncode({
@@ -221,7 +221,7 @@ class RemoteServices {
     }
   }
 
-  static Future<String?> verifyResetOtp(String email, String otp) async {
+  static Future<String?> verifyForgotPasswordOtp(String email, String otp) async {
     var response = await client.post(
       Uri.parse('$_hostIP/verify-reset-otp'),
       body: jsonEncode({

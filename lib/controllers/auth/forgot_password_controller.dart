@@ -1,11 +1,17 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:hunter/constants/k.dart';
+import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/services/remote_services.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:timer_count_down/timer_controller.dart';
 
 class ForgotPassController extends GetxController {
   final TextEditingController email = TextEditingController();
+
+  final GetStorage _getStorage = GetStorage();
 
   bool _isLoading1 = false;
   bool get isLoading1 => _isLoading1;
@@ -23,11 +29,13 @@ class ForgotPassController extends GetxController {
     if (isValid) {
       toggleLoading1(true);
       try {
-        // if email exists, go to forgot pass otp view
+        if (await RemoteServices.sendForgotPasswordOtp(email.text).timeout(kTimeOutDuration)) {
+          Get.toNamed(AppRoute.forgotPasswordOTP);
+        }
       } on TimeoutException {
-        //
+        kTimeOutDialog();
       } catch (e) {
-        //
+        //print(e.toString());
       } finally {
         toggleLoading1(false);
       }
@@ -60,40 +68,55 @@ class ForgotPassController extends GetxController {
 
 
   void verifyOtp(String pin) async {
-      if (_isTimeUp) {
-        // ask user to request new otp code or do it yourself
-      } else {
-        toggleLoadingOtp(true);
-        try {
-          //
-        } on TimeoutException {
-          //
-        } catch (e) {
-          //
-        } finally {
-          toggleLoadingOtp(false);
+    if (_isTimeUp) {
+      Get.defaultDialog(middleText: "otp time up dialog".tr);
+    } else {
+      toggleLoadingOtp(true);
+      try {
+        String? resetToken =
+        (await RemoteServices.verifyForgotPasswordOtp(email.text, pin).timeout(kTimeOutDuration));
+        if (resetToken != null) {
+          _getStorage.write("token", resetToken);
+          Get.offAllNamed(AppRoute.forgotPassword2);
         }
+      } on TimeoutException {
+        kTimeOutDialog();
+      } catch (e) {
+        //print(e.toString());
+      } finally {
+        toggleLoadingOtp(false);
       }
-
+    }
   }
 
   void resendOtp() async {
     if (_isTimeUp) {
       toggleLoadingOtp(true);
       try {
-        // request a new otp
+        await RemoteServices.sendForgotPasswordOtp(email.text).timeout(kTimeOutDuration);
         timeController.restart();
         otpController.clear();
         _isTimeUp = false;
       } on TimeoutException {
-        //
+        kTimeOutDialog();
       } catch (e) {
-        //
+
       } finally {
         toggleLoadingOtp(false);
       }
     } else {
-      // ask user to wait until time is up
+      Get.showSnackbar(GetSnackBar(
+        messageText: Text(
+          "wait till time is up".tr,
+          textAlign: TextAlign.center,
+          //style: kTextStyle14.copyWith(color: Colors.white),
+        ),
+        backgroundColor: Colors.grey.shade800,
+        duration: const Duration(milliseconds: 800),
+        borderRadius: 30,
+        maxWidth: 150,
+        margin: const EdgeInsets.only(bottom: 50),
+      ));
     }
   }
 
@@ -126,17 +149,20 @@ class ForgotPassController extends GetxController {
     update();
   }
 
-  void resetPass() async {
+  void resetPass(String password,String passwordConfirmation) async {
     button2Pressed = true;
     bool isValid = secondFormKey.currentState!.validate();
     if (isValid) {
       toggleLoading2(true);
       try {
-        //make a request to set a new password
+        if (await RemoteServices.resetPassword(email.text, password,passwordConfirmation, _resetToken).timeout(kTimeOutDuration)) {
+          Get.offAllNamed(AppRoute.login);
+          Get.defaultDialog(middleText: "reset pass dialog".tr);
+        }
       } on TimeoutException {
-        //
+        kTimeOutDialog();
       } catch (e) {
-        //
+        //print(e.toString());
       } finally {
         toggleLoading2(false);
       }

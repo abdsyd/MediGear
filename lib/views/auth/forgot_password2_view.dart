@@ -97,7 +97,7 @@ class ForgotPass2View extends StatelessWidget {
                             style: Theme.of(context).textTheme.labelMedium,
                           ),
                     onPressed: () {
-                      controller.resetPass();
+                      controller.resetPass(controller.newPassword.text,controller.reNewPassword.text);
                     },
                   ),
                 ),
