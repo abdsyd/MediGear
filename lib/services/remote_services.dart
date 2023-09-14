@@ -52,7 +52,6 @@ class RemoteServices {
   }
 
   static Future<bool> signOut() async {
-    print("logged out pressed");
     var response = await client.get(
       Uri.parse("$_hostIP/logout"),
       headers: {
@@ -176,7 +175,6 @@ class RemoteServices {
         "Authorization": "Bearer $token",
       },
     );
-    print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else if (response.statusCode == 400) {

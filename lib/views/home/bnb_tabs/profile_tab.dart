@@ -87,12 +87,12 @@ class ProfileTab extends StatelessWidget {
             title: "SOCIAL".tr,
           ),
           ProfileButton(
-            onPressed: () {
-              RemoteServices.signOut();
-            },
+            onPressed: () {},
             icon: Icons.apps_outlined,
             title: "CHANGE ICON".tr,
           ),
+          const SizedBox(height: 60),
+          ProfileButton(title: 'Sign out'.tr,icon: Icons.logout,onPressed: (){pC.logOut();},borderColor: Colors.red,iconColor: Colors.red,),
         ],
       ),
     );

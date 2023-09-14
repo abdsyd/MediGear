@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/services/remote_services.dart';
@@ -11,7 +10,7 @@ import 'package:timer_count_down/timer_controller.dart';
 class ForgotPassController extends GetxController {
   final TextEditingController email = TextEditingController();
 
-  final GetStorage _getStorage = GetStorage();
+
 
   bool _isLoading1 = false;
   bool get isLoading1 => _isLoading1;
@@ -35,7 +34,7 @@ class ForgotPassController extends GetxController {
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {
-        //print(e.toString());
+        //
       } finally {
         toggleLoading1(false);
       }
@@ -66,9 +65,6 @@ class ForgotPassController extends GetxController {
   }
 
   void verifyOtp(String pin) async {
-    // if (_isTimeUp) {
-    //   Get.defaultDialog(middleText: "otp time up dialog".tr);
-    // } else {
     toggleLoadingOtp(true);
     try {
       String? resetToken = await RemoteServices.verifyForgotPasswordOtp(email.text, pin).timeout(kTimeOutDuration);
@@ -79,11 +75,10 @@ class ForgotPassController extends GetxController {
     } on TimeoutException {
       kTimeOutDialog();
     } catch (e) {
-      //print(e.toString());
+      //
     } finally {
       toggleLoadingOtp(false);
     }
-    //}
   }
 
   void resendOtp() async {
@@ -155,12 +150,12 @@ class ForgotPassController extends GetxController {
         if (await RemoteServices.resetPassword(email.text, password, passwordConfirmation, _resetToken!)
             .timeout(kTimeOutDuration)) {
           Get.offAllNamed(AppRoute.login);
-          Get.defaultDialog(middleText: "reset pass dialog".tr);
+          Get.defaultDialog(middleText: "password changed successfully".tr);
         }
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {
-        //print(e.toString());
+        //
       } finally {
         toggleLoading2(false);
       }

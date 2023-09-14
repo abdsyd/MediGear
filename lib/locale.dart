@@ -31,6 +31,7 @@ class MyTranslation extends Translations {
           'Login to your account': 'Login to your account',
           'Forgot Password': 'Forgot Password',
           'Reset Password': 'Reset Password',
+          'Change Password': 'Change Password',
           'Enter your new password ': 'Enter your new password ',
           'Confirm': 'Confirm',
           'Enter your email address': 'Enter your email address',
@@ -56,6 +57,8 @@ class MyTranslation extends Translations {
           'Save Changes':'Save Changes',
           'Explore':'Explore',
           'Search':'Search',
+          "password changed successfully":"password changed successfully",
+          "Cant Change email or role":"Cant Change email or role",
         }
       };
 }

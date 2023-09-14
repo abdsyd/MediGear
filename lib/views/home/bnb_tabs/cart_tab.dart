@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/controllers/home/bnb_tabs/cart_controller.dart';
+import 'package:hunter/controllers/home/home_controller.dart';
 
 
 class CartTab extends StatelessWidget {
@@ -9,6 +10,7 @@ class CartTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartController cC = Get.put(CartController());
+    HomeController homeController = Get.find();
     return const Placeholder(
       child: Center(
         child: Text('cart'),

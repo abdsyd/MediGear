@@ -43,6 +43,7 @@ class HomeView extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            //-----****-----\\
                             Get.toNamed(AppRoute.registerOTP);
                           },
                           style: ElevatedButton.styleFrom(
