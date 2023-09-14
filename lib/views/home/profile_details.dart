@@ -6,7 +6,7 @@ import 'package:hunter/controllers/home/bnb_tabs/profile_controller.dart';
 import 'package:hunter/controllers/home/home_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_field.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:hunter/widgets/snake_bar.dart';
 
 class ProfileDetails extends StatelessWidget {
   const ProfileDetails({super.key});
@@ -31,17 +31,7 @@ class ProfileDetails extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Get.showSnackbar(GetSnackBar(
-                  messageText: Text(
-                    "Cant Change email or role".tr,
-                    textAlign: TextAlign.center,
-                  ),
-                  backgroundColor: Colors.grey.shade400,
-                  duration: const Duration(milliseconds: 800),
-                  borderRadius: 30,
-                  maxWidth: 150,
-                  margin: const EdgeInsets.only(bottom: 50),
-                ));
+                Get.showSnackbar(mySnackBar(messageText: "Cant Change email or role".tr));
               },
               child: AuthField(
                 enabled: false,
@@ -52,17 +42,7 @@ class ProfileDetails extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.showSnackbar(GetSnackBar(
-                  messageText: Text(
-                    "Cant Change email or role".tr,
-                    textAlign: TextAlign.center,
-                  ),
-                  backgroundColor: Colors.grey.shade400,
-                  duration: const Duration(milliseconds: 800),
-                  borderRadius: 30,
-                  maxWidth: 150,
-                  margin: const EdgeInsets.only(bottom: 50),
-                ));
+                Get.showSnackbar(mySnackBar(messageText: "Cant Change email or role".tr));
               },
               child: AuthField(
                 enabled: false,
@@ -102,9 +82,7 @@ class ProfileDetails extends StatelessWidget {
                 onPressed: () {
                   controller.saveChanges();
                 },
-                child: controller.isLoading
-                    ? LoadingAnimationWidget.prograssiveDots(color: Colors.white, size: 40)
-                    : Text(
+                child:  Text(
                         'Save Changes'.tr,
                         style: Theme.of(context).textTheme.labelMedium,
                       ),

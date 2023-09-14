@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/services/remote_services.dart';
+import 'package:hunter/widgets/snake_bar.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:timer_count_down/timer_controller.dart';
 
@@ -71,17 +72,9 @@ class RegisterOTPController extends GetxController {
         toggleLoadingOtp(false);
       }
     } else {
-      Get.showSnackbar(GetSnackBar(
-        messageText: Text(
-          "wait till time is up".tr,
-          textAlign: TextAlign.center,
-        ),
-        backgroundColor: Colors.grey.shade400,
-        duration: const Duration(milliseconds: 800),
-        borderRadius: 30,
-        maxWidth: 150,
-        margin: const EdgeInsets.only(bottom: 50),
-      ));
+      Get.showSnackbar(mySnackBar(messageText: 'wait till time is up".tr'));
     }
   }
+
+
 }

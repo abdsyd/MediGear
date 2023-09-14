@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/home/bnb_tabs/profile_controller.dart';
 import 'package:hunter/controllers/home/home_controller.dart';
-import 'package:hunter/services/remote_services.dart';
 import 'package:hunter/widgets/profile_button.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -11,7 +10,7 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController hC = Get.find(); //مرقت اليوزر من الهوم كونترلور للبروفايل كونترولر
+    HomeController hC = Get.find();
     ProfileController pC = Get.put(ProfileController(user: hC.currentUser!));
     return Scaffold(
       appBar: AppBar(
