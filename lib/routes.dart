@@ -15,9 +15,14 @@ import 'package:hunter/views/auth/register_otp.dart';
 import 'package:hunter/views/auth/register_view.dart';
 import 'package:hunter/views/home/profile_details.dart';
 import 'package:hunter/views/home/profile_settings.dart';
+import 'package:hunter/views/onboarding_view.dart';
 import 'package:hunter/views/welcome_view.dart';
 
 List<GetPage<dynamic>> routes = [
+  GetPage(
+    name: AppRoute.onboarding,
+    page: () => const OnboardingView(),
+  ),
   GetPage(
     name: AppRoute.welcome,
     page: () => const WelcomeView(),

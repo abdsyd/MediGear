@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/local_controller.dart';
 import 'package:hunter/controllers/theme_controller.dart';
 import 'package:hunter/locale.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.myLightMode,
       darkTheme: AppTheme.myDarkMode,
       themeMode: themeController.getThemeMode(),
+      initialRoute: AppRoute.onboarding ,
       getPages: routes,
     );
   }
