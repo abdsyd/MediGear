@@ -32,6 +32,7 @@ class ProfileTab extends StatelessWidget {
           Center(
             child: Text(
               "Welcome back ${hC.currentUser != null ? hC.currentUser!.name : ''} ",
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 22),
             ),
           ),

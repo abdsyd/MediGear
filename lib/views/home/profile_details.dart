@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hunter/constants/k.dart';
 import 'package:hunter/controllers/home/bnb_tabs/profile_controller.dart';
 import 'package:hunter/controllers/home/home_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
@@ -71,7 +72,6 @@ class ProfileDetails extends StatelessWidget {
               ),
             ),
             AuthField(
-              hint: hC.currentUser != null ? hC.currentUser!.name : 'name'.tr,
               textController: pC.name,
               keyboardType: TextInputType.name,
               icon: Icons.person_outlined,
@@ -85,7 +85,6 @@ class ProfileDetails extends StatelessWidget {
               },
             ),
             AuthField(
-              hint: hC.currentUser != null ? hC.currentUser!.phone : 'phone',
               textController: pC.phone,
               keyboardType: TextInputType.phone,
               icon: Icons.phone_outlined,
@@ -121,8 +120,7 @@ class ProfileDetails extends StatelessWidget {
                 icon: CupertinoIcons.eye,
               ),
             ),
-            GetBuilder<ProfileController>(builder: (controller) {
-              return AuthButton(
+             AuthButton(
                 onPressed: () {
                   Get.bottomSheet(
                     Container(
@@ -130,65 +128,68 @@ class ProfileDetails extends StatelessWidget {
                       color: Colors.white,
                       child: Form(
                         key: pC.passwordsFormKey,
-                        child: ListView(
-                          children: [
-                            AuthField(
-                              label: 'current password'.tr,
-                              obscureText: !controller.currentPasswordVisible,
-                              icon: controller.currentPasswordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
-                              onIconPressed: () {
-                                controller.toggleCurrentPasswordVisibility(!controller.currentPasswordVisible);
-                              },
-                              textController: controller.password,
-                              keyboardType: TextInputType.text,
-                              validator: (val) {
-                                return validateInput(controller.password.text, 8, 100, 'password');
-                              },
-                              onChanged: (val) {
-                                if (controller.editPasswordButtonPressed) {
-                                  controller.detailsFormKey.currentState!.validate();
-                                }
-                              },
-                            ),
-                            AuthField(
-                              label: 'new password'.tr,
-                              obscureText: !controller.newPasswordVisible,
-                              icon: controller.newPasswordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
-                              onIconPressed: () {
-                                controller.toggleNewPasswordVisibility(!controller.newPasswordVisible);
-                              },
-                              textController: controller.rePassword,
-                              keyboardType: TextInputType.text,
-                              validator: (val) {
-                                return validateInput(controller.rePassword.text, 8, 100, 'password');
-                              },
-                              onChanged: (val) {
-                                if (controller.editPasswordButtonPressed) {
-                                  controller.detailsFormKey.currentState!.validate();
-                                }
-                              },
-                            ),
-                            const SizedBox(height: 16),
-                            AuthButton(
-                              onPressed: () {
-                                controller.changePassword(controller.password.text, controller.rePassword.text);
-                              },
-                              child: const Text('Submit'),
-                            ),
-                          ],
+                        child: GetBuilder<ProfileController>(
+                          builder: (controller) {
+                            return ListView(
+                              children: [
+                                AuthField(
+                                  label: 'current password'.tr,
+                                  obscureText: !controller.currentPasswordVisible,
+                                  icon: controller.currentPasswordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
+                                  onIconPressed: () {
+                                    controller.toggleCurrentPasswordVisibility(!controller.currentPasswordVisible);
+                                  },
+                                  textController: controller.password,
+                                  keyboardType: TextInputType.text,
+                                  validator: (val) {
+                                    return validateInput(controller.password.text, 8, 100, 'password');
+                                  },
+                                  onChanged: (val) {
+                                    if (controller.editPasswordButtonPressed) {
+                                      controller.detailsFormKey.currentState!.validate();
+                                    }
+                                  },
+                                ),
+                                AuthField(
+                                  label: 'new password'.tr,
+                                  obscureText: !controller.newPasswordVisible,
+                                  icon: controller.newPasswordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
+                                  onIconPressed: () {
+                                    controller.toggleNewPasswordVisibility(!controller.newPasswordVisible);
+                                  },
+                                  textController: controller.rePassword,
+                                  keyboardType: TextInputType.text,
+                                  validator: (val) {
+                                    return validateInput(controller.rePassword.text, 8, 100, 'password');
+                                  },
+                                  onChanged: (val) {
+                                    if (controller.editPasswordButtonPressed) {
+                                      controller.detailsFormKey.currentState!.validate();
+                                    }
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                AuthButton(
+                                  onPressed: () {
+                                    controller.changePassword(controller.password.text, controller.rePassword.text);
+                                    hideKeyboard(context);
+                                  },
+                                  child: const Text('Submit'),
+                                ),
+                              ],
+                            );
+                          }
                         ),
                       ),
                     ),
                   );
                 },
-                child: controller.isLoading
-                    ? LoadingAnimationWidget.prograssiveDots(color: Colors.white, size: 40)
-                    : Text(
+                child: Text(
                         'Change Password'.tr,
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
-              );
-            }),
+              ),
+
           ],
         ),
       ),

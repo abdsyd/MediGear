@@ -75,9 +75,8 @@ class RegisterOTPController extends GetxController {
         messageText: Text(
           "wait till time is up".tr,
           textAlign: TextAlign.center,
-          //style: kTextStyle14.copyWith(color: Colors.white),
         ),
-        backgroundColor: Colors.grey.shade800,
+        backgroundColor: Colors.grey.shade400,
         duration: const Duration(milliseconds: 800),
         borderRadius: 30,
         maxWidth: 150,
