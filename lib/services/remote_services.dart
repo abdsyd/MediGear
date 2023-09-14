@@ -61,7 +61,7 @@ class RemoteServices {
       },
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      Get.offAllNamed(AppRoute.login);
+      //Get.offAllNamed(AppRoute.login);
       return true;
     } else if (response.statusCode == 401 || response.statusCode == 403) {
       kSessionExpiredDialog();
@@ -124,7 +124,7 @@ class RemoteServices {
     var response = await client.post(
       Uri.parse('$_hostIP/edit-password'),
       body: jsonEncode({
-        'current_password ': currentPassword,
+        'current_password': currentPassword,
         'new_password': newPassword,
       }),
       headers: {

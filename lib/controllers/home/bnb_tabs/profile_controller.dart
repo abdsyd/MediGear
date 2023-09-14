@@ -5,10 +5,20 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/models/user_model.dart';
 import 'package:hunter/services/remote_services.dart';
 
-class ProfileController extends GetxController{
+class ProfileController extends GetxController {
+  ProfileController({required this.user}); //constructor
+  @override
+  void onInit() {
+    // to pre populate text fields
+    name.text = user.name;
+    phone.text = user.phone;
+    super.onInit();
+  }
 
+  late UserModel user;
   final TextEditingController name = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
@@ -16,6 +26,7 @@ class ProfileController extends GetxController{
   final TextEditingController phone = TextEditingController();
 
   GlobalKey<FormState> detailsFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> passwordsFormKey = GlobalKey<FormState>();
 
   bool editProfileButtonPressed = false;
   bool editPasswordButtonPressed = false;
@@ -26,8 +37,6 @@ class ProfileController extends GetxController{
     _isLoadingEdit = value;
     update();
   }
-
-
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -42,6 +51,7 @@ class ProfileController extends GetxController{
     _currentPasswordVisible = value;
     update();
   }
+
   bool _newPasswordVisible = false;
   bool get newPasswordVisible => _newPasswordVisible;
   void toggleNewPasswordVisibility(bool value) {
@@ -49,15 +59,16 @@ class ProfileController extends GetxController{
     update();
   }
 
-  void saveChanges(String name, String phone) async {
+  void saveChanges() async {
     editProfileButtonPressed = true;
     bool isValid = detailsFormKey.currentState!.validate();
     if (isValid) {
       toggleLoadingEdit(true);
       try {
+        print("after");
         bool editDetails = false;
-        if (name.isNotEmpty && phone.isNotEmpty) {
-          editDetails = await RemoteServices.editProfile(name, phone);
+        if (name.text.isNotEmpty && phone.text.isNotEmpty) {
+          editDetails = await RemoteServices.editProfile(name.text, phone.text);
         }
         if (editDetails) {
           Get.back();
@@ -75,17 +86,18 @@ class ProfileController extends GetxController{
 
   void changePassword(String oldPass, String newPass) async {
     editPasswordButtonPressed = true;
-    bool isValid = detailsFormKey.currentState!.validate();
+    bool isValid = passwordsFormKey.currentState!.validate();
     if (isValid) {
       toggleLoadingEdit(true);
       try {
         bool editPassword = false;
         if (oldPass.isNotEmpty && newPass.isNotEmpty) {
-          editPassword = await RemoteServices.editPassword(newPass,oldPass);
+          editPassword = await RemoteServices.editPassword(newPass, oldPass);
         }
         if (editPassword) {
           Get.back();
-          Get.defaultDialog(title: "password Changed successfully".tr, middleText: "changes will take effect in seconds");
+          Get.defaultDialog(
+              title: "password Changed successfully".tr, middleText: "changes will take effect in seconds");
         }
       } on TimeoutException {
         kTimeOutDialog();
@@ -102,5 +114,4 @@ class ProfileController extends GetxController{
       Get.offAllNamed(AppRoute.login);
     }
   }
-
 }

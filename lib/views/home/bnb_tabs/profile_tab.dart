@@ -11,8 +11,8 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProfileController pC = Get.put(ProfileController());
-    HomeController hC = Get.find();
+    HomeController hC = Get.find(); //مرقت اليوزر من الهوم كونترلور للبروفايل كونترولر
+    ProfileController pC = Get.put(ProfileController(user: hC.currentUser!));
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -92,7 +92,15 @@ class ProfileTab extends StatelessWidget {
             title: "CHANGE ICON".tr,
           ),
           const SizedBox(height: 60),
-          ProfileButton(title: 'Sign out'.tr,icon: Icons.logout,onPressed: (){pC.logOut();},borderColor: Colors.red,iconColor: Colors.red,),
+          ProfileButton(
+            title: 'Sign out'.tr,
+            icon: Icons.logout,
+            onPressed: () {
+              pC.logOut();
+            },
+            borderColor: Colors.red,
+            iconColor: Colors.red,
+          ),
         ],
       ),
     );
