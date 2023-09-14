@@ -48,19 +48,22 @@ class RegisterController extends GetxController {
     update();
   }
 
-  Future<void> register(String email, String password, String rePassword,
-      String name, String phone, String role) async {
+  Future<void> register() async {
     buttonPressed = true;
     bool isValid = registerFormKey.currentState!.validate();
     if (isValid) {
       toggleLoading(true);
       try {
-        role == '0' ? role = 'dentist' : role = 'supplier';
-        await RemoteServices.register(
-                email, password, rePassword, name, phone, role)
-            .timeout(kTimeOutDuration);
+        String role;
+        selectionRoleIndex == 0 ? role = 'dentist' : role = 'supplier';
 
-        Get.toNamed(AppRoute.registerOTP);
+        String? accessToken =
+            await RemoteServices.register(email.text, password.text, rePassword.text, name.text, phone.text, role)
+                .timeout(kTimeOutDuration);
+        if (accessToken != null) {
+          _getStorage.write('token', accessToken);
+          Get.toNamed(AppRoute.registerOTP);
+        }
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {
@@ -79,6 +82,7 @@ class RegisterController extends GetxController {
     for (int index = 0; index < isSelected.length; index++) {
       if (index == newIndex) {
         isSelected[index] = true;
+        //selectionRoleIndex = index;
       } else {
         isSelected[index] = false;
       }

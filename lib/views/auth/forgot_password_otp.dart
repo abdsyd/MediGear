@@ -18,7 +18,6 @@ class ForgotPassOTP extends StatelessWidget {
     ForgotPassController fPC = Get.find();
     return Scaffold(
       appBar: AppBar(
-
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),
@@ -31,17 +30,14 @@ class ForgotPassOTP extends StatelessWidget {
             children: [
               Column(
                 children: [
-                   AuthTitle(
+                  AuthTitle(
                     title: 'Verification'.tr,
-                    subTitle:
-                        'please enter the code that sent to your email \n this code will expire in '.tr,
+                    subTitle: 'please enter the code that sent to your email \n this code will expire in '.tr,
                   ),
                   GetBuilder<ForgotPassController>(
                     builder: (controller) => OtpTimer(
                       controller: controller.timeController,
-                      timerColor: controller.isTimeUp
-                          ? Colors.red
-                          : AppColors.myPrimary,
+                      timerColor: controller.isTimeUp ? Colors.red : AppColors.myPrimary,
                       onFinished: () {
                         controller.toggleTimerState(true);
                       },
@@ -51,16 +47,18 @@ class ForgotPassOTP extends StatelessWidget {
               ),
               OtpField(
                 controller: fPC.otpController,
+                onFinished: (String otp) {
+                  fPC.verifyOtp(otp);
+                },
               ),
               GetBuilder<ForgotPassController>(
                 builder: (controller) => AuthButton(
                   child: controller.isLoadingOtp
-                      ? LoadingAnimationWidget.prograssiveDots(
-                      color: Colors.white, size: 40)
+                      ? LoadingAnimationWidget.prograssiveDots(color: Colors.white, size: 40)
                       : Text(
-                    'Verify'.tr,
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
+                          'Verify'.tr,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
                   onPressed: () {
                     controller.verifyOtp(controller.otpController.toString());
                   },

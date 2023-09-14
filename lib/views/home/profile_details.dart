@@ -26,38 +26,30 @@ class ProfileDetails extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         children: [
-
-
           GestureDetector(
-              onTap: (){
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(const SnackBar(
-                  content: Text('Cant Change email or role'),
-                ));
-              },
-              child: AuthField(
-                enabled: false,
-                hint: hC.currentUser != null ? hC.currentUser!.email : 'email'.tr,
-                hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.grey,fontSize: 13),
-                icon: Icons.mail_outline,
-
-              ),
-            ),
-
-          GestureDetector(
-            onTap: (){
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(const SnackBar(
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text('Cant Change email or role'),
               ));
             },
             child: AuthField(
-              enabled:false ,
+              enabled: false,
+              hint: hC.currentUser != null ? hC.currentUser!.email : 'email'.tr,
+              hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.grey, fontSize: 13),
+              icon: Icons.mail_outline,
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text('Cant Change email or role'),
+              ));
+            },
+            child: AuthField(
+              enabled: false,
               hint: hC.currentUser != null ? hC.currentUser!.role : 'role'.tr,
-              hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.grey,fontSize: 13),
+              hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.grey, fontSize: 13),
               icon: CupertinoIcons.person_2,
-
-
             ),
           ),
           AuthField(
@@ -90,38 +82,36 @@ class ProfileDetails extends StatelessWidget {
           ),
           GetBuilder<ProfileController>(builder: (controller) {
             return AuthButton(
-              onPressed: () {},
+              onPressed: () {
+                //
+              },
               child: controller.isLoading
-                  ? LoadingAnimationWidget.prograssiveDots(
-                      color: Colors.white, size: 40)
+                  ? LoadingAnimationWidget.prograssiveDots(color: Colors.white, size: 40)
                   : Text(
                       'Save Changes'.tr,
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
             );
           }),
-          const SizedBox(height: 50,),
+          const SizedBox(
+            height: 50,
+          ),
           GetBuilder<ProfileController>(
             builder: (controller) => AuthField(
-              hint:  '*******',
+              hint: '*******',
               obscureText: !controller.passwordVisible,
-              icon: controller.passwordVisible
-                  ? CupertinoIcons.eye_slash
-                  : CupertinoIcons.eye,
+              icon: controller.passwordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
               onIconPressed: () {
-                controller.togglePasswordVisibility(
-                    !controller.passwordVisible);
+                controller.togglePasswordVisibility(!controller.passwordVisible);
               },
               textController: controller.password,
               keyboardType: TextInputType.text,
               validator: (val) {
-                return validateInput(
-                    controller.password.text, 8, 100, 'password');
+                return validateInput(controller.password.text, 8, 100, 'password');
               },
               onChanged: (val) {
                 if (controller.buttonPressed) {
-                  controller.detailsFormKey.currentState!
-                      .validate();
+                  controller.detailsFormKey.currentState!.validate();
                 }
               },
             ),
@@ -130,12 +120,11 @@ class ProfileDetails extends StatelessWidget {
             return AuthButton(
               onPressed: () {},
               child: controller.isLoading
-                  ? LoadingAnimationWidget.prograssiveDots(
-                  color: Colors.white, size: 40)
+                  ? LoadingAnimationWidget.prograssiveDots(color: Colors.white, size: 40)
                   : Text(
-                'Reset Password'.tr,
-                style: Theme.of(context).textTheme.labelMedium,
-              ),
+                      'Reset Password'.tr,
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
             );
           }),
         ],

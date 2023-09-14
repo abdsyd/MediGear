@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/controllers/auth/register_controller.dart';
 import 'package:hunter/controllers/auth/register_otp_controller.dart';
@@ -33,16 +34,12 @@ class RegisterOTP extends StatelessWidget {
                 children: [
                   AuthTitle(
                     title: 'Verification'.tr,
-                    subTitle:
-                        'please enter the code that sent to your email \n this code will expire in '
-                            .tr,
+                    subTitle: 'please enter the code that sent to your email \n this code will expire in '.tr,
                   ),
                   GetBuilder<RegisterOTPController>(
                     builder: (controller) => OtpTimer(
                       controller: controller.timeController,
-                      timerColor: controller.isTimeUp
-                          ? Colors.red
-                          : AppColors.myPrimary,
+                      timerColor: controller.isTimeUp ? Colors.red : AppColors.myPrimary,
                       onFinished: () {
                         controller.toggleTimerState(true);
                       },
@@ -52,18 +49,20 @@ class RegisterOTP extends StatelessWidget {
               ),
               OtpField(
                 controller: registerOTPController.otpController,
+                onFinished: (String otp) {
+                  registerOTPController.verifyOtp(otp);
+                },
               ),
               GetBuilder<RegisterOTPController>(
                 builder: (controller) => AuthButton(
                   child: controller.isLoadingOtp
-                      ? LoadingAnimationWidget.prograssiveDots(
-                          color: Colors.white, size: 40)
+                      ? LoadingAnimationWidget.prograssiveDots(color: Colors.white, size: 40)
                       : Text(
                           'Verify'.tr,
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
                   onPressed: () {
-                    controller.verifyOtp(controller.otpController.toString());
+                    //controller.verifyOtp(controller.otpController);
                   },
                 ),
               ),

@@ -47,7 +47,7 @@ class ForgotPassController extends GetxController {
   final OtpFieldController otpController = OtpFieldController();
   final CountdownController timeController = CountdownController(autoStart: true);
 
-  late String _resetToken;
+  String? _resetToken;
   // this is a token we get after validating otp to insure that the account belongs to the user with this email.
   // do not confuse it with "access token" that we get after a successful login or register
 
@@ -65,28 +65,25 @@ class ForgotPassController extends GetxController {
     update();
   }
 
-
-
   void verifyOtp(String pin) async {
-    if (_isTimeUp) {
-      Get.defaultDialog(middleText: "otp time up dialog".tr);
-    } else {
-      toggleLoadingOtp(true);
-      try {
-        String? resetToken =
-        (await RemoteServices.verifyForgotPasswordOtp(email.text, pin).timeout(kTimeOutDuration));
-        if (resetToken != null) {
-          _getStorage.write("token", resetToken);
-          Get.offAllNamed(AppRoute.forgotPassword2);
-        }
-      } on TimeoutException {
-        kTimeOutDialog();
-      } catch (e) {
-        //print(e.toString());
-      } finally {
-        toggleLoadingOtp(false);
+    // if (_isTimeUp) {
+    //   Get.defaultDialog(middleText: "otp time up dialog".tr);
+    // } else {
+    toggleLoadingOtp(true);
+    try {
+      String? resetToken = await RemoteServices.verifyForgotPasswordOtp(email.text, pin).timeout(kTimeOutDuration);
+      if (resetToken != null) {
+        _resetToken = resetToken;
+        Get.toNamed(AppRoute.forgotPassword2);
       }
+    } on TimeoutException {
+      kTimeOutDialog();
+    } catch (e) {
+      //print(e.toString());
+    } finally {
+      toggleLoadingOtp(false);
     }
+    //}
   }
 
   void resendOtp() async {
@@ -100,7 +97,7 @@ class ForgotPassController extends GetxController {
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {
-
+        //
       } finally {
         toggleLoadingOtp(false);
       }
@@ -149,13 +146,14 @@ class ForgotPassController extends GetxController {
     update();
   }
 
-  void resetPass(String password,String passwordConfirmation) async {
+  void resetPass(String password, String passwordConfirmation) async {
     button2Pressed = true;
     bool isValid = secondFormKey.currentState!.validate();
     if (isValid) {
       toggleLoading2(true);
       try {
-        if (await RemoteServices.resetPassword(email.text, password,passwordConfirmation, _resetToken).timeout(kTimeOutDuration)) {
+        if (await RemoteServices.resetPassword(email.text, password, passwordConfirmation, _resetToken!)
+            .timeout(kTimeOutDuration)) {
           Get.offAllNamed(AppRoute.login);
           Get.defaultDialog(middleText: "reset pass dialog".tr);
         }

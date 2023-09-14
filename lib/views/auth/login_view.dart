@@ -18,7 +18,6 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),
@@ -51,7 +50,7 @@ class LoginView extends StatelessWidget {
                       keyboardType: TextInputType.emailAddress,
                       icon: Icons.mail_outline,
                       validator: (val) {
-                        return validateInput(lC.email.text, 8, 100, 'email');
+                        return validateInput(lC.email.text, 6, 100, 'email');
                       },
                       onChanged: (val) {
                         if (lC.buttonPressed) {
@@ -63,18 +62,14 @@ class LoginView extends StatelessWidget {
                       builder: (controller) => AuthField(
                         label: 'password'.tr,
                         obscureText: !controller.passwordVisible,
-                        icon: controller.passwordVisible
-                            ? CupertinoIcons.eye_slash
-                            : CupertinoIcons.eye,
+                        icon: controller.passwordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
                         onIconPressed: () {
-                          controller.togglePasswordVisibility(
-                              !controller.passwordVisible);
+                          controller.togglePasswordVisibility(!controller.passwordVisible);
                         },
                         textController: controller.password,
                         keyboardType: TextInputType.text,
                         validator: (val) {
-                          return validateInput(
-                              controller.password.text, 8, 100, 'password');
+                          return validateInput(controller.password.text, 8, 100, 'password');
                         },
                         onChanged: (val) {
                           if (controller.buttonPressed) {
@@ -107,14 +102,13 @@ class LoginView extends StatelessWidget {
               GetBuilder<LoginController>(
                 builder: (controller) => AuthButton(
                   child: controller.isLoading
-                      ? LoadingAnimationWidget.prograssiveDots(
-                          color: Colors.white, size: 40)
+                      ? LoadingAnimationWidget.prograssiveDots(color: Colors.white, size: 40)
                       : Text(
                           'Sign in'.tr,
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                   onPressed: () {
-                    controller.login(controller.email.text,controller.password.text);
+                    controller.login();
                   },
                 ),
               ),

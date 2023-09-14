@@ -20,13 +20,12 @@ class HomeView extends StatelessWidget {
           child: Stack(
             children: [
               bodies[controller.currentIndex],
-
               Positioned(
                 top: 0,
                 left: 0,
                 right: 0,
                 child: Visibility(
-                  visible: false,//controller.currentUser != null && !controller.currentUser!.isVerified,
+                  visible: controller.currentUser != null && !controller.currentUser!.isVerified,
                   child: Container(
                     padding: const EdgeInsets.all(16.0),
                     color: Colors.amber, // Customize the background color
@@ -47,8 +46,7 @@ class HomeView extends StatelessWidget {
                             Get.toNamed(AppRoute.registerOTP);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Colors.green, // Customize button color
+                            backgroundColor: Colors.green, // Customize button color
                             textStyle: const TextStyle(fontSize: 16.0),
                           ),
                           child: Text("Verify Now".tr),
@@ -65,12 +63,9 @@ class HomeView extends StatelessWidget {
           items: const [
             BottomNavigationBarItem(icon: Icon(MyIcon.home), label: 'explore'),
             BottomNavigationBarItem(icon: Icon(MyIcon.search), label: 'search'),
-            BottomNavigationBarItem(
-                icon: Icon(MyIcon.shopping_bag), label: 'bag'),
-            BottomNavigationBarItem(
-                icon: Icon(MyIcon.heart_empty), label: 'wishlist'),
-            BottomNavigationBarItem(
-                icon: Icon(MyIcon.user_outline), label: 'profile'),
+            BottomNavigationBarItem(icon: Icon(MyIcon.shopping_bag), label: 'bag'),
+            BottomNavigationBarItem(icon: Icon(MyIcon.heart_empty), label: 'wishlist'),
+            BottomNavigationBarItem(icon: Icon(MyIcon.user_outline), label: 'profile'),
           ],
           iconSize: 20,
           showSelectedLabels: false,

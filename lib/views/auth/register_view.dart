@@ -19,7 +19,6 @@ class RegisterView extends StatelessWidget {
     RegisterController rC = Get.put(RegisterController());
     return Scaffold(
       appBar: AppBar(
-
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),
@@ -28,8 +27,7 @@ class RegisterView extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              AuthTitle(
-                  title: 'Sign up'.tr, subTitle: 'Sign up for free with us'.tr),
+              AuthTitle(title: 'Sign up'.tr, subTitle: 'Sign up for free with us'.tr),
               const SizedBox(
                 height: 15,
               ),
@@ -45,7 +43,7 @@ class RegisterView extends StatelessWidget {
                         keyboardType: TextInputType.name,
                         icon: Icons.person_outlined,
                         validator: (val) {
-                          return validateInput(rC.name.text, 8, 100, 'name');
+                          return validateInput(rC.name.text, 4, 100, 'name');
                         },
                         onChanged: (val) {
                           if (rC.buttonPressed) {
@@ -59,7 +57,7 @@ class RegisterView extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         icon: Icons.mail_outline,
                         validator: (val) {
-                          return validateInput(rC.email.text, 8, 100, 'email');
+                          return validateInput(rC.email.text, 6, 100, 'email');
                         },
                         onChanged: (val) {
                           if (rC.buttonPressed) {
@@ -71,23 +69,18 @@ class RegisterView extends StatelessWidget {
                         builder: (controller) => AuthField(
                           label: 'password'.tr,
                           obscureText: !controller.passwordVisible,
-                          icon: controller.passwordVisible
-                              ? CupertinoIcons.eye_slash
-                              : CupertinoIcons.eye,
+                          icon: controller.passwordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
                           onIconPressed: () {
-                            controller.togglePasswordVisibility(
-                                !controller.passwordVisible);
+                            controller.togglePasswordVisibility(!controller.passwordVisible);
                           },
                           textController: controller.password,
                           keyboardType: TextInputType.text,
                           validator: (val) {
-                            return validateInput(
-                                controller.password.text, 8, 100, 'password');
+                            return validateInput(controller.password.text, 8, 100, 'password');
                           },
                           onChanged: (val) {
                             if (controller.buttonPressed) {
-                              controller.registerFormKey.currentState!
-                                  .validate();
+                              controller.registerFormKey.currentState!.validate();
                             }
                           },
                         ),
@@ -96,25 +89,19 @@ class RegisterView extends StatelessWidget {
                         builder: (controller) => AuthField(
                           label: 'rePassword'.tr,
                           obscureText: !controller.rePasswordVisible,
-                          icon: controller.rePasswordVisible
-                              ? CupertinoIcons.eye_slash
-                              : CupertinoIcons.eye,
+                          icon: controller.rePasswordVisible ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
                           onIconPressed: () {
-                            controller.toggleRePasswordVisibility(
-                                !controller.rePasswordVisible);
+                            controller.toggleRePasswordVisibility(!controller.rePasswordVisible);
                           },
                           textController: controller.rePassword,
                           keyboardType: TextInputType.text,
                           validator: (val) {
-                            return validateInput(controller.rePassword.text, 8,
-                                100, 'rePassword',
-                                pass: rC.password.text,
-                                rePass: rC.rePassword.text);
+                            return validateInput(controller.rePassword.text, 8, 100, 'rePassword',
+                                pass: rC.password.text, rePass: rC.rePassword.text);
                           },
                           onChanged: (val) {
                             if (controller.buttonPressed) {
-                              controller.registerFormKey.currentState!
-                                  .validate();
+                              controller.registerFormKey.currentState!.validate();
                             }
                           },
                         ),
@@ -125,7 +112,7 @@ class RegisterView extends StatelessWidget {
                         keyboardType: TextInputType.phone,
                         icon: Icons.phone_outlined,
                         validator: (val) {
-                          return validateInput(rC.phone.text, 8, 100, 'phone');
+                          return validateInput(rC.phone.text, 4, 100, 'phone');
                         },
                         onChanged: (val) {
                           if (rC.buttonPressed) {
@@ -134,11 +121,12 @@ class RegisterView extends StatelessWidget {
                         },
                       ),
                       GetBuilder<RegisterController>(
-                          builder: (controller) => AuthToggleButton(
-                                onSelectionChanged: (int newIndex) {
-                                  controller.selectionRoleIndex = newIndex;
-                                },
-                              )),
+                        builder: (controller) => AuthToggleButton(
+                          onSelectionChanged: (int newIndex) {
+                            controller.selectionRoleIndex = newIndex;
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -148,21 +136,13 @@ class RegisterView extends StatelessWidget {
                 child: GetBuilder<RegisterController>(
                   builder: (controller) => AuthButton(
                     child: controller.isLoading
-                        ? LoadingAnimationWidget.prograssiveDots(
-                            color: Colors.white, size: 40)
+                        ? LoadingAnimationWidget.prograssiveDots(color: Colors.white, size: 40)
                         : Text(
                             'Sign up'.tr,
                             style: Theme.of(context).textTheme.labelMedium,
                           ),
                     onPressed: () {
-                      controller.register(
-                        controller.email.text,
-                        controller.password.text,
-                        controller.rePassword.text,
-                        controller.name.text,
-                        controller.phone.text,
-                        controller.selectionRoleIndex.toString(),
-                      );
+                      controller.register();
                       hideKeyboard(context);
                     },
                   ),

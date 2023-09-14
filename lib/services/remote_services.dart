@@ -3,19 +3,19 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:hunter/constants/k.dart';
+import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/models/user_model.dart';
 
 class RemoteServices {
-
   static const String _hostIP = "http://10.0.2.2:8000/api";
   static final GetStorage _getStorage = GetStorage();
   static var client = http.Client();
-  static String token = _getStorage.read('token');
+  static String get token => _getStorage.read('token');
 
   ///////////// Auth \\\\\\\\\\\\\\\
 
-  static Future<String?> register(String email, String password,
-      String rePassword, String name, String phone, String role) async {
+  static Future<String?> register(
+      String email, String password, String rePassword, String name, String phone, String role) async {
     var response = await client.post(
       Uri.parse("$_hostIP/register"),
       body: jsonEncode({
@@ -26,17 +26,12 @@ class RemoteServices {
         "password_confirmation": rePassword,
         "role": role,
       }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      _getStorage.write('token', jsonDecode(response.body)["access_token"]);
       return jsonDecode(response.body)["access_token"];
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -45,22 +40,19 @@ class RemoteServices {
     var response = await client.post(
       Uri.parse("$_hostIP/login"),
       body: jsonEncode({"email": email, "password": password}),
-      headers: {
-        'Content-Type': 'application/json',
-        "Accept": 'application/json'
-      },
+      headers: {'Content-Type': 'application/json', "Accept": 'application/json'},
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body)["access_token"];
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
 
   static Future<bool> signOut() async {
+    print("logged out pressed");
     var response = await client.get(
       Uri.parse("$_hostIP/logout"),
       headers: {
@@ -70,14 +62,13 @@ class RemoteServices {
       },
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
+      Get.offAllNamed(AppRoute.login);
       return true;
     } else if (response.statusCode == 401 || response.statusCode == 403) {
       kSessionExpiredDialog();
-
       return true;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
@@ -101,8 +92,7 @@ class RemoteServices {
       kSessionExpiredDialog();
       return null;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["error"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["error"]);
       return null;
     }
   }
@@ -126,14 +116,12 @@ class RemoteServices {
       kSessionExpiredDialog();
       return false;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
 
-  static Future<bool> editPassword(
-      String newPassword, String currentPassword) async {
+  static Future<bool> editPassword(String newPassword, String currentPassword) async {
     var response = await client.post(
       Uri.parse('$_hostIP/edit-password'),
       body: jsonEncode({
@@ -152,8 +140,7 @@ class RemoteServices {
       kSessionExpiredDialog();
       return false;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
@@ -172,8 +159,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body)["url"];
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -190,11 +176,14 @@ class RemoteServices {
         "Authorization": "Bearer $token",
       },
     );
+    print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
+    } else if (response.statusCode == 400) {
+      Get.defaultDialog(title: "error".tr, middleText: "wrong code");
+      return false;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
@@ -235,27 +224,28 @@ class RemoteServices {
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body)["reset_token"];
+    } else if (response.statusCode == 400) {
+      Get.defaultDialog(title: "error".tr, middleText: "wrong code");
+      return null;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
 
-  static Future<bool> resetPassword(String email ,String password , String passwordConfirmation ,String resetToken) async {
-    var response = await client.post(
-      Uri.parse('$_hostIP/reset-password'),
-      body: jsonEncode({
-        'email': email,
-        'password': password,
-        'password_confirmation' : passwordConfirmation,
-        'token' : resetToken,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        "Accept": 'application/json',
-      }
-    );
+  static Future<bool> resetPassword(
+      String email, String password, String passwordConfirmation, String resetToken) async {
+    var response = await client.post(Uri.parse('$_hostIP/reset-password'),
+        body: jsonEncode({
+          'email': email,
+          'password': password,
+          'password_confirmation': passwordConfirmation,
+          'token': resetToken,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          "Accept": 'application/json',
+        });
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else {

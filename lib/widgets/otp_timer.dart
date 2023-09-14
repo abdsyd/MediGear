@@ -18,7 +18,7 @@ class OtpTimer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Countdown(
       controller: controller,
-      seconds: 180,
+      seconds: 30,
       build: (context, double time) => Text(
         time.toString(),
         style: Theme.of(context).textTheme.displayMedium!.copyWith(
@@ -29,6 +29,3 @@ class OtpTimer extends StatelessWidget {
     );
   }
 }
-
-
-

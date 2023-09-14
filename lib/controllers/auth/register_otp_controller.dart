@@ -10,8 +10,7 @@ import 'package:timer_count_down/timer_controller.dart';
 
 class RegisterOTPController extends GetxController {
   final OtpFieldController otpController = OtpFieldController();
-  final CountdownController timeController =
-      CountdownController(autoStart: true);
+  final CountdownController timeController = CountdownController(autoStart: true);
 
   late String _verifyUrl;
 
@@ -31,45 +30,43 @@ class RegisterOTPController extends GetxController {
 
   @override
   void onInit() async {
-    _verifyUrl =
-        (await RemoteServices.sendRegisterOtp().timeout(kTimeOutDuration))!;
+    _verifyUrl = (await RemoteServices.sendRegisterOtp().timeout(kTimeOutDuration))!;
     super.onInit();
   }
 
   Future<void> verifyOtp(String pin) async {
-    if (_isTimeUp) {
-      Get.defaultDialog(middleText: "otp time up dialog".tr);
-    } else {
-      toggleLoadingOtp(true);
-      try {
-        if (await RemoteServices.verifyRegisterOtp(pin, _verifyUrl)
-            .timeout(kTimeOutDuration)) {
-          Get.offAllNamed(AppRoute.home);
-          Get.defaultDialog(
-              middleText: "account created successfully, please login".tr);
-        } else {
-          Get.defaultDialog(middleText: "wrong otp dialog".tr);
-        }
-      } on TimeoutException {
-        kTimeOutDialog();
-      } catch (e) {
-      } finally {
-        toggleLoadingOtp(false);
+    print(pin);
+    // if (_isTimeUp) {
+    //   Get.defaultDialog(middleText: "otp time up dialog".tr);
+    // } else {
+    toggleLoadingOtp(true);
+    try {
+      if (await RemoteServices.verifyRegisterOtp(pin, _verifyUrl).timeout(kTimeOutDuration)) {
+        Get.offAllNamed(AppRoute.home);
+        Get.defaultDialog(middleText: "verified!".tr);
       }
+    } on TimeoutException {
+      kTimeOutDialog();
+    } catch (e) {
+      //
+    } finally {
+      toggleLoadingOtp(false);
     }
+    //}
   }
 
   Future<void> resendOtp() async {
     if (_isTimeUp) {
       toggleLoadingOtp(true);
       try {
-        _verifyUrl;
+        _verifyUrl = (await RemoteServices.sendRegisterOtp().timeout(kTimeOutDuration))!;
         timeController.restart();
         otpController.clear();
         _isTimeUp = false;
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {
+        //
       } finally {
         toggleLoadingOtp(false);
       }

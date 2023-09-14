@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/home/bnb_tabs/profile_controller.dart';
 import 'package:hunter/controllers/home/home_controller.dart';
+import 'package:hunter/services/remote_services.dart';
 import 'package:hunter/widgets/profile_button.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -18,10 +19,14 @@ class ProfileTab extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        children:  [
-          const CircleAvatar( //todo: try to implement imagePicker
+        children: [
+          const CircleAvatar(
+            //todo: try to implement imagePicker
             radius: 50,
-            child: Icon(Icons.person,size: 100,),
+            child: Icon(
+              Icons.person,
+              size: 100,
+            ),
           ),
           const SizedBox(height: 10.0),
           Center(
@@ -35,56 +40,64 @@ class ProfileTab extends StatelessWidget {
             "ACCOUNT".tr,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          ProfileButton(title: 'MY ORDERS'.tr, icon: Icons.shopping_bag_outlined,onPressed: (){},),
           ProfileButton(
-            onPressed: (){Get.toNamed(AppRoute.profileDetails);},
+            title: 'MY ORDERS'.tr,
+            icon: Icons.shopping_bag_outlined,
+            onPressed: () {},
+          ),
+          ProfileButton(
+            onPressed: () {
+              Get.toNamed(AppRoute.profileDetails);
+            },
             icon: Icons.person_outline,
             title: "MY DETAILS".tr,
           ),
           ProfileButton(
-            onPressed: (){},
+            onPressed: () {},
             icon: Icons.location_on_outlined,
             title: "ADDRESSES".tr,
           ),
           ProfileButton(
-            onPressed: (){
-              Get.toNamed(AppRoute.profileSettings,);
+            onPressed: () {
+              Get.toNamed(
+                AppRoute.profileSettings,
+              );
             },
             icon: Icons.settings_outlined,
             title: "SETTINGS".tr,
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(height: 10),
           Text(
             "SUPPORT".tr,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           ProfileButton(
-            onPressed: (){},
+            onPressed: () {},
             icon: Icons.help_outline,
             title: "MEDIGEAR SUPPORT".tr,
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(height: 10),
           Text(
             "MORE WITH MEDIGEAR".tr,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           ProfileButton(
-            onPressed: (){},
+            onPressed: () {},
             icon: Icons.chat_bubble_outline,
             title: "SOCIAL".tr,
           ),
-      ProfileButton(
-        onPressed: (){},
-        icon: Icons.apps_outlined,
-        title: "CHANGE ICON".tr,
-      ),
+          ProfileButton(
+            onPressed: () {
+              RemoteServices.signOut();
+            },
+            icon: Icons.apps_outlined,
+            title: "CHANGE ICON".tr,
+          ),
         ],
       ),
     );
   }
 }
-
-
 
 // GestureDetector(
 // onTap: () {
@@ -123,7 +136,6 @@ class ProfileTab extends StatelessWidget {
 // ),
 
 //------------------------------------------------------------------\\
-
 
 // Column(
 // mainAxisAlignment: MainAxisAlignment.center,
