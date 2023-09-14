@@ -4,13 +4,11 @@ import 'package:hunter/controllers/local_controller.dart';
 import 'package:hunter/controllers/theme_controller.dart';
 import 'package:hunter/locale.dart';
 import 'package:hunter/routes.dart';
-import 'package:hunter/test.dart';
 import 'package:hunter/themes.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override

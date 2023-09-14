@@ -14,6 +14,7 @@ class OtpField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OTPTextField(
+      onChanged: (String pin){},
       controller: controller,
       length: 5,
       width: MediaQuery.of(context).size.width,

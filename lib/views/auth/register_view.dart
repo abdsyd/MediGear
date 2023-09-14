@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/auth/register_controller.dart';
 import 'package:get/get.dart';
@@ -18,8 +19,7 @@ class RegisterView extends StatelessWidget {
     RegisterController rC = Get.put(RegisterController());
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),
@@ -163,6 +163,7 @@ class RegisterView extends StatelessWidget {
                         controller.phone.text,
                         controller.selectionRoleIndex.toString(),
                       );
+                      hideKeyboard(context);
                     },
                   ),
                 ),

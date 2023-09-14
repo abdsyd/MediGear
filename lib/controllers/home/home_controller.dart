@@ -8,8 +8,8 @@ import 'package:hunter/services/remote_services.dart';
 
 class HomeController extends GetxController {
 
-  late UserModel _currentUser;
-  UserModel get currentUser => _currentUser;
+   UserModel? _currentUser;
+  UserModel? get currentUser => _currentUser;
 
 @override
   void onInit() {

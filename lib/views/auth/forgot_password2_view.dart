@@ -16,8 +16,7 @@ class ForgotPass2View extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),
@@ -98,7 +97,7 @@ class ForgotPass2View extends StatelessWidget {
                             style: Theme.of(context).textTheme.labelMedium,
                           ),
                     onPressed: () {
-                      controller.resetPass();
+                      controller.resetPass(controller.newPassword.text,controller.reNewPassword.text);
                     },
                   ),
                 ),

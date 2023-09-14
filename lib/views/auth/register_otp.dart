@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/controllers/auth/register_controller.dart';
+import 'package:hunter/controllers/auth/register_otp_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
 import 'package:hunter/widgets/auth_suggestion.dart';
 import 'package:hunter/widgets/auth_title.dart';
@@ -14,12 +15,10 @@ class RegisterOTP extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RegisterController rC = Get.find();
+    RegisterOTPController registerOTPController = Get.put(RegisterOTPController());
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),
@@ -38,7 +37,7 @@ class RegisterOTP extends StatelessWidget {
                         'please enter the code that sent to your email \n this code will expire in '
                             .tr,
                   ),
-                  GetBuilder<RegisterController>(
+                  GetBuilder<RegisterOTPController>(
                     builder: (controller) => OtpTimer(
                       controller: controller.timeController,
                       timerColor: controller.isTimeUp
@@ -52,9 +51,9 @@ class RegisterOTP extends StatelessWidget {
                 ],
               ),
               OtpField(
-                controller: rC.otpController,
+                controller: registerOTPController.otpController,
               ),
-              GetBuilder<RegisterController>(
+              GetBuilder<RegisterOTPController>(
                 builder: (controller) => AuthButton(
                   child: controller.isLoadingOtp
                       ? LoadingAnimationWidget.prograssiveDots(
@@ -72,7 +71,7 @@ class RegisterOTP extends StatelessWidget {
                 question: 'didn\'t receive a code? '.tr,
                 suggestion: 'resend'.tr,
                 onTap: () {
-                  rC.resendOtp();
+                  registerOTPController.resendOtp();
                 },
               ),
             ],

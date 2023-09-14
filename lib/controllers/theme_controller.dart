@@ -8,7 +8,7 @@ class ThemeController extends GetxController {
   bool _switchValue = Get.isDarkMode;
   bool get switchValue => _switchValue;
 
-  void updateTheme(bool value) {
+  void updateTheme() {
     if (Get.isDarkMode) {
       Get.changeThemeMode(ThemeMode.light);
       _switchValue = false;

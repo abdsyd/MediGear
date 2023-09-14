@@ -18,8 +18,7 @@ class ForgotPassOTP extends StatelessWidget {
     ForgotPassController fPC = Get.find();
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),

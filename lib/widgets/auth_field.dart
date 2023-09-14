@@ -5,30 +5,34 @@ import 'package:hunter/constants/colors.dart';
 class AuthField extends StatelessWidget {
   const AuthField({
     super.key,
-    required this.label,
-    required this.textController,
-    required this.keyboardType,
+     this.label,
+     this.textController,
+     this.keyboardType,
     this.validator,
-    required this.onChanged,
+     this.onChanged,
     required this.icon,
     this.onIconPressed,
-    this.obscureText, this.autoFocus,
+    this.obscureText, this.autoFocus, this.hint, this.hintStyle, this.enabled,
   });
-  final String label;
+  final String? label;
+  final String? hint;
   final bool? obscureText;
   final bool? autoFocus;
-  final TextEditingController textController;
-  final TextInputType keyboardType;
+  final TextEditingController? textController;
+  final TextInputType? keyboardType;
   final String? Function(String?)? validator;
-  final void Function(String) onChanged;
+  final void Function(String)? onChanged;
   final void Function()? onIconPressed;
   final IconData icon;
+  final bool? enabled;
+  final TextStyle? hintStyle;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: TextFormField(
+        enabled: enabled,
         validator: validator,
         onChanged: onChanged,
         autofocus: autoFocus ?? false,
@@ -36,9 +40,14 @@ class AuthField extends StatelessWidget {
         cursorColor: AppColors.myPrimary,
         obscureText: obscureText ?? false,
         keyboardType: keyboardType,
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 11),
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 11,),
         decoration: InputDecoration(
           labelText: label,
+          hintText: hint,
+          hintStyle: hintStyle ?? Theme.of(context)
+              .textTheme
+              .bodyMedium!
+              .copyWith(fontSize: 13),
           labelStyle: Theme.of(context)
               .textTheme
               .displayMedium!
@@ -65,6 +74,10 @@ class AuthField extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
           enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey.shade300),
+            borderRadius: BorderRadius.circular(6.5),
+          ),
+          disabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey.shade300),
             borderRadius: BorderRadius.circular(6.5),
           ),

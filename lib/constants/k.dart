@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/routes_name.dart';
@@ -17,6 +18,13 @@ Future kSessionExpiredDialog() => Get.defaultDialog(
     middleText: 'Please log in again',
     textConfirm: 'ok',
     onConfirm: () {
-      Get.offAll(AppRoute.login);
+      Get.offAllNamed(AppRoute.login);
       _getStorage.remove("token");
     });
+
+void hideKeyboard(BuildContext context) {
+  FocusScopeNode currentFocus = FocusScope.of(context);
+  if (!currentFocus.hasPrimaryFocus) {
+    currentFocus.unfocus();
+  }
+}

@@ -15,7 +15,7 @@ class SearchTab extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Search'),
+        title:  Text('Search'.tr),
         actions: [
           IconButton(
             onPressed: () {

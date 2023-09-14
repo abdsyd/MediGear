@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/auth/forgot_password_controller.dart';
 import 'package:hunter/widgets/auth_button.dart';
@@ -11,15 +12,12 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 class ForgotPass1View extends StatelessWidget {
   const ForgotPass1View({super.key});
 
-  //to enter the email of the account to reset its password
   @override
   Widget build(BuildContext context) {
     ForgotPassController fPC = Get.put(ForgotPassController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
         leading: const BackButton(
           style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
         ),
@@ -64,6 +62,7 @@ class ForgotPass1View extends StatelessWidget {
                           ),
                     onPressed: () {
                       controller.goToOtp();
+                      hideKeyboard(context);
                     },
                   ),
                 ),
