@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/data/onboarding_slides.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -9,33 +11,30 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: IntroductionScreen(
-          pages: [
-            PageViewModel(
-              title: "Welcome to MEDIGEAR",
-              body: "Discover a wide range of dental tools for your practice.",
-              image: Image.asset("assets/images/logo.png"),
-            ),
-            PageViewModel(
-              title: "Browse and Purchase",
-              body: "Easily browse and purchase the tools you need.",
-              image: Image.asset("assets/images/logo.png"),
-            ),
-            PageViewModel(
-              title: "Start Improving Your Practice",
-              body: "Get started today and enhance your dental practice.",
-              image: Image.asset("assets/images/logo.png"),
-            ),
-          ],
-          onDone: () {
-            Get.offNamed(AppRoute.welcome); // Example: Navigate to the home screen using GetX.
-          },
-          done: const Text("Get Started"),
-          showSkipButton: true,
-          skip: const Text("Skip"),
-          next: const Icon(Icons.arrow_forward),
+      child: IntroductionScreen(
+        globalBackgroundColor: AppColors.myPrimary,
+        pages: getPages,
+        onDone: () {
+          Get.offNamed(AppRoute.welcome);
+        },
+        done: const Text(
+          'Start',
+          style: TextStyle(fontSize: 18, color: Colors.white),
         ),
+        showSkipButton: true,
+        skip: const Text(
+          "Skip",
+          style: TextStyle(color: Colors.grey),
+        ),
+        next: const Icon(
+          Icons.arrow_forward,
+          color: Colors.white,
+        ),
+        dotsDecorator: DotsDecorator(
+            activeColor: Colors.white,
+            activeSize: const Size(20, 8),
+            activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(35))),
       ),
     );
   }
