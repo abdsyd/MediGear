@@ -7,7 +7,7 @@ class AppRoute {
   static const String forgotPassword1 = "/forgotPassword1";
   static const String forgotPasswordOTP = "/forgotPasswordOTP";
   static const String forgotPassword2 = "/forgotPassword2";
-  static const String home = "/home";
+  static const String doctorHome = "/doctorHome";
   static const String exploreTab = "/exploreTab";
   static const String searchTab = "/searchTab";
   static const String cartTab = "/cartTab";
@@ -16,6 +16,10 @@ class AppRoute {
   static const String products = "/products";
   static const String profileSettings = "/profileSettings";
   static const String profileDetails = "/profileDetails";
+  static const String supplierHome= "/supplierHome";
+  static const String supplierTab1= "/supplierTab1";
+  static const String supplierTab2= "/supplierTab2";
+
 
 
 }

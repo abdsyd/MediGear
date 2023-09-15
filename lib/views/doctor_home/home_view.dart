@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
 import 'package:hunter/constants/routes_name.dart';
-import 'package:hunter/controllers/home/home_controller.dart';
-import 'package:hunter/data/bottom_bar_tabs.dart';
+import 'package:hunter/controllers/doctor/home_controller.dart';
+import 'package:hunter/data/doctor_bottom_bar_tabs.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class DoctorHomeView extends StatelessWidget {
+  const DoctorHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class HomeView extends StatelessWidget {
         body: SafeArea(
           child: Stack(
             children: [
-              bodies[controller.currentIndex],
+              doctorBodies[controller.currentIndex],
               Positioned(
                 top: 0,
                 left: 0,

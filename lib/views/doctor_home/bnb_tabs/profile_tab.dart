@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/routes_name.dart';
-import 'package:hunter/controllers/home/bnb_tabs/profile_controller.dart';
-import 'package:hunter/controllers/home/home_controller.dart';
+import 'package:hunter/controllers/doctor/bnb_tabs/profile_controller.dart';
+import 'package:hunter/controllers/doctor/home_controller.dart';
 import 'package:hunter/widgets/profile_button.dart';
 
 class ProfileTab extends StatelessWidget {

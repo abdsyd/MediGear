@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hunter/controllers/home/bnb_tabs/explore_controller.dart';
+import 'package:hunter/controllers/doctor/bnb_tabs/explore_controller.dart';
+import 'package:hunter/controllers/doctor/home_controller.dart';
 
-import 'package:hunter/controllers/home/home_controller.dart';
 
 class ExploreTab extends StatelessWidget {
   const ExploreTab({super.key});

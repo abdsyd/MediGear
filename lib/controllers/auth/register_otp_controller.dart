@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
@@ -43,7 +41,7 @@ class RegisterOTPController extends GetxController {
     toggleLoadingOtp(true);
     try {
       if (await RemoteServices.verifyRegisterOtp(pin, _verifyUrl).timeout(kTimeOutDuration)) {
-        Get.offAllNamed(AppRoute.home);
+        Get.offAllNamed(AppRoute.doctorHome);
         Get.defaultDialog(middleText: "verified!".tr);
       }
     } on TimeoutException {

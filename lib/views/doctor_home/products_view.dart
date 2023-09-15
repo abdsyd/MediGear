@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
-import 'package:hunter/controllers/home/products_controller.dart';
+import 'package:hunter/controllers/doctor/products_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProductsView extends StatelessWidget {

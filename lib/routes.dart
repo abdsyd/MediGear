@@ -4,19 +4,22 @@ import 'package:hunter/middleware/onboarding_middleware.dart';
 import 'package:hunter/views/auth/forgot_password1_view.dart';
 import 'package:hunter/views/auth/forgot_password2_view.dart';
 import 'package:hunter/views/auth/forgot_password_otp.dart';
-import 'package:hunter/views/home/bnb_tabs/cart_tab.dart';
-import 'package:hunter/views/home/bnb_tabs/explore_tab.dart';
-import 'package:hunter/views/home/bnb_tabs/profile_tab.dart';
-import 'package:hunter/views/home/bnb_tabs/search_tab.dart';
-import 'package:hunter/views/home/bnb_tabs/wishlist_tab.dart';
-import 'package:hunter/views/home/home_view.dart';
-import 'package:hunter/views/home/products_view.dart';
+import 'package:hunter/views/doctor_home/bnb_tabs/cart_tab.dart';
+import 'package:hunter/views/doctor_home/bnb_tabs/explore_tab.dart';
+import 'package:hunter/views/doctor_home/bnb_tabs/profile_tab.dart';
+import 'package:hunter/views/doctor_home/bnb_tabs/search_tab.dart';
+import 'package:hunter/views/doctor_home/bnb_tabs/wishlist_tab.dart';
+import 'package:hunter/views/doctor_home/home_view.dart';
+import 'package:hunter/views/doctor_home/products_view.dart';
 import 'package:hunter/views/auth/login_view.dart';
 import 'package:hunter/views/auth/register_otp.dart';
 import 'package:hunter/views/auth/register_view.dart';
-import 'package:hunter/views/home/profile_details.dart';
-import 'package:hunter/views/home/profile_settings.dart';
+import 'package:hunter/views/doctor_home/profile_details.dart';
+import 'package:hunter/views/doctor_home/profile_settings.dart';
 import 'package:hunter/views/onboarding_view.dart';
+import 'package:hunter/views/supplier_home/bnb_tabs/supplier_tab1.dart';
+import 'package:hunter/views/supplier_home/bnb_tabs/supplier_tab2.dart';
+import 'package:hunter/views/supplier_home/home_view.dart';
 
 List<GetPage<dynamic>> routes = [
   GetPage(
@@ -48,8 +51,8 @@ List<GetPage<dynamic>> routes = [
     page: () => const ForgotPass2View(),
   ),
   GetPage(
-    name: AppRoute.home,
-    page: () => const HomeView(),
+    name: AppRoute.doctorHome,
+    page: () => const DoctorHomeView(),
   ),
   GetPage(
     name: AppRoute.exploreTab,
@@ -82,5 +85,17 @@ List<GetPage<dynamic>> routes = [
   GetPage(
     name: AppRoute.profileDetails,
     page: () => const ProfileDetails(),
+  ),
+  GetPage(
+    name: AppRoute.supplierHome,
+    page: () => const SupplierHomeView(),
+  ),
+  GetPage(
+    name: AppRoute.supplierTab1,
+    page: () => const SupplierTab1(),
+  ),
+  GetPage(
+    name: AppRoute.supplierTab2,
+    page: () => const SupplierTab2(),
   ),
 ];
