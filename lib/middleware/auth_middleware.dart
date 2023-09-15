@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/routes_name.dart';
 
-class OnBoardingMiddleware extends GetMiddleware {
+class AuthMiddleware extends GetMiddleware {
   @override
-  int? get priority => 2;
+  int? get priority => 1;
 
   @override
   RouteSettings? redirect(String? route) {
-    if (GetStorage().read('onboarding') != false ) {
-      return const RouteSettings(name: AppRoute.login);
+    if (GetStorage().hasData('token')) {
+      return const RouteSettings(name: AppRoute.home);
     }
     return null;
   }

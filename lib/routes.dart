@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/middleware/auth_middleware.dart';
 import 'package:hunter/middleware/onboarding_middleware.dart';
 import 'package:hunter/views/auth/forgot_password1_view.dart';
 import 'package:hunter/views/auth/forgot_password2_view.dart';
@@ -20,13 +21,12 @@ import 'package:hunter/views/onboarding_view.dart';
 
 List<GetPage<dynamic>> routes = [
   GetPage(
-    name: AppRoute.onboarding,
-    page: () =>  const OnboardingView(),
-    middlewares: [OnBoardingMiddleware()]
-  ),
+      name: AppRoute.onboarding,
+      page: () => const OnboardingView(),
+      middlewares: [OnBoardingMiddleware(),AuthMiddleware()]),
   GetPage(
-    name: AppRoute.login,
-    page: () => const LoginView(),
+      name: AppRoute.login,
+      page: () => const LoginView(),
   ),
   GetPage(
     name: AppRoute.register,
@@ -53,7 +53,7 @@ List<GetPage<dynamic>> routes = [
     page: () => const HomeView(),
   ),
   GetPage(
-    name: AppRoute.homeTab,
+    name: AppRoute.exploreTab,
     page: () => const ExploreTab(),
   ),
   GetPage(

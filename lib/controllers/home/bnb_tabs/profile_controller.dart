@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/models/user_model.dart';
@@ -65,7 +63,7 @@ class ProfileController extends GetxController {
     if (isValid) {
       toggleLoadingEdit(true);
       try {
-        print("after");
+        //
         bool editDetails = false;
         if (name.text.isNotEmpty && phone.text.isNotEmpty) {
           editDetails = await RemoteServices.editProfile(name.text, phone.text);
@@ -77,7 +75,7 @@ class ProfileController extends GetxController {
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {
-        print(e.toString());
+        //
       } finally {
         toggleLoadingEdit(false);
       }
@@ -102,7 +100,7 @@ class ProfileController extends GetxController {
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {
-        print(e.toString());
+        //
       } finally {
         toggleLoadingEdit(false);
       }
