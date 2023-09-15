@@ -86,7 +86,7 @@ class LoginView extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: InkWell(
                   onTap: () {
-                    Get.offNamed(AppRoute.forgotPassword1);
+                    Get.toNamed(AppRoute.forgotPassword1);
                   },
                   child: Text(
                     'Forgot password'.tr,
@@ -118,7 +118,7 @@ class LoginView extends StatelessWidget {
                   question: 'don\'t have an account?'.tr,
                   suggestion: 'Sign up'.tr,
                   onTap: () {
-                    Get.offNamed(AppRoute.register);
+                    Get.toNamed(AppRoute.register);
                   })
             ],
           ),

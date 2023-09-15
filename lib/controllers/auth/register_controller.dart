@@ -10,11 +10,11 @@ import 'package:otp_text_field/otp_field.dart';
 import 'package:timer_count_down/timer_controller.dart';
 
 class RegisterController extends GetxController {
-  final TextEditingController name = TextEditingController();
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
-  final TextEditingController rePassword = TextEditingController();
-  final TextEditingController phone = TextEditingController();
+   TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController rePassword = TextEditingController();
+   TextEditingController phone = TextEditingController();
 
   final GetStorage _getStorage = GetStorage();
 

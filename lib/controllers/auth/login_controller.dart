@@ -12,6 +12,7 @@ class LoginController extends GetxController {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   void toggleLoading(bool value) {

@@ -152,7 +152,7 @@ class RegisterView extends StatelessWidget {
                   question: 'already have an account?'.tr,
                   suggestion: 'Sign in'.tr,
                   onTap: () {
-                    Get.offNamed(
+                    Get.toNamed(
                       AppRoute.login,
                     );
                   })
