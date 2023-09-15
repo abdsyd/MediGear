@@ -5,7 +5,7 @@ import 'package:hunter/constants/routes_name.dart';
 
 class OnBoardingMiddleware extends GetMiddleware {
   @override
-  int? get priority => 2;
+  int? get priority => 1;
 
   @override
   RouteSettings? redirect(String? route) {

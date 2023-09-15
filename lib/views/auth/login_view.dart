@@ -19,9 +19,7 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: const BackButton(
-          style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
-        ),
+
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -118,7 +116,7 @@ class LoginView extends StatelessWidget {
                   question: 'don\'t have an account?'.tr,
                   suggestion: 'Sign up'.tr,
                   onTap: () {
-                    Get.toNamed(AppRoute.register);
+                    Get.offNamed(AppRoute.register);
                   })
             ],
           ),

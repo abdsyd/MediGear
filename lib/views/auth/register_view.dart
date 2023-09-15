@@ -19,9 +19,7 @@ class RegisterView extends StatelessWidget {
     RegisterController rC = Get.put(RegisterController());
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(
-          style: ButtonStyle(iconSize: MaterialStatePropertyAll(18)),
-        ),
+
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -152,7 +150,7 @@ class RegisterView extends StatelessWidget {
                   question: 'already have an account?'.tr,
                   suggestion: 'Sign in'.tr,
                   onTap: () {
-                    Get.toNamed(
+                    Get.offNamed(
                       AppRoute.login,
                     );
                   })
