@@ -14,22 +14,26 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    LocaleController localeController = LocaleController();
+    Get.put(LocaleController());
     ThemeController themeController = Get.put(ThemeController());
-    return GetMaterialApp(
-      builder: (context, child) => MediaQuery(
-        data: MediaQuery.of(context)
-            .copyWith(textScaleFactor: 1, devicePixelRatio: 1),
-        child: child!,
-      ),
-      debugShowCheckedModeBanner: false,
-      translations: MyTranslation(),
-      locale: localeController.initialLang,
-      theme: AppTheme.myLightMode,
-      darkTheme: AppTheme.myDarkMode,
-      themeMode: themeController.getThemeMode(),
-      initialRoute: AppRoute.onboarding ,
-      getPages: routes,
+    return GetBuilder<LocaleController>(
+      builder: (localeController) {
+        return GetMaterialApp(
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaleFactor: 1, devicePixelRatio: 1),
+            child: child!,
+          ),
+          debugShowCheckedModeBanner: false,
+          translations: MyTranslation(),
+          locale: localeController.initialLang,
+          theme: Get.locale!.languageCode == 'en' ? AppTheme.myEnglishLightMode : AppTheme.myArabicLightMode,
+          darkTheme: Get.locale!.languageCode == 'en' ? AppTheme.myEnglishDarkMode : AppTheme.myArabicDarkMode,
+          themeMode: themeController.getThemeMode(),
+          initialRoute: AppRoute.onboarding ,
+          getPages: routes,
+        );
+      }
     );
   }
 }
