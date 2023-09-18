@@ -17,8 +17,8 @@ import 'package:hunter/views/auth/register_view.dart';
 import 'package:hunter/views/doctor_home/profile_details.dart';
 import 'package:hunter/views/doctor_home/profile_settings.dart';
 import 'package:hunter/views/onboarding_view.dart';
-import 'package:hunter/views/supplier_home/bnb_tabs/supplier_tab1.dart';
-import 'package:hunter/views/supplier_home/bnb_tabs/supplier_tab2.dart';
+import 'package:hunter/views/supplier_home/bnb_tabs/dashboard.dart';
+import 'package:hunter/views/supplier_home/bnb_tabs/products.dart';
 import 'package:hunter/views/supplier_home/home_view.dart';
 
 List<GetPage<dynamic>> routes = [
@@ -92,10 +92,10 @@ List<GetPage<dynamic>> routes = [
   ),
   GetPage(
     name: AppRoute.supplierTab1,
-    page: () => const SupplierTab1(),
+    page: () => const Dashboard(),
   ),
   GetPage(
     name: AppRoute.supplierTab2,
-    page: () => const SupplierTab2(),
+    page: () => const Products(),
   ),
 ];

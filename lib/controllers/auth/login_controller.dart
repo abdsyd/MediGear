@@ -42,11 +42,7 @@ class LoginController extends GetxController {
         String? token = await RemoteServices.login(email.text, password.text).timeout(kTimeOutDuration);
         if (token == null) throw Exception();
         _getStorage.write('token', token);
-        if (homeController.currentUser != null && homeController.currentUser!.role == 'supplier') {
-          Get.offAllNamed(AppRoute.supplierHome);
-        }else if (homeController.currentUser != null && homeController.currentUser!.role == 'dentist'){
-          Get.offAllNamed(AppRoute.doctorHome);
-        }
+        Get.offAllNamed(AppRoute.supplierHome);
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {

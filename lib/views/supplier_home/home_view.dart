@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
@@ -62,8 +63,9 @@ class SupplierHomeView extends StatelessWidget {
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
-            BottomNavigationBarItem(icon: Icon(MyIcon.home), label: 'dashboard'),
-            BottomNavigationBarItem(icon: Icon(MyIcon.search), label: 'search'),
+            BottomNavigationBarItem(icon: Icon(Icons.dashboard_outlined), label: 'dashboard'),
+            BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'products'),
+            BottomNavigationBarItem(icon: Icon(Icons.checklist_outlined), label: 'orders'),
             BottomNavigationBarItem(icon: Icon(MyIcon.user_outline), label: 'profile'),
           ],
           iconSize: 20,
