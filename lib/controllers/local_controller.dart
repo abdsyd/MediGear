@@ -8,8 +8,10 @@ class LocaleController extends GetxController {
   late Locale _initLocale;
   Locale get initialLang => _initLocale;
 
-  LocaleController() {
+@override
+  void onInit() {
     loadInitLocale();
+    super.onInit();
   }
 
   void loadInitLocale() {

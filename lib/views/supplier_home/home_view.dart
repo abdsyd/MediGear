@@ -62,7 +62,7 @@ class SupplierHomeView extends StatelessWidget {
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
-            BottomNavigationBarItem(icon: Icon(MyIcon.home), label: 'explore'),
+            BottomNavigationBarItem(icon: Icon(MyIcon.home), label: 'dashboard'),
             BottomNavigationBarItem(icon: Icon(MyIcon.search), label: 'search'),
             BottomNavigationBarItem(icon: Icon(MyIcon.user_outline), label: 'profile'),
           ],

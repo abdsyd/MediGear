@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/controllers/doctor/home_controller.dart';
 import 'package:hunter/services/remote_services.dart';
 
 class LoginController extends GetxController {
+  HomeController homeController = Get.put(HomeController());
+
   final _getStorage = GetStorage();
 
   TextEditingController email = TextEditingController();
@@ -39,8 +42,11 @@ class LoginController extends GetxController {
         String? token = await RemoteServices.login(email.text, password.text).timeout(kTimeOutDuration);
         if (token == null) throw Exception();
         _getStorage.write('token', token);
-        //Get.offAllNamed(AppRoute.doctorHome);
-        Get.offAllNamed(AppRoute.supplierHome);
+        if (homeController.currentUser != null && homeController.currentUser!.role == 'supplier') {
+          Get.offAllNamed(AppRoute.supplierHome);
+        }else if (homeController.currentUser != null && homeController.currentUser!.role == 'dentist'){
+          Get.offAllNamed(AppRoute.doctorHome);
+        }
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {

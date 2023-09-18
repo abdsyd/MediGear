@@ -2,14 +2,18 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/controllers/doctor/home_controller.dart';
 import 'package:hunter/services/remote_services.dart';
 import 'package:hunter/widgets/snake_bar.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:timer_count_down/timer_controller.dart';
 
 class RegisterOTPController extends GetxController {
+HomeController homeController = Get.put(HomeController());
+
   final OtpFieldController otpController = OtpFieldController();
   final CountdownController timeController = CountdownController(autoStart: true);
+
 
   late String _verifyUrl;
 
@@ -34,14 +38,14 @@ class RegisterOTPController extends GetxController {
   }
 
   Future<void> verifyOtp(String pin) async {
-    print(pin);
-    // if (_isTimeUp) {
-    //   Get.defaultDialog(middleText: "otp time up dialog".tr);
-    // } else {
     toggleLoadingOtp(true);
     try {
       if (await RemoteServices.verifyRegisterOtp(pin, _verifyUrl).timeout(kTimeOutDuration)) {
-        Get.offAllNamed(AppRoute.doctorHome);
+        if (homeController.currentUser != null && homeController.currentUser!.role == 'supplier') {
+          Get.offAllNamed(AppRoute.supplierHome);
+        }else if (homeController.currentUser != null && homeController.currentUser!.role == 'dentist'){
+          Get.offAllNamed(AppRoute.doctorHome);
+        }
         Get.defaultDialog(middleText: "verified!".tr);
       }
     } on TimeoutException {

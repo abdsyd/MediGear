@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/local_controller.dart';
 import 'package:hunter/controllers/theme_controller.dart';
@@ -14,25 +15,25 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    Get.put(LocaleController());
     ThemeController themeController = Get.put(ThemeController());
+    LocaleController localeController = Get.put(LocaleController());
     return GetBuilder<LocaleController>(
       builder: (localeController) {
         return GetMaterialApp(
-          builder: (context, child) => MediaQuery(
-            data: MediaQuery.of(context)
-                .copyWith(textScaleFactor: 1, devicePixelRatio: 1),
-            child: child!,
-          ),
-          debugShowCheckedModeBanner: false,
-          translations: MyTranslation(),
-          locale: localeController.initialLang,
-          theme: Get.locale!.languageCode == 'en' ? AppTheme.myEnglishLightMode : AppTheme.myArabicLightMode,
-          darkTheme: Get.locale!.languageCode == 'en' ? AppTheme.myEnglishDarkMode : AppTheme.myArabicDarkMode,
-          themeMode: themeController.getThemeMode(),
-          initialRoute: AppRoute.onboarding ,
-          getPages: routes,
-        );
+              builder: (context, child) => MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaleFactor: 1, devicePixelRatio: 1),
+                child: child!,
+              ),
+              debugShowCheckedModeBanner: false,
+              translations: MyTranslation(),
+              locale: localeController.initialLang,
+              theme: GetStorage().read("lang") == 'en' ? AppTheme.myEnglishLightMode : AppTheme.myArabicLightMode,
+              darkTheme: GetStorage().read("lang") == 'en' ? AppTheme.myEnglishDarkMode : AppTheme.myArabicDarkMode,
+              themeMode: themeController.getThemeMode(),
+              initialRoute: AppRoute.onboarding ,
+              getPages: routes,
+            );
       }
     );
   }
