@@ -3,7 +3,13 @@ import 'package:hunter/constants/colors.dart';
 
 class ProfileButton extends StatelessWidget {
   const ProfileButton({
-    super.key, required this.title,  this.icon, this.onPressed,  this.trailing, this.iconColor, this.borderColor,
+    super.key,
+    required this.title,
+    this.icon,
+    this.onPressed,
+    this.trailing,
+    this.iconColor,
+    this.borderColor,
   });
 
   final String title;
@@ -15,18 +21,22 @@ class ProfileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme tt = Theme.of(context).textTheme;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-        border: Border.all(color: borderColor ??AppColors.myPrimary),
+        border: Border.all(color: borderColor ?? AppColors.myPrimary),
         color: Colors.grey.shade200,
       ),
       child: ListTile(
         onTap: onPressed,
-        iconColor:iconColor ?? AppColors.myPrimary ,
-        titleTextStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.black),
-        leading:  Icon(icon),
-        title: Text(title),
+        iconColor: iconColor ?? AppColors.myPrimary,
+        titleTextStyle: tt.bodyMedium!.copyWith(color: Colors.black),
+        leading: Icon(icon),
+        title: Text(
+          title,
+          style: tt.displayMedium!,
+        ),
         trailing: trailing,
       ),
     );

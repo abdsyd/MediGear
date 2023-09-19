@@ -42,7 +42,6 @@ class RemoteServices {
       body: jsonEncode({"email": email, "password": password}),
       headers: {'Content-Type': 'application/json', "Accept": 'application/json'},
     );
-
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body)["access_token"];
     } else {
@@ -61,9 +60,10 @@ class RemoteServices {
       },
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      //Get.offAllNamed(AppRoute.login);
+      print('logout success');
       return true;
     } else if (response.statusCode == 401 || response.statusCode == 403) {
+      print('logout fail');
       kSessionExpiredDialog();
       return true;
     } else {
@@ -88,6 +88,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return userModelFromJson(response.body);
     } else if (response.statusCode == 401 || response.statusCode == 403) {
+      print('get user');
       kSessionExpiredDialog();
       return null;
     } else {
@@ -112,6 +113,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else if (response.statusCode == 401 || response.statusCode == 403) {
+      print('edit prof');
       kSessionExpiredDialog();
       return false;
     } else {
@@ -136,6 +138,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else if (response.statusCode == 401 || response.statusCode == 403) {
+      print('edit pass');
       kSessionExpiredDialog();
       return false;
     } else {

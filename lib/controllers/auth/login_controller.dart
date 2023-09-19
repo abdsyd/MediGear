@@ -8,13 +8,12 @@ import 'package:hunter/controllers/doctor/home_controller.dart';
 import 'package:hunter/services/remote_services.dart';
 
 class LoginController extends GetxController {
-  HomeController homeController = Get.put(HomeController());
+  //HomeController homeController = Get.put(HomeController());
 
   final _getStorage = GetStorage();
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;

@@ -18,6 +18,7 @@ class ProfileController extends GetxController {
     super.onInit();
   }
 
+  File? image;
   late UserModel user;
   final TextEditingController name = TextEditingController();
   final TextEditingController email = TextEditingController();
@@ -59,9 +60,8 @@ class ProfileController extends GetxController {
     update();
   }
 
-  Future pickImage(File? image,{required ImageSource source}) async {
-    final returnedImage =
-    await ImagePicker().pickImage(source: source);
+  Future pickImage({required ImageSource source}) async {
+    final returnedImage = await ImagePicker().pickImage(source: source);
     if (returnedImage != null) {
       image = File(returnedImage.path);
     } else {}

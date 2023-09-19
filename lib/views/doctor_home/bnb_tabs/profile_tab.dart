@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/routes_name.dart';
@@ -9,9 +7,7 @@ import 'package:hunter/widgets/profile_button.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileTab extends StatelessWidget {
-   ProfileTab({super.key});
-
-  File? image;
+  const ProfileTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +30,14 @@ class ProfileTab extends StatelessWidget {
                     children: [
                       ListTile(
                         onTap: () {
-                          pC.pickImage(image,source:ImageSource.camera);
+                          pC.pickImage(source: ImageSource.camera);
                         },
                         leading: const Icon(Icons.camera_alt),
                         title: const Text('From Camera'),
                       ),
                       ListTile(
                         onTap: () {
-                          pC.pickImage(image,source:ImageSource.gallery);
+                          pC.pickImage(source: ImageSource.gallery);
                         },
                         leading: const Icon(Icons.image_outlined),
                         title: const Text('From Gallery'),
@@ -52,27 +48,27 @@ class ProfileTab extends StatelessWidget {
                 backgroundColor: Colors.white,
               );
             },
-            child:   GetBuilder<ProfileController>(
-              builder: (controller) {
-                return CircleAvatar(
-                  radius: 50,
-                  child: image != null ? Image.file(image!):const Icon(
-                    Icons.person,
-                    size: 100,
-                  ),
-                );
-              }
-            ),
+            child: GetBuilder<ProfileController>(builder: (controller) {
+              return CircleAvatar(
+                radius: 50,
+                child: pC.image != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.file(pC.image!),
+                      )
+                    : const Icon(
+                        Icons.person,
+                        size: 100,
+                      ),
+              );
+            }),
           ),
           const SizedBox(height: 10.0),
           Center(
             child: Text(
               "Welcome back ${hC.currentUser != null ? hC.currentUser!.name : ''} ",
               textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .displayMedium!
-                  .copyWith(fontSize: 22),
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 22),
             ),
           ),
           const SizedBox(height: 20),

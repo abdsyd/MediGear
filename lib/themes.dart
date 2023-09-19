@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hunter/constants/colors.dart';
 
-
 class AppTheme {
   static ThemeData myEnglishLightMode = ThemeData(
     primaryColor: AppColors.myPrimary,
@@ -47,10 +46,37 @@ class AppTheme {
     ),
   );
 
+  static ThemeData myArabicLightMode = myEnglishLightMode.copyWith(
+    textTheme: const TextTheme(
+      labelMedium: TextStyle(
+        fontFamily: 'KufiArabic',
+        fontWeight: FontWeight.bold,
+        fontSize: 25,
+        color: AppColors.myWhite,
+      ),
+      displayMedium: TextStyle(
+        fontFamily: 'KufiArabic',
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        color: Colors.red,
+      ),
+      displayLarge: TextStyle(
+        fontFamily: 'KufiArabic',
+        fontWeight: FontWeight.bold,
+        fontSize: 40,
+        color: Colors.black,
+      ),
+      bodyLarge: TextStyle(
+        fontFamily: 'KufiArabic',
+        height: 1.5,
+        color: Colors.black,
+        fontSize: 12,
+      ),
+    ),
+  );
 
   static ThemeData myEnglishDarkMode = ThemeData(
     primaryColor: AppColors.myPrimary,
-
     textTheme: const TextTheme(
       labelMedium: TextStyle(
         fontFamily: 'PlayfairDisplay',
@@ -93,4 +119,32 @@ class AppTheme {
     ),
   );
 
+  static ThemeData myArabicDarkMode = myEnglishDarkMode.copyWith(
+    textTheme: const TextTheme(
+      labelMedium: TextStyle(
+        fontFamily: 'KufiArabic',
+        fontWeight: FontWeight.bold,
+        fontSize: 25,
+        color: AppColors.myWhite,
+      ),
+      displayMedium: TextStyle(
+        fontFamily: 'KufiArabic',
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        color: Colors.black,
+      ),
+      displayLarge: TextStyle(
+        fontFamily: 'KufiArabic',
+        fontWeight: FontWeight.bold,
+        fontSize: 40,
+        color: Colors.black,
+      ),
+      bodyLarge: TextStyle(
+        fontFamily: 'KufiArabic',
+        height: 1.5,
+        color: Colors.black,
+        fontSize: 12,
+      ),
+    ),
+  );
 }

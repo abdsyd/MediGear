@@ -9,7 +9,7 @@ class ProductController extends GetxController {
   final TextEditingController title = TextEditingController();
   final TextEditingController price = TextEditingController();
   final TextEditingController description = TextEditingController();
-  final TextEditingController image = TextEditingController();
+  //final TextEditingController image = TextEditingController();
   final TextEditingController quantity = TextEditingController();
   final TextEditingController category = TextEditingController();
   final TextEditingController barcode = TextEditingController();
@@ -18,12 +18,18 @@ class ProductController extends GetxController {
 
   bool buttonPressed = false;
 
-  Future pickImage(File? image) async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (returnedImage != null) {
-      image = File(returnedImage.path);
-    } else {}
+  int _picIndex = 0;
+  int get picIndex => _picIndex;
+  void setPicIndex(int i) {
+    _picIndex = i;
+    update();
+  }
+
+  List<XFile> images = [];
+
+  Future pickImage() async {
+    List<XFile> selectedImages = await ImagePicker().pickMultiImage();
+    if (selectedImages.isNotEmpty) images.addAll(selectedImages);
     update();
   }
 

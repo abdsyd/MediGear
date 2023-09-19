@@ -45,7 +45,7 @@ class ProfileSettings extends StatelessWidget {
                 iconEnabledColor: AppColors.myPrimary,
                 hint: Text(
                   localeController.getCurrentLanguageLabel(),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.black),
+                  style: Theme.of(context).textTheme.bodyMedium!,
                 ),
                 onChanged: (newValue) {
                   localeController.updateLocale(newValue!);
@@ -53,11 +53,15 @@ class ProfileSettings extends StatelessWidget {
                 items: [
                   DropdownMenuItem(
                     value: "ar",
-                    child: Text("Arabic ".tr,),
+                    child: Text(
+                      "Arabic ".tr,
+                    ),
                   ),
                   DropdownMenuItem(
                     value: "en",
-                    child: Text("English ".tr,),
+                    child: Text(
+                      "English ".tr,
+                    ),
                   ),
                 ],
               ),
