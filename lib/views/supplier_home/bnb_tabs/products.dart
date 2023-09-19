@@ -10,7 +10,6 @@ class Products extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Products'),
-        centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

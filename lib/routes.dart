@@ -72,7 +72,7 @@ List<GetPage<dynamic>> routes = [
   ),
   GetPage(
     name: AppRoute.profileTab,
-    page: () => const ProfileTab(),
+    page: () =>  ProfileTab(),
   ),
   GetPage(
     name: AppRoute.products,

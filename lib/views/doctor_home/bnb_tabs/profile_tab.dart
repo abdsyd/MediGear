@@ -1,12 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/doctor/bnb_tabs/profile_controller.dart';
 import 'package:hunter/controllers/doctor/home_controller.dart';
 import 'package:hunter/widgets/profile_button.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileTab extends StatelessWidget {
-  const ProfileTab({super.key});
+   ProfileTab({super.key});
+
+  File? image;
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +24,44 @@ class ProfileTab extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         children: [
-          const CircleAvatar(
-            //todo: try to implement imagePicker
-            radius: 50,
-            child: Icon(
-              Icons.person,
-              size: 100,
+          GestureDetector(
+            onTap: () {
+              Get.bottomSheet(
+                SizedBox(
+                  height: 120,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ListTile(
+                        onTap: () {
+                          pC.pickImage(image,source:ImageSource.camera);
+                        },
+                        leading: const Icon(Icons.camera_alt),
+                        title: const Text('From Camera'),
+                      ),
+                      ListTile(
+                        onTap: () {
+                          pC.pickImage(image,source:ImageSource.gallery);
+                        },
+                        leading: const Icon(Icons.image_outlined),
+                        title: const Text('From Gallery'),
+                      ),
+                    ],
+                  ),
+                ),
+                backgroundColor: Colors.white,
+              );
+            },
+            child:   GetBuilder<ProfileController>(
+              builder: (controller) {
+                return CircleAvatar(
+                  radius: 50,
+                  child: image != null ? Image.file(image!):const Icon(
+                    Icons.person,
+                    size: 100,
+                  ),
+                );
+              }
             ),
           ),
           const SizedBox(height: 10.0),
@@ -32,7 +69,10 @@ class ProfileTab extends StatelessWidget {
             child: Text(
               "Welcome back ${hC.currentUser != null ? hC.currentUser!.name : ''} ",
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 22),
+              style: Theme.of(context)
+                  .textTheme
+                  .displayMedium!
+                  .copyWith(fontSize: 22),
             ),
           ),
           const SizedBox(height: 20),
@@ -108,40 +148,6 @@ class ProfileTab extends StatelessWidget {
 }
 
 // GestureDetector(
-// onTap: () {
-// Get.bottomSheet(
-// SizedBox(
-// height: 120,
-// child: Column(
-// mainAxisAlignment: MainAxisAlignment.spaceAround,
-// children: [
-// ListTile(
-// //onTap:(){pC.pickImage(ImageSource.camera);},
-// leading: const Icon(Icons.camera_alt),
-// title: const Text('From Camera'),
-// ),
-// ListTile(
-// //onTap:(){pC.pickImage(ImageSource.gallery);},
-// leading: const Icon(Icons.image_outlined),
-// title: const Text('From Gallery'),
-// ),
-// ],
-// ),
-// ),
-// backgroundColor: Colors.white,
-// );
-// },
-// child: ClipOval(
-// child: pC.image != null
-// ? Image.file(
-// pC.image!,
-// width: 160,
-// height: 160,
-// fit: BoxFit.cover,
-// )
-//     : const Icon(CupertinoIcons.profile_circled,size: 150,),
-// ),
-// ),
 
 //------------------------------------------------------------------\\
 

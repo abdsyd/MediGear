@@ -9,5 +9,5 @@ List<Widget> supplierBodies = [
   const Dashboard(),
   const Products(),
   const Orders(),
-  const ProfileTab(),
+   ProfileTab(),
 ];

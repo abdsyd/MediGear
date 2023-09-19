@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/models/user_model.dart';
 import 'package:hunter/services/remote_services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
   ProfileController({required this.user}); //constructor
@@ -54,6 +56,15 @@ class ProfileController extends GetxController {
   bool get newPasswordVisible => _newPasswordVisible;
   void toggleNewPasswordVisibility(bool value) {
     _newPasswordVisible = value;
+    update();
+  }
+
+  Future pickImage(File? image,{required ImageSource source}) async {
+    final returnedImage =
+    await ImagePicker().pickImage(source: source);
+    if (returnedImage != null) {
+      image = File(returnedImage.path);
+    } else {}
     update();
   }
 
