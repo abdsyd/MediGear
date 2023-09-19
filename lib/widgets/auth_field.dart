@@ -108,3 +108,18 @@ String? validateInput(String val, int min, int max, String type,{String pass = "
 
   return null;
 }
+
+String? validateInput2(String val, int min, int max,String type) {
+  if (val.trim().isEmpty) return "cant be empty";
+
+  if (type == "price" && type == "quantity") {
+    if (!GetUtils.isNumericOnly(val)) return "not a valid number";
+  }
+
+  if (val.length < min) return " cant be smaller than $min";
+
+  if (val.length > max) return " cant be greater than $max";
+
+
+  return null;
+}

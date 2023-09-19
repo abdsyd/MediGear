@@ -11,6 +11,11 @@ class ProductController extends GetxController {
   final TextEditingController category = TextEditingController();
   final TextEditingController barcode = TextEditingController();
 
+
+  GlobalKey<FormState> addProductFormKey = GlobalKey<FormState>();
+
+  bool buttonPressed = false;
+
   final RxList<Product> products = <Product>[].obs;
 
   void addProduct(Product product) {
