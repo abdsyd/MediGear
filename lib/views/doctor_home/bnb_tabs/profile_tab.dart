@@ -68,7 +68,7 @@ class ProfileTab extends StatelessWidget {
                     )
                   : const Icon(
                       CupertinoIcons.profile_circled,
-                      size: 100,
+                      size: 150,
                       color: AppColors.myPrimary,
                     );
             }),

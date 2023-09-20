@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
@@ -169,8 +170,8 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(
-                            productController.sellQty.text, 0, 1000, 'sell Qty');
+                        return validateInput2(productController.sellQty.text, 0,
+                            1000, 'sell Qty');
                       },
                       onChanged: (val) {
                         if (productController.buttonPressed) {
@@ -190,7 +191,10 @@ class AddProductBottomSheet extends StatelessWidget {
                     child: TextFormField(
                       validator: (val) {
                         return validateInput2(
-                            productController.maxPurchaseQty.text, 1, 1000, 'max Purchase Qty');
+                            productController.maxPurchaseQty.text,
+                            1,
+                            1000,
+                            'max Purchase Qty');
                       },
                       onChanged: (val) {
                         if (productController.buttonPressed) {
@@ -208,7 +212,10 @@ class AddProductBottomSheet extends StatelessWidget {
                     child: TextFormField(
                       validator: (val) {
                         return validateInput2(
-                            productController.minPurchaseQty.text, 1, 1000, 'min Purchase Qty');
+                            productController.minPurchaseQty.text,
+                            1,
+                            1000,
+                            'min Purchase Qty');
                       },
                       onChanged: (val) {
                         if (productController.buttonPressed) {
@@ -238,7 +245,11 @@ class AddProductBottomSheet extends StatelessWidget {
                         }
                       },
                       controller: productController.weight,
-                      decoration: const InputDecoration(labelText: 'Weight'),
+                      decoration: const InputDecoration(
+                        labelText: 'Weight (kg)',
+                        suffixText: 'kg',
+                        suffixStyle: TextStyle(color: Colors.grey),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 20),
@@ -255,7 +266,11 @@ class AddProductBottomSheet extends StatelessWidget {
                         }
                       },
                       controller: productController.height,
-                      decoration: const InputDecoration(labelText: 'Height'),
+                      decoration: const InputDecoration(
+                        labelText: 'Height (m)',
+                        suffixText: 'm',
+                        suffixStyle: TextStyle(color: Colors.grey),
+                      ),
                     ),
                   ),
                 ],
@@ -275,7 +290,11 @@ class AddProductBottomSheet extends StatelessWidget {
                         }
                       },
                       controller: productController.width,
-                      decoration: const InputDecoration(labelText: 'Width'),
+                      decoration: const InputDecoration(
+                        labelText: 'Width (m)',
+                        suffixText: 'm',
+                        suffixStyle: TextStyle(color: Colors.grey),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 20),
@@ -292,7 +311,11 @@ class AddProductBottomSheet extends StatelessWidget {
                         }
                       },
                       controller: productController.length,
-                      decoration: const InputDecoration(labelText: 'Length'),
+                      decoration: const InputDecoration(
+                        labelText: 'Length (m)',
+                        suffixText: 'm',
+                        suffixStyle: TextStyle(color: Colors.grey),
+                      ),
                     ),
                   ),
                 ],
@@ -318,7 +341,12 @@ class AddProductBottomSheet extends StatelessWidget {
               ),
               TextFormField(
                 controller: productController.upc,
-                decoration: const InputDecoration(labelText: 'UPC'),
+                decoration: const InputDecoration(
+                  labelText: 'UPC',
+                  suffixIcon: Icon(
+                    CupertinoIcons.barcode,
+                  ),
+                ),
               ),
               TextFormField(
                 validator: (val) {
@@ -336,28 +364,33 @@ class AddProductBottomSheet extends StatelessWidget {
               ),
               Row(
                 children: [
-                   Text('Active: ',style: Theme.of(context).inputDecorationTheme.labelStyle,),
-                  GetBuilder<ProductController>(
-                    builder: (con) {
-                      return Checkbox(
-                        value: con.isActive,
-                        onChanged: (value) {
-                          con.toggleActivity(value);
-                        },
-                      );
-                    }
+                  Text(
+                    'Active: ',
+                    style: Theme.of(context).inputDecorationTheme.labelStyle,
                   ),
+                  GetBuilder<ProductController>(builder: (con) {
+                    return Checkbox(
+                      value: con.isActive,
+                      onChanged: (value) {
+                        con.toggleActivity(value);
+                      },
+                    );
+                  }),
                 ],
               ),
               const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: AppColors.myPrimary),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.myPrimary),
                 onPressed: () {
                   Get.back();
                 },
-                child: const Text('Add',style: TextStyle(color: AppColors.myWhite),),
+                child: const Text(
+                  'Add',
+                  style: TextStyle(color: AppColors.myWhite),
+                ),
               ),
             ],
           ),
