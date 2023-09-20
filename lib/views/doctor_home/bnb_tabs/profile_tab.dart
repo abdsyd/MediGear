@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/doctor/bnb_tabs/profile_controller.dart';
 import 'package:hunter/controllers/doctor/home_controller.dart';
@@ -49,18 +51,26 @@ class ProfileTab extends StatelessWidget {
               );
             },
             child: GetBuilder<ProfileController>(builder: (controller) {
-              return CircleAvatar(
-                radius: 50,
-                child: pC.image != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Image.file(pC.image!),
-                      )
-                    : const Icon(
-                        Icons.person,
-                        size: 100,
+              return pC.image != null
+                  ? ClipOval(
+                      child: Container(
+                        width: 180.0,
+                        height: 180.0,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: FileImage(
+                                pC.image!), // Use your image file here
+                          ),
+                        ),
                       ),
-              );
+                    )
+                  : const Icon(
+                      CupertinoIcons.profile_circled,
+                      size: 100,
+                      color: AppColors.myPrimary,
+                    );
             }),
           ),
           const SizedBox(height: 10.0),
@@ -68,7 +78,10 @@ class ProfileTab extends StatelessWidget {
             child: Text(
               "Welcome back ${hC.currentUser != null ? hC.currentUser!.name : ''} ",
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 22),
+              style: Theme.of(context)
+                  .textTheme
+                  .displayMedium!
+                  .copyWith(fontSize: 22),
             ),
           ),
           const SizedBox(height: 20),
@@ -142,29 +155,3 @@ class ProfileTab extends StatelessWidget {
     );
   }
 }
-
-// GestureDetector(
-
-//------------------------------------------------------------------\\
-
-// Column(
-// mainAxisAlignment: MainAxisAlignment.center,
-// children: [
-// Expanded(
-// child: Column(
-// mainAxisAlignment: MainAxisAlignment.center,
-// children: [
-// ClipOval(
-// child: Icon(
-// CupertinoIcons.profile_circled,
-// size: MediaQuery.sizeOf(context).width / 4,
-// ),
-// ),
-// Text(
-// 'Welcome back  ${hC.currentUser != null ? hC.currentUser!.name : ''}',
-// ),
-// ],
-// ),
-// ),
-// ],
-// ),

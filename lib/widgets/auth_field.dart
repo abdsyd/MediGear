@@ -5,14 +5,18 @@ import 'package:hunter/constants/colors.dart';
 class AuthField extends StatelessWidget {
   const AuthField({
     super.key,
-     this.label,
-     this.textController,
-     this.keyboardType,
+    this.label,
+    this.textController,
+    this.keyboardType,
     this.validator,
-     this.onChanged,
+    this.onChanged,
     required this.icon,
     this.onIconPressed,
-    this.obscureText, this.autoFocus, this.hint, this.hintStyle, this.enabled,
+    this.obscureText,
+    this.autoFocus,
+    this.hint,
+    this.hintStyle,
+    this.enabled,
   });
   final String? label;
   final String? hint;
@@ -40,21 +44,24 @@ class AuthField extends StatelessWidget {
         cursorColor: AppColors.myPrimary,
         obscureText: obscureText ?? false,
         keyboardType: keyboardType,
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 11,),
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontSize: 11,
+            ),
         decoration: InputDecoration(
           labelText: label,
           hintText: hint,
-          hintStyle: hintStyle ?? Theme.of(context)
-              .textTheme
-              .bodyMedium!
-              .copyWith(fontSize: 13),
+          hintStyle: hintStyle ??
+              Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 13),
           labelStyle: Theme.of(context)
               .textTheme
               .displayMedium!
               .copyWith(color: Colors.black45, fontSize: 15),
           suffixIcon: IconButton(
             onPressed: onIconPressed,
-            icon: Icon(icon,color: AppColors.myPrimary,),
+            icon: Icon(
+              icon,
+              color: AppColors.myPrimary,
+            ),
           ),
           errorStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 color: Colors.red,
@@ -87,7 +94,8 @@ class AuthField extends StatelessWidget {
   }
 }
 
-String? validateInput(String val, int min, int max, String type,{String pass = "", String rePass = ""}) {
+String? validateInput(String val, int min, int max, String type,
+    {String pass = "", String rePass = ""}) {
   if (val.trim().isEmpty) return "cant be empty";
 
   if (type == "username") {
@@ -109,17 +117,24 @@ String? validateInput(String val, int min, int max, String type,{String pass = "
   return null;
 }
 
-String? validateInput2(String val, int min, int max,String type) {
+String? validateInput2(String val, int min, int max, String type) {
   if (val.trim().isEmpty) return "cant be empty";
 
-  if (type == "price" && type == "quantity") {
+  if (type == "price" &&
+      type == "quantity" &&
+      type == "width" &&
+      type == "length" &&
+      type == 'height' &&
+      type == 'weight' &&
+      type == 'max Purchase Qty' &&
+      type == 'min Purchase Qty' &&
+      type == 'sell Qty') {
     if (!GetUtils.isNumericOnly(val)) return "not a valid number";
   }
 
   if (val.length < min) return " cant be smaller than $min";
 
   if (val.length > max) return " cant be greater than $max";
-
 
   return null;
 }

@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeController themeController = Get.put(ThemeController());
-    //Get.put(LocaleController());
     return GetBuilder<LocaleController>(
       init: LocaleController(),
       builder: (con) => GetMaterialApp(
