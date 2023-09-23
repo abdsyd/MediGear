@@ -340,15 +340,6 @@ class AddProductBottomSheet extends StatelessWidget {
                 decoration: const InputDecoration(labelText: 'Category'),
               ),
               TextFormField(
-                controller: productController.upc,
-                decoration: const InputDecoration(
-                  labelText: 'UPC',
-                  suffixIcon: Icon(
-                    CupertinoIcons.barcode,
-                  ),
-                ),
-              ),
-              TextFormField(
                 validator: (val) {
                   return validateInput2(productController.description.text, 10,
                       1000, 'Description');
@@ -361,6 +352,30 @@ class AddProductBottomSheet extends StatelessWidget {
                 },
                 controller: productController.description,
                 decoration: const InputDecoration(labelText: 'Description'),
+              ),
+              const SizedBox(width: 20),
+              GestureDetector(
+                onTap: (){
+                  productController.scanBarcode();
+                },
+                child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    decoration: const BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.black)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GetBuilder<ProductController>(
+                          builder: (controller) {
+                            return Text(controller.scanResult == null
+                                ? 'Scan Barcode'
+                                : controller.scanResult!);
+                          }
+                        ),
+                        const Icon(CupertinoIcons.barcode),
+                      ],
+                    ),),
               ),
               Row(
                 children: [

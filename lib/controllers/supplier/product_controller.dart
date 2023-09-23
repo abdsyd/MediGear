@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProductController extends GetxController {
+
   final TextEditingController title = TextEditingController();
   final TextEditingController price = TextEditingController();
   final TextEditingController description = TextEditingController();
@@ -38,6 +40,13 @@ class ProductController extends GetxController {
   Future pickImage() async {
     List<XFile> selectedImages = await ImagePicker().pickMultiImage();
     if (selectedImages.isNotEmpty) images.addAll(selectedImages);
+    update();
+  }
+
+  String? scanResult;
+
+  Future scanBarcode() async {
+    scanResult = await FlutterBarcodeScanner.scanBarcode('#ff6666', 'Cancel', true, ScanMode.BARCODE);
     update();
   }
 
