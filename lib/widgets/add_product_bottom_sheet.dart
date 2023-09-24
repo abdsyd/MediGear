@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
-import 'package:hunter/controllers/supplier/product_controller.dart';
+import 'package:hunter/controllers/supplier/add_product_controller.dart';
 import 'package:hunter/widgets/auth_field.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -13,7 +13,7 @@ class AddProductBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProductController productController = Get.put(ProductController());
+    final AddProductController productController = Get.put(AddProductController());
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,7 +25,7 @@ class AddProductBottomSheet extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              GetBuilder<ProductController>(builder: (controller) {
+              GetBuilder<AddProductController>(builder: (controller) {
                 return productController.images.isEmpty
                     ? GestureDetector(
                         onTap: () {
@@ -366,7 +366,7 @@ class AddProductBottomSheet extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GetBuilder<ProductController>(
+                        GetBuilder<AddProductController>(
                           builder: (controller) {
                             return Text(controller.scanResult == null
                                 ? 'Scan Barcode'
@@ -383,7 +383,7 @@ class AddProductBottomSheet extends StatelessWidget {
                     'Active: ',
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                   ),
-                  GetBuilder<ProductController>(builder: (con) {
+                  GetBuilder<AddProductController>(builder: (con) {
                     return Checkbox(
                       value: con.isActive,
                       onChanged: (value) {

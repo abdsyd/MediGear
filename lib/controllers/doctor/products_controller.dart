@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 class ProductsController extends GetxController {
-  int selectionRoleIndex = 0;
+  int selectionIndex = 0;
 
   List<bool> isSelected = [true, false];
 

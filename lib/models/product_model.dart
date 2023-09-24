@@ -1,4 +1,4 @@
-class Product {
+class ProductModel {
   String title;
   double price;
   String description;
@@ -7,7 +7,7 @@ class Product {
   String category;
   String barcode;
 
-  Product({
+  ProductModel({
     required this.category,
     required this.title,
     required this.price,

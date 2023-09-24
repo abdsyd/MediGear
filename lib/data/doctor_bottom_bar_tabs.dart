@@ -10,5 +10,5 @@ List<Widget> doctorBodies = [
   const SearchTab(),
   const CartTab(),
   const WishListTab(),
-   ProfileTab(),
+   const ProfileTab(),
 ];

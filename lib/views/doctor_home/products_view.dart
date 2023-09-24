@@ -55,7 +55,7 @@ class ProductsView extends StatelessWidget {
                       isSelected: controller.isSelected,
                       onPressed: (int newIndex) {
                         controller.toggleSelections(newIndex);
-                        controller.selectionRoleIndex = newIndex;
+                        controller.selectionIndex = newIndex;
                       },
                       borderRadius: BorderRadius.circular(35),
                       fillColor: AppColors.myPrimary,
@@ -106,7 +106,7 @@ class ProductsView extends StatelessWidget {
                 itemCount: 10,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.5,
-                  crossAxisCount: controller.selectionRoleIndex == 0 ? 2 : 1,
+                  crossAxisCount: controller.selectionIndex == 0 ? 2 : 1,
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 10,
                 ),

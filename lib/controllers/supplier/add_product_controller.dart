@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
+import 'package:hunter/models/product_model.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ProductController extends GetxController {
+class AddProductController extends GetxController {
 
   final TextEditingController title = TextEditingController();
   final TextEditingController price = TextEditingController();
@@ -20,6 +21,9 @@ class ProductController extends GetxController {
   final TextEditingController minPurchaseQty = TextEditingController();
 
   GlobalKey<FormState> addProductFormKey = GlobalKey<FormState>();
+
+  late List<ProductModel> _products;
+  List<ProductModel> get products => _products;
 
   bool buttonPressed = false;
   bool isActive = false;

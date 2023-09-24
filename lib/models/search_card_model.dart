@@ -1,5 +1,5 @@
-class HomeCards {
-  HomeCards(
+class SearchCards {
+  SearchCards(
       {required this.backgroundImage,
       required this.title,
       required this.subTitle});
