@@ -44,7 +44,7 @@ class SupplierHomeView extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            //-----****-----\\
+                            //todo : fix this
                             Get.toNamed(AppRoute.registerOTP);
                           },
                           style: ElevatedButton.styleFrom(

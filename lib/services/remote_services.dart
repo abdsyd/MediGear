@@ -86,7 +86,7 @@ class RemoteServices {
   static Future<bool> uploadProfileImage(File? imageFile) async {
     var request = http.MultipartRequest(
         "POST", Uri.parse("$_hostIP/upload-profile-image"));
-    request.headers['Authorization'] = token;
+    request.headers['Authorization'] = "Bearer $token";
     request.headers['Accept'] = 'application/json';
     var stream = http.ByteStream(imageFile!.openRead());
     var length = await imageFile.length();
@@ -101,16 +101,11 @@ class RemoteServices {
     var response = await request.send();
     var responseBody = await response.stream.bytesToString();
 
-    if (response.statusCode == 200) {
-      Get.defaultDialog(
-          title: "Done".tr, middleText: 'Image uploaded successfully');
+    if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else {
-
-      Get.defaultDialog(
-          title: "error".tr, middleText: '${response.statusCode}Image upload failed $responseBody');
+      print('error massage: $responseBody');
       return false;
-
     }
   }
 
