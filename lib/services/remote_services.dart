@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:path/path.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -81,14 +83,35 @@ class RemoteServices {
   ///////////// Profile \\\\\\\\\\\\\\\
 
   //todo: add request for image
-  static Future uploadProfileImage() async {
-    var response = await client.post(Uri.parse("$_hostIP/upload-profile-image"),
-        body: jsonEncode({}),
-        headers: {
-          'Content-Type': 'application/json',
-          "Accept": 'application/json',
-          "Authorization": "Bearer $token",
-        });
+  static Future<bool> uploadProfileImage(File? imageFile) async {
+    var request = http.MultipartRequest(
+        "POST", Uri.parse("$_hostIP/upload-profile-image"));
+    request.headers['Authorization'] = token;
+    request.headers['Accept'] = 'application/json';
+    var stream = http.ByteStream(imageFile!.openRead());
+    var length = await imageFile.length();
+    var multipartFile = http.MultipartFile(
+      'image',
+      stream,
+      length,
+      filename: basename(imageFile.path),
+    );
+    request.files.add(multipartFile);
+
+    var response = await request.send();
+    var responseBody = await response.stream.bytesToString();
+
+    if (response.statusCode == 200) {
+      Get.defaultDialog(
+          title: "Done".tr, middleText: 'Image uploaded successfully');
+      return true;
+    } else {
+
+      Get.defaultDialog(
+          title: "error".tr, middleText: '${response.statusCode}Image upload failed $responseBody');
+      return false;
+
+    }
   }
 
   static Future<UserModel?> fetchCurrentUser() async {

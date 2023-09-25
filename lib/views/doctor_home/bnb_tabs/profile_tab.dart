@@ -61,7 +61,8 @@ class ProfileTab extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: FileImage(
-                                pC.image!), // Use your image file here
+                              pC.image!,
+                            ),
                           ),
                         ),
                       ),

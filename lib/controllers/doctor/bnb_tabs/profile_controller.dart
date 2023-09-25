@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/models/user_model.dart';
@@ -64,6 +65,7 @@ class ProfileController extends GetxController {
     final returnedImage = await ImagePicker().pickImage(source: source);
     if (returnedImage != null) {
       image = File(returnedImage.path);
+      await RemoteServices.uploadProfileImage(image);
     } else {}
     update();
   }
