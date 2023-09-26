@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:hunter/models/brand_model.dart';
 import 'package:hunter/models/category_model.dart';
 import 'package:hunter/models/images_model.dart';
@@ -10,6 +9,7 @@ String productModelToJson(List<ProductModel> data) => json.encode(List<dynamic>.
 
 class ProductModel {
   int id;
+  int ownerId;
   String title;
   String description;
   String price;
@@ -30,6 +30,7 @@ class ProductModel {
 
   ProductModel({
     required this.id,
+    required this.ownerId,
     required this.title,
     required this.description,
     required this.price,
@@ -51,6 +52,7 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
     id: json["id"],
+    ownerId: json['owner_id'],
     title: json["title"],
     description: json["description"],
     price: json["price"],
@@ -72,6 +74,7 @@ class ProductModel {
 
   Map<String, dynamic> toJson() => {
     "id": id,
+    'owner_id':ownerId,
     "title": title,
     "description": description,
     "price": price,

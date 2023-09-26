@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:hunter/models/login_model.dart';
 import 'package:path/path.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -41,7 +42,7 @@ class RemoteServices {
     }
   }
 
-  static Future<String?> login(String email, String password) async {
+  static Future<LogInModel?> login(String email, String password) async {
     var response = await client.post(
       Uri.parse("$_hostIP/login"),
       body: jsonEncode({"email": email, "password": password}),
@@ -51,7 +52,7 @@ class RemoteServices {
       },
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      return jsonDecode(response.body)["access_token"];
+      return logInModelFromJson(response.body);
     } else {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["message"]);
@@ -82,7 +83,6 @@ class RemoteServices {
 
   ///////////// Profile \\\\\\\\\\\\\\\
 
-  //todo: add request for image
   static Future<bool> uploadProfileImage(File? imageFile) async {
     var request = http.MultipartRequest(
         "POST", Uri.parse("$_hostIP/upload-profile-image"));
