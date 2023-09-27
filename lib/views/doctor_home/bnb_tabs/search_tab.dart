@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/controllers/doctor/home_controller.dart';
+import 'package:hunter/controllers/doctor/products_controller.dart';
 import 'package:hunter/data/companies_card.dart';
 import 'package:hunter/widgets/companies _card.dart';
 
@@ -13,6 +14,7 @@ class SearchTab extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeController hC = Get.find();
     SearchController sC = Get.put(SearchController());
+    ProductsController pC = Get.put(ProductsController());
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

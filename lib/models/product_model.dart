@@ -9,7 +9,6 @@ String productModelToJson(List<ProductModel> data) => json.encode(List<dynamic>.
 
 class ProductModel {
   int id;
-  int ownerId;
   String title;
   String description;
   String price;
@@ -27,10 +26,10 @@ class ProductModel {
   List<ImagesModel> images;
   List<CategoryModel> categories;
   BrandModel brand;
+  int owner;
 
   ProductModel({
     required this.id,
-    required this.ownerId,
     required this.title,
     required this.description,
     required this.price,
@@ -48,11 +47,11 @@ class ProductModel {
     required this.images,
     required this.categories,
     required this.brand,
+    required this.owner,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
     id: json["id"],
-    ownerId: json['owner_id'],
     title: json["title"],
     description: json["description"],
     price: json["price"],
@@ -70,11 +69,11 @@ class ProductModel {
     images: List<ImagesModel>.from(json["images"].map((x) => ImagesModel.fromJson(x))),
     categories: List<CategoryModel>.from(json["categories"].map((x) => CategoryModel.fromJson(x))),
     brand: BrandModel.fromJson(json["brand"]),
+    owner: json["owner"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    'owner_id':ownerId,
     "title": title,
     "description": description,
     "price": price,
@@ -92,9 +91,9 @@ class ProductModel {
     "images": List<dynamic>.from(images.map((x) => x.toJson())),
     "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
     "brand": brand.toJson(),
+    "owner": owner,
   };
 }
-
 
 
 

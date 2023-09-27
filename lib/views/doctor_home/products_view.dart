@@ -4,13 +4,14 @@ import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
 import 'package:hunter/controllers/doctor/products_controller.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hunter/widgets/product_card.dart';
 
 class ProductsView extends StatelessWidget {
   ProductsView({super.key});
   final title = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    ProductsController pC = Get.put(ProductsController());
+    ProductsController pC = Get.find();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -46,31 +47,28 @@ class ProductsView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               GetBuilder<ProductsController>(builder: (controller) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: SizedBox(
-                    height: 40,
-                    width: 160,
-                    child: ToggleButtons(
-                      isSelected: controller.isSelected,
-                      onPressed: (int newIndex) {
-                        controller.toggleSelections(newIndex);
-                        controller.selectionIndex = newIndex;
-                      },
-                      borderRadius: BorderRadius.circular(35),
-                      fillColor: AppColors.myPrimary,
-                      selectedColor: Colors.white,
-                      children: const [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25),
-                          child: Icon(Icons.grid_view),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 25),
-                          child: Icon(Icons.view_stream),
-                        ),
-                      ],
-                    ),
+                return SizedBox(
+                  height: 40,
+                  width: 160,
+                  child: ToggleButtons(
+                    isSelected: controller.isSelected,
+                    onPressed: (int newIndex) {
+                      controller.toggleSelections(newIndex);
+                      controller.selectionIndex = newIndex;
+                    },
+                    borderRadius: BorderRadius.circular(35),
+                    fillColor: AppColors.myPrimary,
+                    selectedColor: Colors.white,
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: Icon(Icons.grid_view),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25),
+                        child: Icon(Icons.view_stream),
+                      ),
+                    ],
                   ),
                 );
               }),
@@ -80,8 +78,9 @@ class ProductsView extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-                    elevation:MaterialStateProperty.all<double>(0),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.transparent),
+                    elevation: MaterialStateProperty.all<double>(0),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(35),
@@ -92,7 +91,9 @@ class ProductsView extends StatelessWidget {
                   child: const Row(
                     children: [
                       Icon(CupertinoIcons.slider_horizontal_3),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text('filter'),
                     ],
                   ),
@@ -103,33 +104,16 @@ class ProductsView extends StatelessWidget {
           Expanded(
             child: GetBuilder<ProductsController>(builder: (controller) {
               return GridView.builder(
-                itemCount: 10,
+                itemCount: controller.products.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.5,
                   crossAxisCount: controller.selectionIndex == 0 ? 2 : 1,
                   crossAxisSpacing: 8,
+                  mainAxisExtent: 300,
                   mainAxisSpacing: 10,
                 ),
-                itemBuilder: (context, index) => const Column(
-                  children: [
-                    Image(
-                      image: AssetImage('assets/images/logo-black.png'),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'tool',
-                        ),
-                        Text(
-                          'alalalala',
-                        ),
-                        Text(
-                          '20.00\$',
-                        ),
-                      ],
-                    )
-                  ],
+                itemBuilder: (context, index) => ProductCard(
+                  product: controller.products[index],
                 ),
               );
             }),

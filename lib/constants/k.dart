@@ -6,6 +6,9 @@ import 'package:hunter/constants/routes_name.dart';
 final GetStorage _getStorage = GetStorage();
 
 Duration kTimeOutDuration = const Duration(seconds: 25);
+Duration kTimeOutDuration2 = const Duration(seconds: 15);
+
+String kHostIP = "http://10.0.2.2:8000";
 
 Future kTimeOutDialog() => Get.defaultDialog(
     title: "error".tr,

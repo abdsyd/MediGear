@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:hunter/models/login_model.dart';
+import 'package:hunter/models/product_model.dart';
 import 'package:path/path.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -291,6 +292,26 @@ class RemoteServices {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
+    }
+  }
+
+  ///////////// product \\\\\\\\\\\\\\\
+
+  static Future<List<ProductModel>?> fetchAllProducts() async {
+    var response = await client.get(
+      Uri.parse('$_hostIP/products'),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return productModelFromJson(response.body);
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
     }
   }
 }
