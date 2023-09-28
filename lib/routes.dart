@@ -10,6 +10,7 @@ import 'package:hunter/views/doctor_home/bnb_tabs/profile_tab.dart';
 import 'package:hunter/views/doctor_home/bnb_tabs/search_tab.dart';
 import 'package:hunter/views/doctor_home/bnb_tabs/wishlist_tab.dart';
 import 'package:hunter/views/doctor_home/home_view.dart';
+import 'package:hunter/views/doctor_home/product_details.dart';
 import 'package:hunter/views/doctor_home/products_view.dart';
 import 'package:hunter/views/auth/login_view.dart';
 import 'package:hunter/views/auth/register_otp.dart';
@@ -77,6 +78,10 @@ List<GetPage<dynamic>> routes = [
   GetPage(
     name: AppRoute.products,
     page: () => ProductsView(),
+  ),
+  GetPage(
+    name: AppRoute.productDetail,
+    page: () =>  ProductDetails(),
   ),
   GetPage(
     name: AppRoute.profileSettings,

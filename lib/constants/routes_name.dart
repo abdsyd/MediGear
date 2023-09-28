@@ -14,6 +14,7 @@ class AppRoute {
   static const String wishlistTab = "/wishlistTab";
   static const String profileTab = "/profileTab";
   static const String products = "/products";
+  static const String productDetail = "/productDetail";
   static const String profileSettings = "/profileSettings";
   static const String profileDetails = "/profileDetails";
   static const String supplierHome= "/supplierHome";

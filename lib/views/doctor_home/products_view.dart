@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
+import 'package:hunter/controllers/doctor/product_details_controller.dart';
 import 'package:hunter/controllers/doctor/products_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hunter/widgets/product_card.dart';
@@ -11,7 +12,8 @@ class ProductsView extends StatelessWidget {
   final title = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    ProductsController pC = Get.find();
+    ProductsController psC = Get.find();
+    ProductDetailsController pc = Get.find();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

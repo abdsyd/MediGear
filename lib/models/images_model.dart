@@ -1,19 +1,19 @@
 import 'dart:convert';
 
-List<ImagesModel> imagesModelFromJson(String str) => List<ImagesModel>.from(json.decode(str).map((x) => ImagesModel.fromJson(x)));
+List<ImageModel> imagesModelFromJson(String str) => List<ImageModel>.from(json.decode(str).map((x) => ImageModel.fromJson(x)));
 
-String imagesModelToJson(List<ImagesModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String imagesModelToJson(List<ImageModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class ImagesModel {
+class ImageModel {
   int id;
   String path;
 
-  ImagesModel({
+  ImageModel({
     required this.id,
     required this.path,
   });
 
-  factory ImagesModel.fromJson(Map<String, dynamic> json) => ImagesModel(
+  factory ImageModel.fromJson(Map<String, dynamic> json) => ImageModel(
     id: json["id"],
     path: json["path"],
   );

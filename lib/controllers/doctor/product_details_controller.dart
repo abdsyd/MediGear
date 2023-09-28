@@ -4,16 +4,32 @@ import 'package:hunter/constants/k.dart';
 import 'package:hunter/models/product_model.dart';
 import 'package:hunter/services/remote_services.dart';
 
-class ProductsController extends GetxController {
+class ProductDetailsController extends GetxController {
+
   @override
   void onInit() {
-    getAllProducts();
+    getAProduct();
     super.onInit();
   }
 
-  bool iconButtonPressed = true;
+  int _qty = 1;
+  int get qty =>_qty;
 
-  late List<ProductModel> products = [];
+  void increaseQty() {
+    if (_qty < product.maxPurchaseQty) {
+      _qty++;
+      update();
+    }
+  }
+
+  void decreaseQty() {
+    if (_qty > product.minPurchaseQty) {
+      _qty--;
+      update();
+    }
+  }
+
+  late ProductModel product;
 
   bool isLoadingProduct = false;
   bool isFetchedProduct = false;
@@ -28,11 +44,11 @@ class ProductsController extends GetxController {
     update();
   }
 
-  void getAllProducts() async {
+  void getAProduct() async {
     try {
       //setLoadingProduct(true);
-      products =
-          (await RemoteServices.fetchAllProducts().timeout(kTimeOutDuration2))!;
+      product = (await RemoteServices.fetchAProduct(product.id)
+          .timeout(kTimeOutDuration2))!;
       //setFetchedProduct(true);
     } on TimeoutException {
       kTimeOutDialog();
@@ -43,18 +59,10 @@ class ProductsController extends GetxController {
     }
   }
 
-  int selectionIndex = 0;
-
-  List<bool> isSelected = [true, false];
-
-  void toggleSelections(int newIndex) {
-    for (int index = 0; index < isSelected.length; index++) {
-      if (index == newIndex) {
-        isSelected[index] = true;
-      } else {
-        isSelected[index] = false;
-      }
-    }
+  int _picIndex = 0;
+  int get picIndex => _picIndex;
+  void setPicIndex(int i) {
+    _picIndex = i;
     update();
   }
 }

@@ -3,30 +3,32 @@ import 'package:hunter/models/brand_model.dart';
 import 'package:hunter/models/category_model.dart';
 import 'package:hunter/models/images_model.dart';
 
-List<ProductModel> productModelFromJson(String str) => List<ProductModel>.from(json.decode(str).map((x) => ProductModel.fromJson(x)));
+
+List<ProductModel> productModelFromJson(String str) =>
+    List<ProductModel>.from(json.decode(str).map((x) => ProductModel.fromJson(x)));
 
 String productModelToJson(List<ProductModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ProductModel {
-  int id;
-  String title;
-  String description;
-  String price;
-  String weight;
-  String length;
-  String width;
-  String height;
-  int quantity;
-  int sellQuantity;
-  int maxPurchaseQty;
-  int minPurchaseQty;
-  int active;
-  String upc;
-  String sku;
-  List<ImagesModel> images;
-  List<CategoryModel> categories;
-  BrandModel brand;
-  int owner;
+  final int id;
+  final String title;
+  final String description;
+  final double price;
+  final double weight;
+  final double length;
+  final double width;
+  final double height;
+  final int quantity;
+  final int sellQuantity;
+  final int maxPurchaseQty;
+  final int minPurchaseQty;
+  final bool active;
+  final String upc;
+  final String sku;
+  final List<ImageModel> images;
+  final List<CategoryModel> categories;
+  final BrandModel brand;
+  final int ownerId;
 
   ProductModel({
     required this.id,
@@ -47,18 +49,18 @@ class ProductModel {
     required this.images,
     required this.categories,
     required this.brand,
-    required this.owner,
+    required this.ownerId,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
     id: json["id"],
     title: json["title"],
     description: json["description"],
-    price: json["price"],
-    weight: json["weight"],
-    length: json["length"],
-    width: json["width"],
-    height: json["height"],
+    price: json["price"]?.toDouble(),
+    weight: json["weight"]?.toDouble(),
+    length: json["length"]?.toDouble(),
+    width: json["width"]?.toDouble(),
+    height: json["height"]?.toDouble(),
     quantity: json["quantity"],
     sellQuantity: json["sell_quantity"],
     maxPurchaseQty: json["max_purchase_qty"],
@@ -66,10 +68,10 @@ class ProductModel {
     active: json["active"],
     upc: json["upc"],
     sku: json["sku"],
-    images: List<ImagesModel>.from(json["images"].map((x) => ImagesModel.fromJson(x))),
+    images: List<ImageModel>.from(json["images"].map((x) => ImageModel.fromJson(x))),
     categories: List<CategoryModel>.from(json["categories"].map((x) => CategoryModel.fromJson(x))),
     brand: BrandModel.fromJson(json["brand"]),
-    owner: json["owner"],
+    ownerId: json["owner_id"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -88,12 +90,9 @@ class ProductModel {
     "active": active,
     "upc": upc,
     "sku": sku,
-    "images": List<dynamic>.from(images.map((x) => x.toJson())),
-    "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
+    "images": List.from(images.map((x) => x.toJson())),
+    "categories": List.from(categories.map((x) => x.toJson())),
     "brand": brand.toJson(),
-    "owner": owner,
+    "owner_id": ownerId,
   };
 }
-
-
-

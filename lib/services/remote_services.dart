@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:hunter/models/brand_model.dart';
+import 'package:hunter/models/category_model.dart';
+import 'package:hunter/models/images_model.dart';
 import 'package:hunter/models/login_model.dart';
 import 'package:hunter/models/product_model.dart';
 import 'package:path/path.dart';
@@ -295,7 +298,120 @@ class RemoteServices {
     }
   }
 
-  ///////////// product \\\\\\\\\\\\\\\
+  ///////////// brand \\\\\\\\\\\\\\\
+
+  static Future<List<BrandModel>?> fetchAllBrands() async {
+    var response = await client.get(
+      Uri.parse('$_hostIP/brands'),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return brandModelFromJson(response.body);
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
+    }
+  }
+
+  static Future<BrandModel?> fetchABrand(int brandId) async {
+    var response = await client.get(
+      Uri.parse('$_hostIP/brands/$brandId'),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return BrandModel.fromJson(jsonDecode(response.body));
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
+    }
+  }
+
+  static Future<List<ProductModel>?> fetchBrandProducts(int brandId) async {
+    var response = await client.get(
+      Uri.parse('$_hostIP/brand-products/$brandId'),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return productModelFromJson(response.body);
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
+    }
+  }
+
+  ///////////// category \\\\\\\\\\\\\\\
+
+
+
+///////////// product \\\\\\\\\\\\\\\
+
+  static Future<bool?> addProducts(
+    String name,
+    String description,
+    String upc,
+    bool active,
+    BrandModel brand,
+    List<ImageModel> images,
+    List<CategoryModel> categories,
+    double price,
+    double weight,
+    double width,
+    double height,
+    double length,
+    int quantity,
+    int sellQuantity,
+    int maxPurchaseQty,
+    int minPurchaseQty,
+  ) async {
+    var response = await client.post(
+      Uri.parse('$_hostIP/products'),
+      body: jsonEncode({
+        "title": name,
+        "description": description,
+        "price": price,
+        "weight": weight,
+        "length": length,
+        "width": width,
+        "height": height,
+        "quantity": quantity,
+        "sell_quantity": sellQuantity,
+        "max_purchase_qty": maxPurchaseQty,
+        "min_purchase_qty": minPurchaseQty,
+        "active": active,
+        "upc": upc,
+        "images": images,
+        "categories": categories,
+        "brand": brand.title,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return false;
+    }
+  }
 
   static Future<List<ProductModel>?> fetchAllProducts() async {
     var response = await client.get(
@@ -308,6 +424,24 @@ class RemoteServices {
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       return productModelFromJson(response.body);
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
+    }
+  }
+
+  static Future<ProductModel?> fetchAProduct(int productId) async {
+    var response = await client.get(
+      Uri.parse('$_hostIP/products/$productId'),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return ProductModel.fromJson(jsonDecode(response.body));
     } else {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["message"]);
