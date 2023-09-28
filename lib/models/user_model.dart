@@ -22,20 +22,20 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    name: json["name"],
-    email: json["email"],
-    phone: json["phone"],
-    imgUrl: json["img_url"],
-    role: json["role"],
-    isVerified: json["is_verified"],
-  );
+        name: json["name"],
+        email: json["email"],
+        phone: json["phone"],
+        imgUrl: json["image"],
+        role: json["role"],
+        isVerified: json["is_verified"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "email": email,
-    "phone": phone,
-    "img_url": imgUrl,
-    "role": role,
-    "is_verified": isVerified,
-  };
+        "name": name,
+        "email": email,
+        "phone": phone,
+        "img_url": imgUrl,
+        "role": role,
+        "is_verified": isVerified,
+      };
 }

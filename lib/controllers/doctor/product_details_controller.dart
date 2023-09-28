@@ -5,6 +5,7 @@ import 'package:hunter/models/product_model.dart';
 import 'package:hunter/services/remote_services.dart';
 
 class ProductDetailsController extends GetxController {
+  ProductDetailsController({required this.product});
 
   @override
   void onInit() {
@@ -13,7 +14,7 @@ class ProductDetailsController extends GetxController {
   }
 
   int _qty = 1;
-  int get qty =>_qty;
+  int get qty => _qty;
 
   void increaseQty() {
     if (_qty < product.maxPurchaseQty) {
@@ -47,8 +48,7 @@ class ProductDetailsController extends GetxController {
   void getAProduct() async {
     try {
       //setLoadingProduct(true);
-      product = (await RemoteServices.fetchAProduct(product.id)
-          .timeout(kTimeOutDuration2))!;
+      product = (await RemoteServices.fetchAProduct(product.id).timeout(kTimeOutDuration2))!;
       //setFetchedProduct(true);
     } on TimeoutException {
       kTimeOutDialog();

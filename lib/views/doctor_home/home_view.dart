@@ -43,7 +43,7 @@ class DoctorHomeView extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                           //todo : fix this
+                            //todo : fix this
                             Get.toNamed(AppRoute.registerOTP);
                           },
                           style: ElevatedButton.styleFrom(

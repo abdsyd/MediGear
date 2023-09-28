@@ -13,7 +13,7 @@ class ProductsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductsController psC = Get.find();
-    ProductDetailsController pc = Get.find();
+    //ProductDetailsController pc = Get.find(); //no need for this here
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -80,8 +80,7 @@ class ProductsView extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.transparent),
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
                     elevation: MaterialStateProperty.all<double>(0),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(

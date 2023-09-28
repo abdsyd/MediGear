@@ -6,8 +6,6 @@ import 'package:hunter/controllers/doctor/products_controller.dart';
 import 'package:hunter/data/companies_card.dart';
 import 'package:hunter/widgets/companies _card.dart';
 
-
-
 class SearchTab extends StatelessWidget {
   const SearchTab({super.key});
 
@@ -16,11 +14,11 @@ class SearchTab extends StatelessWidget {
     HomeController hC = Get.find();
     SearchController sC = Get.put(SearchController());
     ProductsController psC = Get.put(ProductsController());
-    ProductDetailsController pC = Get.put(ProductDetailsController());
+    //ProductDetailsController pC = Get.put(ProductDetailsController()); // removed unnecessary initialization
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title:  Text('Search'.tr),
+        title: Text('Search'.tr),
         actions: [
           IconButton(
             onPressed: () {

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
+import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/doctor/bnb_tabs/profile_controller.dart';
 import 'package:hunter/controllers/doctor/home_controller.dart';
@@ -51,20 +52,29 @@ class ProfileTab extends StatelessWidget {
               );
             },
             child: GetBuilder<ProfileController>(builder: (controller) {
-              return pC.image != null
-                  ? ClipOval(
-                      child: Container(
-                        width: 180.0,
-                        height: 180.0,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: FileImage(
-                              pC.image!,
+              return hC.currentUser!.imgUrl != null
+                  ? Center(
+                      child: Stack(
+                        children: [
+                          ClipOval(
+                            child: Container(
+                              width: 180.0,
+                              height: 180.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage("$kHostIP/${hC.currentUser!.imgUrl}"),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          Positioned(
+                            child: CircleAvatar(child: Icon(CupertinoIcons.pen, size: 30)),
+                            bottom: 0,
+                            right: 0,
+                          ),
+                        ],
                       ),
                     )
                   : const Icon(
@@ -77,12 +87,9 @@ class ProfileTab extends StatelessWidget {
           const SizedBox(height: 10.0),
           Center(
             child: Text(
-              "Welcome back ${hC.currentUser != null ? hC.currentUser!.name : ''} ",
+              "Welcome back\n ${hC.currentUser != null ? hC.currentUser!.name : ''} ",
               textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .displayMedium!
-                  .copyWith(fontSize: 22),
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 22),
             ),
           ),
           const SizedBox(height: 20),
