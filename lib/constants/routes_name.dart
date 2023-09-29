@@ -13,8 +13,8 @@ class AppRoute {
   static const String cartTab = "/cartTab";
   static const String wishlistTab = "/wishlistTab";
   static const String profileTab = "/profileTab";
-  static const String products = "/products";
-  static const String productDetail = "/productDetail";
+  static const String brandProducts = "/brandProducts";
+  static const String product = "/productDetail";
   static const String profileSettings = "/profileSettings";
   static const String profileDetails = "/profileDetails";
   static const String supplierHome= "/supplierHome";

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
-import 'package:hunter/controllers/doctor/product_details_controller.dart';
+import 'package:hunter/controllers/doctor/product_controller.dart';
 import 'package:hunter/models/product_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../constants/k.dart';
 
-class ProductDetails extends StatelessWidget {
-  ProductDetails({
+class ProductView extends StatelessWidget {
+  ProductView({
     Key? key,
   }) : super(key: key);
 
@@ -17,8 +17,8 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //passed product to controller
-    ProductDetailsController productController = Get.put(ProductDetailsController(product: product));
+    ProductController productController =
+        Get.put(ProductController(product: product));
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +27,7 @@ class ProductDetails extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          GetBuilder<ProductDetailsController>(
+          GetBuilder<ProductController>(
             builder: (controller) {
               return SizedBox(
                 width: double.infinity,
@@ -67,7 +67,11 @@ class ProductDetails extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(product.title, style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 26)),
+                Text(product.title,
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium!
+                        .copyWith(fontSize: 26)),
                 Text(
                   product.brand.title,
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -87,7 +91,8 @@ class ProductDetails extends StatelessWidget {
                     ),
                     Container(
                       decoration: const BoxDecoration(
-                          color: AppColors.myPrimary, borderRadius: BorderRadius.all(Radius.circular(16))),
+                          color: AppColors.myPrimary,
+                          borderRadius: BorderRadius.all(Radius.circular(16))),
                       child: SizedBox(
                         height: 40,
                         width: 110,
@@ -103,10 +108,12 @@ class ProductDetails extends StatelessWidget {
                               ),
                               color: Colors.white,
                             ),
-                            GetBuilder<ProductDetailsController>(builder: (controller) {
+                            GetBuilder<ProductController>(
+                                builder: (controller) {
                               return Text(
                                 controller.qty.toString(),
-                                style: const TextStyle(color: Colors.white, fontSize: 12),
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 12),
                               );
                             }),
                             IconButton(
@@ -130,11 +137,17 @@ class ProductDetails extends StatelessWidget {
                 ),
                 Text(
                   'About Product ',
-                  style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 22),
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayMedium!
+                      .copyWith(fontSize: 22),
                 ),
                 Text(
                   product.description,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 18, color: Colors.grey[600]),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontSize: 18, color: Colors.grey[600]),
                 ),
                 const SizedBox(
                   height: 10,
@@ -147,14 +160,18 @@ class ProductDetails extends StatelessWidget {
                         width: 60,
                         height: 40,
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
                           color: Colors.grey[400],
                         ),
-                        child: IconButton(onPressed: () {}, icon: const Icon(Icons.favorite_border))),
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.favorite_border))),
                     ElevatedButton(
                       onPressed: () {},
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(AppColors.myPrimary),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            AppColors.myPrimary),
                       ),
                       child: const Row(
                         children: [

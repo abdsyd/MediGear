@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hunter/controllers/doctor/brand_product_controller.dart';
 import 'package:hunter/controllers/doctor/home_controller.dart';
-import 'package:hunter/controllers/doctor/product_details_controller.dart';
-import 'package:hunter/controllers/doctor/products_controller.dart';
 import 'package:hunter/data/companies_card.dart';
-import 'package:hunter/widgets/companies _card.dart';
+import 'package:hunter/widgets/companies_card.dart';
 
 class SearchTab extends StatelessWidget {
   const SearchTab({super.key});
@@ -13,8 +12,7 @@ class SearchTab extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeController hC = Get.find();
     SearchController sC = Get.put(SearchController());
-    ProductsController psC = Get.put(ProductsController());
-    //ProductDetailsController pC = Get.put(ProductDetailsController()); // removed unnecessary initialization
+    Get.put(BrandProductsController());
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

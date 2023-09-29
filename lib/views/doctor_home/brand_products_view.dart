@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
-import 'package:hunter/controllers/doctor/product_details_controller.dart';
-import 'package:hunter/controllers/doctor/products_controller.dart';
+import 'package:hunter/controllers/doctor/brand_product_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hunter/widgets/product_card.dart';
 
-class ProductsView extends StatelessWidget {
-  ProductsView({super.key});
+class BrandProductsView extends GetView<BrandProductsController> {
+  BrandProductsView({super.key});
   final title = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    ProductsController psC = Get.find();
-    //ProductDetailsController pc = Get.find(); //no need for this here
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -48,7 +45,7 @@ class ProductsView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              GetBuilder<ProductsController>(builder: (controller) {
+              GetBuilder<BrandProductsController>(builder: (controller) {
                 return SizedBox(
                   height: 40,
                   width: 160,
@@ -103,7 +100,7 @@ class ProductsView extends StatelessWidget {
             ],
           ),
           Expanded(
-            child: GetBuilder<ProductsController>(builder: (controller) {
+            child: GetBuilder<BrandProductsController>(builder: (controller) {
               return GridView.builder(
                 itemCount: controller.products.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

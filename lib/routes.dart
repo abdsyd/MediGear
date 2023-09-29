@@ -9,9 +9,9 @@ import 'package:hunter/views/doctor_home/bnb_tabs/explore_tab.dart';
 import 'package:hunter/views/doctor_home/bnb_tabs/profile_tab.dart';
 import 'package:hunter/views/doctor_home/bnb_tabs/search_tab.dart';
 import 'package:hunter/views/doctor_home/bnb_tabs/wishlist_tab.dart';
+import 'package:hunter/views/doctor_home/brand_products_view.dart';
 import 'package:hunter/views/doctor_home/home_view.dart';
-import 'package:hunter/views/doctor_home/product_details.dart';
-import 'package:hunter/views/doctor_home/products_view.dart';
+import 'package:hunter/views/doctor_home/product_view.dart';
 import 'package:hunter/views/auth/login_view.dart';
 import 'package:hunter/views/auth/register_otp.dart';
 import 'package:hunter/views/auth/register_view.dart';
@@ -26,6 +26,7 @@ List<GetPage<dynamic>> routes = [
   GetPage(
       name: AppRoute.onboarding,
       page: () => const OnboardingView(),
+      //todo : fix this middleware
       middlewares: [OnBoardingMiddleware()]),
   GetPage(
       name: AppRoute.login,
@@ -76,12 +77,12 @@ List<GetPage<dynamic>> routes = [
     page: () => const  ProfileTab(),
   ),
   GetPage(
-    name: AppRoute.products,
-    page: () => ProductsView(),
+    name: AppRoute.brandProducts,
+    page: () => BrandProductsView(),
   ),
   GetPage(
-    name: AppRoute.productDetail,
-    page: () =>  ProductDetails(),
+    name: AppRoute.product,
+    page: () =>  ProductView(),
   ),
   GetPage(
     name: AppRoute.profileSettings,

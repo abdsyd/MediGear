@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
-import 'package:hunter/controllers/doctor/products_controller.dart';
+import 'package:hunter/controllers/doctor/brand_product_controller.dart';
 import 'package:hunter/models/product_model.dart';
-class ProductCard extends StatelessWidget {
+class ProductCard extends GetView<BrandProductsController> {
   const ProductCard({
     super.key,
     required this.product,
@@ -14,10 +14,9 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductsController pC = Get.find();
     return GestureDetector(
       onTap: (){
-        Get.toNamed(AppRoute.productDetail,arguments: product);
+        Get.toNamed(AppRoute.product,arguments: product);
       },
       child: Padding(
         padding: const EdgeInsets.only(
@@ -35,7 +34,7 @@ class ProductCard extends StatelessWidget {
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
-                  GetBuilder<ProductsController>(builder: (controller) {
+                  GetBuilder<BrandProductsController>(builder: (controller) {
                     return Align(
                       alignment: Alignment.topRight,
                       child: Container(
