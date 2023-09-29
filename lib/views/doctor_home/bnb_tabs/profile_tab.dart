@@ -69,10 +69,10 @@ class ProfileTab extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Positioned(
-                            child: CircleAvatar(child: Icon(CupertinoIcons.pen, size: 30)),
+                           Positioned(
                             bottom: 0,
                             right: 0,
+                            child: CircleAvatar(backgroundColor:  Colors.grey.shade200,child: const Icon(CupertinoIcons.pen, size: 30,color: AppColors.myPrimary,)),
                           ),
                         ],
                       ),
