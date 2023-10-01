@@ -28,6 +28,7 @@ class ProductCard extends GetView<BrandProductsController> {
             Expanded(
               child: Stack(
                 children: [
+                  //todo : replace with CachedNetworkImage
                   Image.network(
                     "$kHostIP/${product.images[0].path}",
                     height: 250,

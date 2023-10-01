@@ -64,6 +64,7 @@ class ProfileTab extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
+                                  //todo : replace with CachedNetworkImage
                                   image: NetworkImage("$kHostIP/${hC.currentUser!.imgUrl}"),
                                 ),
                               ),

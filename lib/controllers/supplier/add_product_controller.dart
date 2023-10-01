@@ -11,6 +11,7 @@ class AddProductController extends GetxController {
   final TextEditingController description = TextEditingController();
   final TextEditingController quantity = TextEditingController();
   final TextEditingController category = TextEditingController();
+  final TextEditingController brand = TextEditingController();
   final TextEditingController upc = TextEditingController();
   final TextEditingController weight = TextEditingController();
   final TextEditingController height = TextEditingController();

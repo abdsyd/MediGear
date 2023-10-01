@@ -37,6 +37,7 @@ class ProductView extends StatelessWidget {
                   children: [
                     PageView.builder(
                       itemCount: controller.product.images.length,
+                      //todo : replace with CachedNetworkImage
                       itemBuilder: (context, index) => Image.network(
                         "$kHostIP/${controller.product.images[index].path}",
                         fit: BoxFit.cover,

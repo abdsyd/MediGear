@@ -361,7 +361,7 @@ class RemoteServices {
 ///////////// product \\\\\\\\\\\\\\\
 
   static Future<bool?> addProducts(
-    String name,
+    String title,
     String description,
     String upc,
     bool active,
@@ -381,7 +381,7 @@ class RemoteServices {
     var response = await client.post(
       Uri.parse('$_hostIP/products'),
       body: jsonEncode({
-        "title": name,
+        "title": title,
         "description": description,
         "price": price,
         "weight": weight,
