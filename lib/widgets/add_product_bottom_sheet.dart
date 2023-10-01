@@ -321,6 +321,7 @@ class AddProductBottomSheet extends StatelessWidget {
                   ),
                 ],
               ),
+              //todo : make it tags
               DropdownButtonFormField<String>(
                 //value: productController.category.text,
                 onChanged: (newValue) {},
@@ -341,7 +342,32 @@ class AddProductBottomSheet extends StatelessWidget {
                 decoration: const InputDecoration(labelText: 'Category'),
               ),
               DropdownSearch(
-
+                popupProps: const PopupProps.menu(
+                  showSearchBox: true,
+                  searchFieldProps: TextFieldProps(
+                    decoration: InputDecoration(
+                      fillColor: Colors.white70,
+                      hintText: "search",
+                      prefix: Padding(
+                        padding: EdgeInsets.all(4),
+                        child: Icon(Icons.search, ),
+                      ),
+                    ),
+                  ),
+                ),
+                dropdownDecoratorProps: const DropDownDecoratorProps(
+                  dropdownSearchDecoration: InputDecoration(
+                    labelText: "Brand",
+                    //labelStyle: kTextStyle18,
+                    hintText: "choose a brand",
+                  ),
+                ),
+                // items: con.companies,
+                // itemAsString: (CompanyModel c) => c.name,
+                // onChanged: (CompanyModel? company) {
+                //   con.setCompany(company!);
+                // },
+                // enabled: !con.enabled,
               ),
               TextFormField(
                 validator: (val) {
