@@ -356,7 +356,60 @@ class RemoteServices {
 
   ///////////// category \\\\\\\\\\\\\\\
 
+  static Future<List<CategoryModel>?> fetchAllParentCategories() async {
+    var response = await client.get(
+      Uri.parse('$_hostIP/categories'),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return categoryModelFromJson(response.body);
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
+    }
+  }
 
+  static Future<List<CategoryModel>?> fetchAllChildCategories() async {
+    var response = await client.get(
+      Uri.parse('$_hostIP/categories/all-children'),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return categoryModelFromJson(response.body);
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
+    }
+  }
+
+  static Future<List<CategoryModel>?> fetchCategoryDetails(
+      int categoryId) async {
+    var response = await client.get(
+      Uri.parse('$_hostIP/category-details/$categoryId'),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return categoryModelFromJson(response.body);
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return null;
+    }
+  }
 
 ///////////// product \\\\\\\\\\\\\\\
 
@@ -380,6 +433,59 @@ class RemoteServices {
   ) async {
     var response = await client.post(
       Uri.parse('$_hostIP/products'),
+      body: jsonEncode({
+        "title": title,
+        "description": description,
+        "price": price,
+        "weight": weight,
+        "length": length,
+        "width": width,
+        "height": height,
+        "quantity": quantity,
+        "sell_quantity": sellQuantity,
+        "max_purchase_qty": maxPurchaseQty,
+        "min_purchase_qty": minPurchaseQty,
+        "active": active,
+        "upc": upc,
+        "images": images,
+        "categories": categories,
+        "brand": brand.title,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return false;
+    }
+  }
+  static Future<bool?> editProducts(
+  int productId,
+      String title,
+      String description,
+      String upc,
+      bool active,
+      BrandModel brand,
+      List<ImageModel> images,
+      List<CategoryModel> categories,
+      double price,
+      double weight,
+      double width,
+      double height,
+      double length,
+      int quantity,
+      int sellQuantity,
+      int maxPurchaseQty,
+      int minPurchaseQty,
+      ) async {
+    var response = await client.patch(
+      Uri.parse('$_hostIP/products/$productId?_method=PATCH'),
       body: jsonEncode({
         "title": title,
         "description": description,
@@ -446,6 +552,24 @@ class RemoteServices {
       Get.defaultDialog(
           title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
+    }
+  }
+
+  static Future<bool?> deleteProduct(int productId) async {
+    var response = await client.delete(
+      Uri.parse('$_hostIP/products/$productId'),
+      headers: {
+        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
+    } else {
+      Get.defaultDialog(
+          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      return false;
     }
   }
 }

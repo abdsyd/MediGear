@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
+import 'package:hunter/constants/k.dart';
+import 'package:hunter/models/brand_model.dart';
+import 'package:hunter/models/category_model.dart';
 import 'package:hunter/models/product_model.dart';
+import 'package:hunter/services/remote_services.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddProductController extends GetxController {
-
   final TextEditingController title = TextEditingController();
   final TextEditingController price = TextEditingController();
   final TextEditingController description = TextEditingController();
@@ -28,7 +33,7 @@ class AddProductController extends GetxController {
 
   bool buttonPressed = false;
   bool isActive = false;
-  void  toggleActivity(bool? value) {
+  void toggleActivity(bool? value) {
     isActive = value!;
     update();
   }
@@ -38,6 +43,84 @@ class AddProductController extends GetxController {
   void setPicIndex(int i) {
     _picIndex = i;
     update();
+  }
+
+  @override
+  void onInit() {
+    getAllBrands();
+    getAllCategories();
+    super.onInit();
+  }
+
+  late List<BrandModel> brands = [];
+
+
+  bool isLoadingBrand = false;
+  bool isFetchedBrand = false;
+
+  void setLoadingBrand(bool value) {
+    isLoadingBrand = value;
+    update();
+  }
+
+  void setFetchedBrand(bool value) {
+    isFetchedBrand = value;
+    update();
+  }
+
+  void getAllBrands() async {
+    try {
+      //setLoadingBrand(true);
+      brands =
+          (await RemoteServices.fetchAllBrands().timeout(kTimeOutDuration2))!;
+      //setFetchedBrand(true);
+    } on TimeoutException {
+      kTimeOutDialog();
+    } catch (e) {
+      //
+    } finally {
+      //setLoadingBrand(false);
+    }
+  }
+  late List<CategoryModel> parentCategories = [];
+  late List<CategoryModel> childCategories = [];
+
+  bool isLoadingCategories = false;
+  bool isFetchedCategories = false;
+
+  void setLoadingCategories(bool value) {
+    isLoadingCategories = value;
+    update();
+  }
+
+  void setFetchedCategories(bool value) {
+    isFetchedCategories = value;
+    update();
+  }
+  void getAllCategories() async {
+    try {
+      //setLoadingCategories(true);
+      parentCategories =
+      (await RemoteServices.fetchAllParentCategories().timeout(kTimeOutDuration2))!;
+      childCategories =
+      (await RemoteServices.fetchAllChildCategories().timeout(kTimeOutDuration2))!;
+      //setFetchedCategories(true);
+    } on TimeoutException {
+      kTimeOutDialog();
+    } catch (e) {
+      //
+    } finally {
+      //setLoadingCategories(false);
+    }
+  }
+
+  //todo: find out how to do this
+  Future addProduct() async {
+    try {} on TimeoutException {
+      kTimeOutDialog();
+    } catch (e) {
+      //
+    } finally {}
   }
 
   List<XFile> images = [];
@@ -51,8 +134,14 @@ class AddProductController extends GetxController {
   String? scanResult;
 
   Future scanBarcode() async {
-    scanResult = await FlutterBarcodeScanner.scanBarcode('#ff6666', 'Cancel', true, ScanMode.BARCODE);
+    scanResult = await FlutterBarcodeScanner.scanBarcode(
+        '#ff6666', 'Cancel', true, ScanMode.BARCODE);
     update();
   }
+  List<int> selectedItems = [];
 
+   void setSelectedItems (value) {
+     selectedItems = value;
+     update();
+   }
 }

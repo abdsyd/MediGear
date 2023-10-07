@@ -8,6 +8,7 @@ import 'package:hunter/constants/colors.dart';
 import 'package:hunter/controllers/supplier/add_product_controller.dart';
 import 'package:hunter/widgets/auth_field.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:search_choices/search_choices.dart';
 
 class AddProductBottomSheet extends StatelessWidget {
   const AddProductBottomSheet({super.key});
@@ -322,24 +323,37 @@ class AddProductBottomSheet extends StatelessWidget {
                 ],
               ),
               //todo : make it tags
-              DropdownButtonFormField<String>(
-                //value: productController.category.text,
-                onChanged: (newValue) {},
-                items: [
-                  DropdownMenuItem(
-                    value: "ar",
-                    child: Text(
-                      "Arabic ".tr,
-                    ),
-                  ),
-                  DropdownMenuItem(
-                    value: "en",
-                    child: Text(
-                      "English ".tr,
-                    ),
-                  ),
+              SearchChoices.multiple(
+                items: const [
+                  DropdownMenuItem(child: Text('10')),
+                  DropdownMenuItem(child: Text('20')),
+                  DropdownMenuItem(child: Text('30')),
                 ],
-                decoration: const InputDecoration(labelText: 'Category'),
+                selectedItems: addProductController.selectedItems,
+                hint: "Select items",
+                searchHint: "Select items",
+                onChanged: (value) {
+                  addProductController.setSelectedItems(value);
+                },
+                isExpanded: true,
+                selectedValueWidgetFn: (item) {
+                  return (Container(
+                    margin: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(3.0),
+                    decoration:
+                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                    child: Text(
+                      item,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ));
+                },
+                selectedAggregateWidgetFn: (List<Widget> list) {
+                  return (Column(children: [
+                    Text("${list.length} items selected"),
+                    Wrap(children: list),
+                  ]));
+                },
               ),
               DropdownSearch(
                 popupProps: const PopupProps.menu(
