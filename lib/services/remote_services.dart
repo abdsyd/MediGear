@@ -20,8 +20,8 @@ class RemoteServices {
 
   ///////////// Auth \\\\\\\\\\\\\\\
 
-  static Future<String?> register(String email, String password,
-      String rePassword, String name, String phone, String role) async {
+  static Future<String?> register(
+      String email, String password, String rePassword, String name, String phone, String role) async {
     var response = await client.post(
       Uri.parse("$_hostIP/register"),
       body: jsonEncode({
@@ -32,16 +32,12 @@ class RemoteServices {
         "password_confirmation": rePassword,
         "role": role,
       }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body)["access_token"];
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -50,16 +46,12 @@ class RemoteServices {
     var response = await client.post(
       Uri.parse("$_hostIP/login"),
       body: jsonEncode({"email": email, "password": password}),
-      headers: {
-        'Content-Type': 'application/json',
-        "Accept": 'application/json'
-      },
+      headers: {'Content-Type': 'application/json', "Accept": 'application/json'},
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       return logInModelFromJson(response.body);
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -79,8 +71,7 @@ class RemoteServices {
       kSessionExpiredDialog();
       return true;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
@@ -88,8 +79,7 @@ class RemoteServices {
   ///////////// Profile \\\\\\\\\\\\\\\
 
   static Future<bool> uploadProfileImage(File? imageFile) async {
-    var request = http.MultipartRequest(
-        "POST", Uri.parse("$_hostIP/upload-profile-image"));
+    var request = http.MultipartRequest("POST", Uri.parse("$_hostIP/upload-profile-image"));
     request.headers['Authorization'] = "Bearer $token";
     request.headers['Accept'] = 'application/json';
     var stream = http.ByteStream(imageFile!.openRead());
@@ -128,8 +118,7 @@ class RemoteServices {
       kSessionExpiredDialog();
       return null;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["error"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["error"]);
       return null;
     }
   }
@@ -153,14 +142,12 @@ class RemoteServices {
       kSessionExpiredDialog();
       return false;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
 
-  static Future<bool> editPassword(
-      String newPassword, String currentPassword) async {
+  static Future<bool> editPassword(String newPassword, String currentPassword) async {
     var response = await client.post(
       Uri.parse('$_hostIP/edit-password'),
       body: jsonEncode({
@@ -179,8 +166,7 @@ class RemoteServices {
       kSessionExpiredDialog();
       return false;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
@@ -199,8 +185,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body)["url"];
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -223,8 +208,7 @@ class RemoteServices {
       Get.defaultDialog(title: "error".tr, middleText: "wrong code");
       return false;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
@@ -251,8 +235,7 @@ class RemoteServices {
     }
   }
 
-  static Future<String?> verifyForgotPasswordOtp(
-      String email, String otp) async {
+  static Future<String?> verifyForgotPasswordOtp(String email, String otp) async {
     var response = await client.post(
       Uri.parse('$_hostIP/verify-reset-otp'),
       body: jsonEncode({
@@ -270,14 +253,13 @@ class RemoteServices {
       Get.defaultDialog(title: "error".tr, middleText: "wrong code");
       return null;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
 
-  static Future<bool> resetPassword(String email, String password,
-      String passwordConfirmation, String resetToken) async {
+  static Future<bool> resetPassword(
+      String email, String password, String passwordConfirmation, String resetToken) async {
     var response = await client.post(Uri.parse('$_hostIP/reset-password'),
         body: jsonEncode({
           'email': email,
@@ -292,8 +274,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
@@ -312,8 +293,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return brandModelFromJson(response.body);
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -330,8 +310,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return BrandModel.fromJson(jsonDecode(response.body));
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -348,8 +327,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return productModelFromJson(response.body);
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -368,8 +346,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return categoryModelFromJson(response.body);
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -386,14 +363,12 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return categoryModelFromJson(response.body);
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
 
-  static Future<List<CategoryModel>?> fetchCategoryDetails(
-      int categoryId) async {
+  static Future<List<CategoryModel>?> fetchCategoryDetails(int categoryId) async {
     var response = await client.get(
       Uri.parse('$_hostIP/category-details/$categoryId'),
       headers: {
@@ -405,14 +380,15 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return categoryModelFromJson(response.body);
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
 
 ///////////// product \\\\\\\\\\\\\\\
 
+  //todo: product images (add, edit)
+  //todo: send categories ids not categories, map every category to category.id (add, edit)
   static Future<bool?> addProducts(
     String title,
     String description,
@@ -460,32 +436,32 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
+
   static Future<bool?> editProducts(
-  int productId,
-      String title,
-      String description,
-      String upc,
-      bool active,
-      BrandModel brand,
-      List<ImageModel> images,
-      List<CategoryModel> categories,
-      double price,
-      double weight,
-      double width,
-      double height,
-      double length,
-      int quantity,
-      int sellQuantity,
-      int maxPurchaseQty,
-      int minPurchaseQty,
-      ) async {
+    int productId,
+    String title,
+    String description,
+    String upc,
+    bool active,
+    BrandModel brand,
+    List<ImageModel> images,
+    List<CategoryModel> categories,
+    double price,
+    double weight,
+    double width,
+    double height,
+    double length,
+    int quantity,
+    int sellQuantity,
+    int maxPurchaseQty,
+    int minPurchaseQty,
+  ) async {
     var response = await client.patch(
-      Uri.parse('$_hostIP/products/$productId?_method=PATCH'),
+      Uri.parse('$_hostIP/products/$productId'),
       body: jsonEncode({
         "title": title,
         "description": description,
@@ -513,8 +489,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }
@@ -531,8 +506,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return productModelFromJson(response.body);
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -549,8 +523,7 @@ class RemoteServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return ProductModel.fromJson(jsonDecode(response.body));
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return null;
     }
   }
@@ -564,11 +537,10 @@ class RemoteServices {
         "Authorization": "Bearer $token",
       },
     );
-    if (response.statusCode == 200 || response.statusCode == 201) {
+    if (response.statusCode == 204) {
       return true;
     } else {
-      Get.defaultDialog(
-          title: "error".tr, middleText: jsonDecode(response.body)["message"]);
+      Get.defaultDialog(title: "error".tr, middleText: jsonDecode(response.body)["message"]);
       return false;
     }
   }

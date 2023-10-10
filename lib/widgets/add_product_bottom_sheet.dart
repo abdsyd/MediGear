@@ -13,6 +13,7 @@ import 'package:search_choices/search_choices.dart';
 class AddProductBottomSheet extends StatelessWidget {
   const AddProductBottomSheet({super.key});
 
+  //todo: controller is not disposing after closing sheet
   @override
   Widget build(BuildContext context) {
     AddProductController addProductController = Get.put(AddProductController());
@@ -67,9 +68,7 @@ class AddProductBottomSheet extends StatelessWidget {
                         children: [
                           CarouselSlider(
                             items: [
-                              ...addProductController.images
-                                  .map((e) => Image.file(File(e.path)))
-                                  .toList(),
+                              ...addProductController.images.map((e) => Image.file(File(e.path))).toList(),
                               GestureDetector(
                                 onTap: () {
                                   controller.pickImage();
@@ -97,18 +96,14 @@ class AddProductBottomSheet extends StatelessWidget {
                             options: CarouselOptions(
                               enableInfiniteScroll: false,
                               aspectRatio: 4 / 3,
-                              onPageChanged: (i, reason) =>
-                                  controller.setPicIndex(i),
+                              onPageChanged: (i, reason) => controller.setPicIndex(i),
                             ),
                           ),
                           const SizedBox(height: 8),
                           AnimatedSmoothIndicator(
                             activeIndex: controller.picIndex,
                             count: controller.images.length + 1,
-                            effect: const WormEffect(
-                                dotHeight: 9,
-                                dotWidth: 9,
-                                activeDotColor: AppColors.myPrimary),
+                            effect: const WormEffect(dotHeight: 9, dotWidth: 9, activeDotColor: AppColors.myPrimary),
                           )
                         ],
                       );
@@ -118,13 +113,11 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(
-                            addProductController.title.text, 4, 100, 'title');
+                        return validateInput2(addProductController.title.text, 4, 100, 'title');
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.title,
@@ -135,13 +128,11 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(
-                            addProductController.price.text, 1, 1000, "price");
+                        return validateInput2(addProductController.price.text, 1, 1000, "price");
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.price,
@@ -155,13 +146,11 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(addProductController.quantity.text,
-                            1, 1000, "quantity");
+                        return validateInput2(addProductController.quantity.text, 1, 1000, "quantity");
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.quantity,
@@ -172,13 +161,11 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(addProductController.sellQty.text, 0,
-                            1000, 'sell Qty');
+                        return validateInput2(addProductController.sellQty.text, 0, 1000, 'sell Qty');
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.sellQty,
@@ -192,42 +179,30 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(
-                            addProductController.maxPurchaseQty.text,
-                            1,
-                            1000,
-                            'max Purchase Qty');
+                        return validateInput2(addProductController.maxPurchaseQty.text, 1, 1000, 'max Purchase Qty');
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.maxPurchaseQty,
-                      decoration:
-                          const InputDecoration(labelText: 'Max Purchase Qty'),
+                      decoration: const InputDecoration(labelText: 'Max Purchase Qty'),
                     ),
                   ),
                   const SizedBox(width: 20),
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(
-                            addProductController.minPurchaseQty.text,
-                            1,
-                            1000,
-                            'min Purchase Qty');
+                        return validateInput2(addProductController.minPurchaseQty.text, 1, 1000, 'min Purchase Qty');
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.minPurchaseQty,
-                      decoration:
-                          const InputDecoration(labelText: 'Min Purchase Qty'),
+                      decoration: const InputDecoration(labelText: 'Min Purchase Qty'),
                     ),
                   ),
                 ],
@@ -237,13 +212,11 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(
-                            addProductController.weight.text, 1, 100, 'weight');
+                        return validateInput2(addProductController.weight.text, 1, 100, 'weight');
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.weight,
@@ -258,13 +231,11 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(
-                            addProductController.height.text, 1, 100, 'height');
+                        return validateInput2(addProductController.height.text, 1, 100, 'height');
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.height,
@@ -282,13 +253,11 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(
-                            addProductController.width.text, 1, 100, 'width');
+                        return validateInput2(addProductController.width.text, 1, 100, 'width');
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.width,
@@ -303,13 +272,11 @@ class AddProductBottomSheet extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       validator: (val) {
-                        return validateInput2(
-                            addProductController.length.text, 1, 100, 'length');
+                        return validateInput2(addProductController.length.text, 1, 100, 'length');
                       },
                       onChanged: (val) {
                         if (addProductController.buttonPressed) {
-                          addProductController.addProductFormKey.currentState!
-                              .validate();
+                          addProductController.addProductFormKey.currentState!.validate();
                         }
                       },
                       controller: addProductController.length,
@@ -340,8 +307,7 @@ class AddProductBottomSheet extends StatelessWidget {
                   return (Container(
                     margin: const EdgeInsets.all(15.0),
                     padding: const EdgeInsets.all(3.0),
-                    decoration:
-                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                    decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
                     child: Text(
                       item,
                       overflow: TextOverflow.ellipsis,
@@ -364,7 +330,9 @@ class AddProductBottomSheet extends StatelessWidget {
                       hintText: "search",
                       prefix: Padding(
                         padding: EdgeInsets.all(4),
-                        child: Icon(Icons.search, ),
+                        child: Icon(
+                          Icons.search,
+                        ),
                       ),
                     ),
                   ),
@@ -385,13 +353,11 @@ class AddProductBottomSheet extends StatelessWidget {
               ),
               TextFormField(
                 validator: (val) {
-                  return validateInput2(addProductController.description.text, 10,
-                      1000, 'Description');
+                  return validateInput2(addProductController.description.text, 10, 1000, 'Description');
                 },
                 onChanged: (val) {
                   if (addProductController.buttonPressed) {
-                    addProductController.addProductFormKey.currentState!
-                        .validate();
+                    addProductController.addProductFormKey.currentState!.validate();
                   }
                 },
                 controller: addProductController.description,
@@ -399,27 +365,24 @@ class AddProductBottomSheet extends StatelessWidget {
               ),
               const SizedBox(width: 20),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   addProductController.scanBarcode();
                 },
                 child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    decoration: const BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.black)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GetBuilder<AddProductController>(
-                          builder: (controller) {
-                            return Text(controller.scanResult == null
-                                ? 'Scan Barcode'
-                                : controller.scanResult!);
-                          }
-                        ),
-                        const Icon(CupertinoIcons.barcode),
-                      ],
-                    ),),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  decoration: const BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.black)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GetBuilder<AddProductController>(builder: (controller) {
+                        return Text(controller.scanResult == null ? 'Scan Barcode' : controller.scanResult!);
+                      }),
+                      const Icon(CupertinoIcons.barcode),
+                    ],
+                  ),
+                ),
               ),
               Row(
                 children: [
@@ -441,8 +404,7 @@ class AddProductBottomSheet extends StatelessWidget {
                 height: 20,
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.myPrimary),
+                style: ElevatedButton.styleFrom(backgroundColor: AppColors.myPrimary),
                 onPressed: () {
                   Get.back();
                 },
