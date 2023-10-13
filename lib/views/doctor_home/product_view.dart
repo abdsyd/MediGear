@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,6 +6,7 @@ import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/icons.dart';
 import 'package:hunter/controllers/doctor/product_controller.dart';
 import 'package:hunter/models/product_model.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../constants/k.dart';
 
@@ -37,10 +39,11 @@ class ProductView extends StatelessWidget {
                   children: [
                     PageView.builder(
                       itemCount: controller.product.images.length,
-                      //todo : replace with CachedNetworkImage
-                      itemBuilder: (context, index) => Image.network(
-                        "$kHostIP/${controller.product.images[index].path}",
+                      itemBuilder: (context, index) => CachedNetworkImage(
+                        imageUrl:
+                            "$kHostIP/${controller.product.images[index].path}",
                         fit: BoxFit.cover,
+                        placeholder: (context, url) =>LoadingAnimationWidget.inkDrop(color: AppColors.myPrimary, size: 40),
                       ),
                       onPageChanged: (int index) {
                         controller.setPicIndex(index);

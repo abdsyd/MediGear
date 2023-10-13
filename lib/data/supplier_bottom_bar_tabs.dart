@@ -7,7 +7,7 @@ import 'package:hunter/views/supplier_home/bnb_tabs/products.dart';
 
 List<Widget> supplierBodies = [
   const Dashboard(),
-  const Products(),
+  const SupplierProducts(),
   const Orders(),
    ProfileTab(),
 ];

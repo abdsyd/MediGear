@@ -39,12 +39,13 @@ class SupplierHomeView extends StatelessWidget {
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16.0,
+                              color: Colors.black,
                             ),
                           ),
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            //todo : fix this
+                            //todo : fix go otp
                             Get.toNamed(AppRoute.registerOTP);
                           },
                           style: ElevatedButton.styleFrom(

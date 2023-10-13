@@ -25,7 +25,7 @@ class DoctorHomeView extends StatelessWidget {
                 left: 0,
                 right: 0,
                 child: Visibility(
-                  visible: controller.currentUser != null && !controller.currentUser!.isVerified,
+                  visible: false,//controller.currentUser != null && !controller.currentUser!.isVerified,
                   child: Container(
                     padding: const EdgeInsets.all(16.0),
                     color: Colors.amber, // Customize the background color
@@ -38,12 +38,13 @@ class DoctorHomeView extends StatelessWidget {
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16.0,
+                              color: Colors.black,
                             ),
                           ),
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            //todo : fix this
+                            //todo : fix otp here
                             Get.toNamed(AppRoute.registerOTP);
                           },
                           style: ElevatedButton.styleFrom(

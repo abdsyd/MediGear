@@ -1,9 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/controllers/doctor/brand_product_controller.dart';
 import 'package:hunter/models/product_model.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+
 class ProductCard extends GetView<BrandProductsController> {
   const ProductCard({
     super.key,
@@ -28,12 +32,12 @@ class ProductCard extends GetView<BrandProductsController> {
             Expanded(
               child: Stack(
                 children: [
-                  //todo : replace with CachedNetworkImage
-                  Image.network(
-                    "$kHostIP/${product.images[0].path}",
+                 CachedNetworkImage(
+                    imageUrl: "$kHostIP/${product.images[0].path}",
                     height: 250,
                     width: double.infinity,
                     fit: BoxFit.cover,
+                   placeholder: (context, url) =>LoadingAnimationWidget.inkDrop(color: AppColors.myPrimary, size: 40),
                   ),
                   GetBuilder<BrandProductsController>(builder: (controller) {
                     return Align(

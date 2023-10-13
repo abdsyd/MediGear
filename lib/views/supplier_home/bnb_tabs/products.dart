@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:hunter/controllers/supplier/add_product_controller.dart';
 import 'package:hunter/widgets/add_product_bottom_sheet.dart';
 
-class Products extends StatelessWidget {
-  const Products({super.key});
+class SupplierProducts extends StatelessWidget {
+  const SupplierProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class Products extends StatelessWidget {
       body: GetBuilder<AddProductController>(
         builder: (controller) {
           return ListView.builder(
-            // todo : add products here instead of this placeholder column
+            // todo : display the added products here instead of this placeholder column
             itemBuilder: (context,index) => const Column(
             children: [
               Image(
@@ -35,7 +35,7 @@ class Products extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'tool',
+                    't000ool',
                   ),
                   Text(
                     'alalalala',

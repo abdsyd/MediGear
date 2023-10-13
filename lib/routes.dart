@@ -102,6 +102,6 @@ List<GetPage<dynamic>> routes = [
   ),
   GetPage(
     name: AppRoute.supplierTab2,
-    page: () => const Products(),
+    page: () => const SupplierProducts(),
   ),
 ];
