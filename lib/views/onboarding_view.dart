@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/colors.dart';
 import 'package:hunter/constants/routes_name.dart';
+import 'package:hunter/controllers/onboarding_controller.dart';
 import 'package:hunter/data/onboarding_slides.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class OnboardingView extends StatelessWidget {
    const OnboardingView({super.key});
 
-
   @override
   Widget build(BuildContext context) {
+    Get.put(OnboardingController());
     return SafeArea(
       child: IntroductionScreen(
         globalBackgroundColor: AppColors.myPrimary,
         pages: getPages,
         onDone: () {
-          GetStorage().write('onboarding', true);
           Get.offNamed(AppRoute.login);
         },
         done: const Text(

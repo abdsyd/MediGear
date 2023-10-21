@@ -8,7 +8,8 @@ import 'package:hunter/locale.dart';
 import 'package:hunter/routes.dart';
 import 'package:hunter/themes.dart';
 
-void main() {
+void main() async{
+  await GetStorage.init();
   runApp(const MyApp());
 }
 

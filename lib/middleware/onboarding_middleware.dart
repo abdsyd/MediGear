@@ -5,11 +5,11 @@ import 'package:hunter/constants/routes_name.dart';
 
 class OnBoardingMiddleware extends GetMiddleware {
   @override
-  int? get priority => 1;
+  int? get priority => 2;
 
   @override
   RouteSettings? redirect(String? route) {
-    if (GetStorage().read('onboarding') != false ) {
+    if (GetStorage().read('onboarding') == true) {
       return const RouteSettings(name: AppRoute.login);
     }
     return null;

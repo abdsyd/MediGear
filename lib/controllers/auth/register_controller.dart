@@ -1,13 +1,10 @@
 import 'dart:async';
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/services/remote_services.dart';
-import 'package:otp_text_field/otp_field.dart';
-import 'package:timer_count_down/timer_controller.dart';
 
 class RegisterController extends GetxController {
    TextEditingController name = TextEditingController();
@@ -62,6 +59,7 @@ class RegisterController extends GetxController {
                 .timeout(kTimeOutDuration);
         if (accessToken != null) {
           _getStorage.write('token', accessToken);
+          //todo
           Get.toNamed(AppRoute.registerOTP);
         }
       } on TimeoutException {
