@@ -31,7 +31,6 @@ class ProfileTab extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    //todo : close this bottom sheet after choosing a way to take pick photo
                     Get.bottomSheet(
                       SizedBox(
                         height: 120,
@@ -41,6 +40,7 @@ class ProfileTab extends StatelessWidget {
                             ListTile(
                               onTap: () {
                                 pC.pickImage(source: ImageSource.camera);
+                                Get.back();
                               },
                               leading: const Icon(Icons.camera_alt),
                               title: const Text('From Camera'),
@@ -48,6 +48,7 @@ class ProfileTab extends StatelessWidget {
                             ListTile(
                               onTap: () {
                                 pC.pickImage(source: ImageSource.gallery);
+                                Get.back();
                               },
                               leading: const Icon(Icons.image_outlined),
                               title: const Text('From Gallery'),
@@ -68,7 +69,12 @@ class ProfileTab extends StatelessWidget {
                                     height: 200,
                                     imageUrl: "$kHostIP/${hC.currentUser!.imgUrl}",
                                     httpHeaders: const {'Connection': 'keep-alive'},
-                                    placeholder: (context, url) =>LoadingAnimationWidget.inkDrop(color: AppColors.myPrimary, size: 40),
+                                    placeholder: (context, url) => LoadingAnimationWidget.inkDrop(color: AppColors.myPrimary, size: 40),
+                                    errorWidget: (context, url, error) => const Icon(
+                                      CupertinoIcons.profile_circled,
+                                      size: 220,
+                                      color: AppColors.myPrimary,
+                                    ),
                                   ),
                                 ),
                                 Positioned(
