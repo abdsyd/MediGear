@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hunter/constants/k.dart';
 import 'package:hunter/constants/routes_name.dart';
 import 'package:hunter/models/user_model.dart';
@@ -17,6 +18,8 @@ class ProfileController extends GetxController {
     phone.text = user.phone;
     super.onInit();
   }
+
+  GetStorage _getStorage = GetStorage();
 
   File? image;
   late UserModel user;
@@ -121,6 +124,7 @@ class ProfileController extends GetxController {
 
   void logOut() async {
     if (await RemoteServices.signOut()) {
+      _getStorage.remove("token"); //todo: added this to delete expired token from local storage
       Get.offAllNamed(AppRoute.login);
     }
   }

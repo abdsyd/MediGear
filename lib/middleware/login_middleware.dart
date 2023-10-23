@@ -9,9 +9,7 @@ class LoginMiddleware extends GetMiddleware {
 
   @override
   RouteSettings? redirect(String? route) {
-    //LoginController lC = Get.find();
     GetStorage getStorage = GetStorage();
-    print(getStorage.read("role"));
     if (getStorage.hasData('token')) {
       //todo : read role from local storage
       if (getStorage.read("role") == "dentist") {
@@ -21,7 +19,7 @@ class LoginMiddleware extends GetMiddleware {
       } else {
         Get.defaultDialog(title: "admins are not allowed here go f urself");
       }
-    } else
-      return const RouteSettings(name: AppRoute.login);
+    }
+    return const RouteSettings(name: AppRoute.login);
   }
 }
