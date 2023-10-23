@@ -65,7 +65,7 @@ class ProfileController extends GetxController {
     if (returnedImage != null) {
       image = File(returnedImage.path);
       await RemoteServices.uploadProfileImage(image);
-    } else {}
+    }
     update();
   }
 

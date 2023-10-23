@@ -25,13 +25,16 @@ import 'package:hunter/views/supplier_home/home_view.dart';
 
 List<GetPage<dynamic>> routes = [
   GetPage(
-      name: AppRoute.onboarding,
-      page: () => const OnboardingView(),
-      middlewares: [OnBoardingMiddleware(),LoginMiddleware()]),
+    name: AppRoute.onboarding,
+    page: () => const OnboardingView(),
+    middlewares: [
+      OnBoardingMiddleware(),
+      LoginMiddleware(),
+    ],
+  ),
   GetPage(
-      name: AppRoute.login,
-      page: () => const LoginView(),
-
+    name: AppRoute.login,
+    page: () => const LoginView(),
   ),
   GetPage(
     name: AppRoute.register,
@@ -75,7 +78,7 @@ List<GetPage<dynamic>> routes = [
   ),
   GetPage(
     name: AppRoute.profileTab,
-    page: () => const  ProfileTab(),
+    page: () => const ProfileTab(),
   ),
   GetPage(
     name: AppRoute.brandProducts,
@@ -83,7 +86,7 @@ List<GetPage<dynamic>> routes = [
   ),
   GetPage(
     name: AppRoute.product,
-    page: () =>  ProductView(),
+    page: () => ProductView(),
   ),
   GetPage(
     name: AppRoute.profileSettings,

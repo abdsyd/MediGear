@@ -39,15 +39,15 @@ class LoginController extends GetxController {
     if (isValid) {
       toggleLoading(true);
       try {
-        _loggedUser = await RemoteServices.login(email.text, password.text)
-            .timeout(kTimeOutDuration);
+        _loggedUser = await RemoteServices.login(email.text, password.text).timeout(kTimeOutDuration);
         if (_loggedUser == null) throw Exception();
         _getStorage.write('token', _loggedUser!.accessToken);
-         if (_loggedUser!.role == 'supplier') {
+        _getStorage.write('role', _loggedUser!.role); //todo: saved role to local storage
+        if (_loggedUser!.role == 'supplier') {
           Get.offAllNamed(AppRoute.supplierHome);
         } else {
-           Get.offAllNamed(AppRoute.doctorHome);
-         }
+          Get.offAllNamed(AppRoute.doctorHome);
+        }
       } on TimeoutException {
         kTimeOutDialog();
       } catch (e) {

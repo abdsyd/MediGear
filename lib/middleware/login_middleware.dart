@@ -9,10 +9,19 @@ class LoginMiddleware extends GetMiddleware {
 
   @override
   RouteSettings? redirect(String? route) {
-    if (GetStorage().hasData('token')) {
-      //todo : make it go to supplier home if role is supplier
-      return const RouteSettings(name: AppRoute.doctorHome);
-    }
-    return null;
+    //LoginController lC = Get.find();
+    GetStorage getStorage = GetStorage();
+    print(getStorage.read("role"));
+    if (getStorage.hasData('token')) {
+      //todo : read role from local storage
+      if (getStorage.read("role") == "dentist") {
+        return const RouteSettings(name: AppRoute.doctorHome);
+      } else if (getStorage.read("role") == "supplier") {
+        return const RouteSettings(name: AppRoute.supplierHome);
+      } else {
+        Get.defaultDialog(title: "admins are not allowed here go f urself");
+      }
+    } else
+      return const RouteSettings(name: AppRoute.login);
   }
 }

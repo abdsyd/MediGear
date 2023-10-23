@@ -7,7 +7,7 @@ import 'package:hunter/data/onboarding_slides.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class OnboardingView extends StatelessWidget {
-   const OnboardingView({super.key});
+  const OnboardingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,7 @@ class OnboardingView extends StatelessWidget {
         dotsDecorator: DotsDecorator(
             activeColor: Colors.white,
             activeSize: const Size(20, 7),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(35))),
+            activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35))),
       ),
     );
   }
