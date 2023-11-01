@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: GetStorage().read('lang') == 'ar' ? AppTheme.myArabicLightMode : AppTheme.myEnglishLightMode,
         darkTheme: GetStorage().read('lang') == 'ar' ? AppTheme.myArabicDarkMode : AppTheme.myEnglishDarkMode,
         themeMode: themeController.getThemeMode(),
-        initialRoute: AppRoute.onboarding,
+        initialRoute: AppRoute.doctorHome,//todo onboarding here
         getPages: routes,
       ),
     );
