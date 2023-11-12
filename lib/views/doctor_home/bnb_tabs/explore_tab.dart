@@ -11,6 +11,8 @@ final List<String> imgList = [
   'assets/images/banner-03.jpg',
 ];
 
+// todo : replace placeholders with real data
+
 class ExploreTab extends StatelessWidget {
   const ExploreTab({super.key});
 
@@ -44,24 +46,111 @@ class ExploreTab extends StatelessWidget {
                 options: CarouselOptions(
                     autoPlay: true, enlargeCenterPage: true, aspectRatio: 2.0),
               ),
-              const Text("what would you like to buy ?"),
-              Container(
-                height: 70,
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("what would you like to buy ?")),
+              ),
+              SizedBox(
+                height: 75,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return Container(
-                      padding:const EdgeInsets.all(5) ,
-                      width: 70,
+                      decoration: const BoxDecoration(
+                          color: AppColors.myPrimary,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      padding: const EdgeInsets.all(5),
+                      width: 75,
                       margin: const EdgeInsets.all(5),
-                      color: AppColors.myPrimary,
                       child: const Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Icon(Icons.ac_unit,color: Colors.white,),
-                            Text('Category',overflow: TextOverflow.ellipsis,)
+                            Icon(
+                              Icons.ac_unit,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Category',
+                              overflow: TextOverflow.ellipsis,
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Align(
+                    alignment: Alignment.centerLeft, child: Text("Offers")),
+              ),
+              SizedBox(
+                height: 120,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: const BoxDecoration(
+                          color: AppColors.myPrimary,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      padding: const EdgeInsets.all(5),
+                      width: 170,
+                      margin: const EdgeInsets.all(5),
+                      child: const Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(
+                              Icons.ac_unit,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Category',
+                              overflow: TextOverflow.ellipsis,
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Align(
+                    alignment: Alignment.centerLeft, child: Text("For You ")),
+              ),
+              SizedBox(
+                height: 120,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: const BoxDecoration(
+                          color: AppColors.myPrimary,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      padding: const EdgeInsets.all(5),
+                      width: 170,
+                      margin: const EdgeInsets.all(5),
+                      child: const Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(
+                              Icons.ac_unit,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Category',
+                              overflow: TextOverflow.ellipsis,
+                            )
                           ],
                         ),
                       ),
