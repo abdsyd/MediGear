@@ -19,7 +19,7 @@ class AddProductBottomSheet extends StatelessWidget {
     AddProductController addProductController = Get.put(AddProductController());
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(10.0),
         child: Form(
           key: addProductController.addProductFormKey,
           child: Column(
@@ -56,7 +56,7 @@ class AddProductBottomSheet extends StatelessWidget {
                               Text(
                                 'Click here to add photo',
                                 style: TextStyle(
-                                  color: Colors.grey,
+                                color: Colors.grey,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -289,38 +289,6 @@ class AddProductBottomSheet extends StatelessWidget {
                   ),
                 ],
               ),
-              //todo : make it tags
-              SearchChoices.multiple(
-                items: const [
-                  DropdownMenuItem(child: Text('10')),
-                  DropdownMenuItem(child: Text('20')),
-                  DropdownMenuItem(child: Text('30')),
-                ],
-                selectedItems: addProductController.selectedItems,
-                hint: "Select items",
-                searchHint: "Select items",
-                onChanged: (value) {
-                  addProductController.setSelectedItems(value);
-                },
-                isExpanded: true,
-                selectedValueWidgetFn: (item) {
-                  return (Container(
-                    margin: const EdgeInsets.all(15.0),
-                    padding: const EdgeInsets.all(3.0),
-                    decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-                    child: Text(
-                      item,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ));
-                },
-                selectedAggregateWidgetFn: (List<Widget> list) {
-                  return (Column(children: [
-                    Text("${list.length} items selected"),
-                    Wrap(children: list),
-                  ]));
-                },
-              ),
               DropdownSearch(
                 popupProps: const PopupProps.menu(
                   showSearchBox: true,
@@ -350,6 +318,41 @@ class AddProductBottomSheet extends StatelessWidget {
                 //   con.setCompany(company!);
                 // },
                 // enabled: !con.enabled,
+              ),
+              //todo : fix it
+              SearchChoices.multiple(
+                displayClearIcon: false,
+                padding: const EdgeInsets.only(top: 10,bottom: 10,right: 11),
+                items: const [
+                  DropdownMenuItem(child: Text('10')),
+                  DropdownMenuItem(child: Text('20')),
+                  DropdownMenuItem(child: Text('30')),
+                ],
+                selectedItems: addProductController.selectedItems,
+                hint: "Select Categories",
+                style:Theme.of(context).textTheme.labelSmall!.copyWith(fontSize: 12) ,
+                searchHint: "Select items",
+                onChanged: (value) {
+                  addProductController.setSelectedItems(value);
+                },
+                isExpanded: true,
+                selectedValueWidgetFn: (item) {
+                  return (Container(
+                    margin: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(3.0),
+
+                    child: Text(
+                      item,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ));
+                },
+                selectedAggregateWidgetFn: (List<Widget> list) {
+                  return (Column(children: [
+                    Text("${list.length} items selected"),
+                    Wrap(children: list),
+                  ]));
+                },
               ),
               TextFormField(
                 validator: (val) {
