@@ -28,9 +28,6 @@ class AddProductController extends GetxController {
 
   GlobalKey<FormState> addProductFormKey = GlobalKey<FormState>();
 
-  late List<ProductModel> _products;
-  List<ProductModel> get products => _products;
-
   bool buttonPressed = false;
   bool isActive = false;
   void toggleActivity(bool? value) {
@@ -54,7 +51,6 @@ class AddProductController extends GetxController {
 
   late List<BrandModel> brands = [];
 
-
   bool isLoadingBrand = false;
   bool isFetchedBrand = false;
 
@@ -71,8 +67,7 @@ class AddProductController extends GetxController {
   void getAllBrands() async {
     try {
       //setLoadingBrand(true);
-      brands =
-          (await RemoteServices.fetchAllBrands().timeout(kTimeOutDuration2))!;
+      brands = (await RemoteServices.fetchAllBrands().timeout(kTimeOutDuration2))!;
       //setFetchedBrand(true);
     } on TimeoutException {
       kTimeOutDialog();
@@ -82,6 +77,7 @@ class AddProductController extends GetxController {
       //setLoadingBrand(false);
     }
   }
+
   late List<CategoryModel> parentCategories = [];
   late List<CategoryModel> childCategories = [];
 
@@ -97,13 +93,12 @@ class AddProductController extends GetxController {
     isFetchedCategories = value;
     update();
   }
+
   void getAllCategories() async {
     try {
       //setLoadingCategories(true);
-      parentCategories =
-      (await RemoteServices.fetchAllParentCategories().timeout(kTimeOutDuration2))!;
-      childCategories =
-      (await RemoteServices.fetchAllChildCategories().timeout(kTimeOutDuration2))!;
+      //parentCategories = (await RemoteServices.fetchAllParentCategories().timeout(kTimeOutDuration2))!;
+      childCategories = (await RemoteServices.fetchAllChildCategories().timeout(kTimeOutDuration2))!;
       //setFetchedCategories(true);
     } on TimeoutException {
       kTimeOutDialog();
@@ -134,14 +129,31 @@ class AddProductController extends GetxController {
   String? scanResult;
 
   Future scanBarcode() async {
-    scanResult = await FlutterBarcodeScanner.scanBarcode(
-        '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+    scanResult = await FlutterBarcodeScanner.scanBarcode('#ff6666', 'Cancel', true, ScanMode.BARCODE);
     update();
   }
-  List<int> selectedItems = [];
 
-   void setSelectedItems (value) {
-     selectedItems = value;
-     update();
-   }
+  List<int> selectedItemsIndexes = [];
+
+  void setSelectedItems(value) {
+    selectedItemsIndexes = value;
+    update();
+  }
+
+  void removeTag(int index) {
+    selectedItemsIndexes.remove(index);
+    print(selectedItemsIndexes);
+    update();
+  }
+  // f() {
+  //   List.generate(
+  //     childCategories.length,
+  //     (i) => DropdownMenuItem(
+  //       value: childCategories[i],
+  //       child: Text(
+  //         childCategories[i].title,
+  //       ),
+  //     ),
+  //   );
+  // }
 }
